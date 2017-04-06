@@ -1,0 +1,38 @@
+{
+  "name": "feedpile",
+  "version": "1.0.0",
+  "description": "rss reader",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/captivators/feedpile.git"
+  },
+  "keywords": [
+    "rss",
+    "reader"
+  ],
+  "author": "DAFM",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/captivators/feedpile/issues"
+  },
+  "homepage": "https://github.com/captivators/feedpile#readme",
+  "dependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.3",
+    "redux": "^3.6.0"
+  },
+  "devDependencies": {
+    "css-loader": "^0.28.0",
+    "style-loader": "^0.16.1"
+  }
+}
