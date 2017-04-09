@@ -17,8 +17,12 @@ module.exports = {
                 query: {presets: ['react', 'es2015']}
             },
             {
+                test: /\.json$/,      //This is to load json as how we load js files using import. Refer Search.js
+                loader: 'json-loader'
+            },
+            {
                 test: /\.css$/,
-                loader: "style-loader!css-loader"
+                loader: 'style-loader!css-loader'
             }
         ]
 
