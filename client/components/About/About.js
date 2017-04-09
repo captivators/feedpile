@@ -6,7 +6,7 @@ class About extends React.Component {
     return (
       <div>
         <div><Link to="/">Home</Link></div>
-        <div><Link to="/missing">Not Working</Link></div>
+        <div><Link to="/404">Not Working</Link></div>
         <hr />
         <h1>
           About Page

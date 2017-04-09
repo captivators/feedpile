@@ -1,5 +1,7 @@
+import data from '../data.json';
+
 const initialState = {
-  todos: []
+  articles: data
 };
 
 const addTodo = (state, action) => {
