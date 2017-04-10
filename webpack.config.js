@@ -5,7 +5,7 @@ module.exports = {
     entry: './client/index.js',
     devtool: 'eval',
     output: {
-        path: path.join(__dirname, '/public'),
+        path: path.join(__dirname, './public'),
         filename: 'bundle.js'
     },
     module: {
