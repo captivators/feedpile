@@ -26,6 +26,10 @@ module.exports = {
   {
     "url": "feed.slate.com/slate",
     "name": "Slate"
+  },
+  {
+    "url": "http://rss.cnn.com/rss/cnn_topstories.rss",
+    "name": "CNN"
   }
 ],
 "articles": [
@@ -48,6 +52,21 @@ module.exports = {
     "article_url": "https://techcrunch.com/2017/04/08/spotify-premium-director-robert-lamvik-leaves-company-for-meditation-app-headspace/",
     "date_written": "2017-04-07T21:16:01Z",
     "feedname": "TechCrunch"
+ },
+ {
+  "article_url": "http://rss.cnn.com/~r/rss/cnn_topstories/~3/4PSdd4GKIao/index.html",
+    "date_written": "2017-04-10T21:16:01Z",
+    "feedname": "CNN"
+ },
+ {
+  "article_url": "http://rss.cnn.com/~r/rss/cnn_topstories/~3/ycobN1EL5hE/believer-reza-aslan-who-are-aghori-sahdus-india-orig-ff.cnn",
+    "date_written": "2017-03-13T21:16:01Z",
+    "feedname": "CNN"
+ },
+ {
+  "article_url": "http://rss.cnn.com/~r/rss/cnn_topstories/~3/GTyfDq9G4a4/index.html",
+    "date_written": "2017-04-09T21:16:01Z",
+    "feedname": "CNN"
  }
 ]
 

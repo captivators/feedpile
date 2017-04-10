@@ -1,12 +1,14 @@
 const data = require('./data.js');
 const mongoose = require('mongoose');
+
+// const User = require('./models/users');
 const Feed= require('./models/feed')
 const Article = require('./models/article')
 
+console.log('in seed.js')
 mongoose.connect('mongodb://localhost:27017/feeds')
 
 let seeder = {
-
   "seed": () => {
     console.log( 'seeding' )
     let feeds = data.feeds;
@@ -32,6 +34,7 @@ let seeder = {
                     } else {
                       console.log('added article to the db', doc);
                       mongoose.connection.close();
+
                     }
                 } )
             }
@@ -43,3 +46,4 @@ let seeder = {
   }
 }
 seeder.seed();
+
