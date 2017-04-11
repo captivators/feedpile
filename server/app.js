@@ -9,7 +9,9 @@ const app = express();
 
 // connect to our database
 //mongoose.connect(process.env.MONGODB_URI || MONGODB_URI);
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/feedpilelocal');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/feedpilelocal', function () {
+  console.log('Connected to Database');
+});
 
 
 // Setup logger
