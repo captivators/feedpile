@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import ReaderList from '../ReaderList/ReaderList';
 import Sidebar from '../Sidebar/Sidebar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Layout from 'material-ui/Layout';
 
 import store from '../../store';
 
