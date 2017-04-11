@@ -5,11 +5,12 @@ import { connect } from 'react-redux';
 import './ReaderList.css';
 
 const ReaderList = (props) => {
+  console.log(JSON.stringify(props.articles))
   return (
     <div className="reader-list-container">
       <Navbar />
       {props.articles.map((article, index) => (
-        <ReaderListItem article={article} key={index}/>
+        <ReaderListItem className="item" article={article} key={index}/>
       ))}
     </div>
   )

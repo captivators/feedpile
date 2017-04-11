@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 var ArticleSchema = new Schema({
   url: String,
   datePublished: Date,
+  readOrNot: Boolean,
   feedId: String
 });
 

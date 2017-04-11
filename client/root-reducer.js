@@ -1,14 +1,11 @@
-import data from '../data.json';
-
+import data from './data.json';
+console.log(JSON.stringify(data));
 const initialState = {
   articles: data
 };
 
 const addTodo = (state, action) => {
-  // creates a new state reference:
-  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
-  console.log(`3. In add todo of reducer`);
-  return Object.assign({}, state, {todos: state.todos.concat(action.todo)});
+  // creates a new state reference:todo)});
 };
 
 const removeTodo = (state, action) => {
