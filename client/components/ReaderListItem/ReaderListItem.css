@@ -1,0 +1,35 @@
+.list-item-container {
+  border-top: 1px solid grey;
+  padding: 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-left: 300px;
+  margin-right: 100px;
+  min-width: 400px;
+  display: flex;
+  cursor: pointer;
+}
+
+.list-item-container:hover {
+  background-color: #ebebeb;
+}
+
+.list-item-container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.thumbnail-container {
+  float: left;
+  margin-right: 20px;
+}
+
+.thumbnail {
+  width:  200px;
+  height: 120px;
+}
+
+.article-text-container {
+  padding-left: 10px;
+}

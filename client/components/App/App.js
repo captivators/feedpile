@@ -12,7 +12,7 @@ class App extends React.Component {
   render() {
     return (
         <Provider store={store}>
-          <div className="pure-g">
+          <div className="app-container">
             {console.log(store.getState())}
             <Sidebar />
             <ReaderList />
