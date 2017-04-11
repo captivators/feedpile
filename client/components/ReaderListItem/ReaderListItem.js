@@ -1,10 +1,13 @@
 import React from 'react';
+import './ReaderListItem.css';
 
 const ReaderListItem = (props) => {
   return(
-    <div className='pure-g'>
-      <img className='pure-u-1-3' src={props.article.image}/>
-      <div className='pure-u-2-3'>
+    <div className='list-item-container'>
+      <div className='thumbnail-container'>
+        <img className='thumbnail' src={props.article.image}/>
+      </div>
+      <div className='article-text-container'>
         <h2 className='article-title'>{props.article.name}</h2>
         <p className='article-publisher'>{props.article.owner}</p>
         <p className='article-content'>{props.article.description}</p>
