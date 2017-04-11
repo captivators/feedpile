@@ -1,4 +1,5 @@
 .category-title {
+  font-family: 'Roboto', sans-serif;
   text-align: center;
   font-size: 18px;
   padding-top: 5px;
@@ -6,4 +7,8 @@
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   background-color: #D6D6D6;
+}
+
+.category-title:hover {
+  background-color: #BBE4F2;
 }

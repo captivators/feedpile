@@ -8,24 +8,17 @@ import Layout from 'material-ui/Layout';
 
 import store from '../../store';
 
-import './style.css';
+import './app.css';
 
 class App extends React.Component {
   render() {
     return (
       <MuiThemeProvider>
         <Provider store={store}>
-          <div>
+          <div className='app-container'>
             {console.log(store.getState())}
-            {/* Need to update the gutter size below */}
-            <Layout container gutter={16}>
-              <Layout item xs={3}>
-                <Sidebar />
-              </Layout>
-              <Layout item xs={9}>
-                <ReaderList />
-              </Layout>
-            </Layout>
+            <Sidebar />
+            <ReaderList />
           </div>
         </Provider>
       </MuiThemeProvider>
