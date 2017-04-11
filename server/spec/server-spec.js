@@ -16,19 +16,11 @@ describe('ROUTES', function() {
    });
  });
 
- it('should send back an object', function(done) {
+ it('should send back an array', function(done) {
    request('http://127.0.0.1:8080/api/feeds', function(error, response, body) {
+    console.log()
      var parsedBody = JSON.parse(body);
-     expect(parsedBody).to.be.an('object');
-     done();
-   });
- });
-
- it('should send an object containing a `results` array', function(done) {
-   request('http://127.0.0.1:8080/api/feeds', function(error, response, body) {
-     var parsedBody = JSON.parse(body);
-     expect(parsedBody).to.be.an('object');
-     expect(parsedBody.results).to.be.an('array');
+     expect(parsedBody).to.be.instanceof(Array);
      done();
    });
  });
@@ -42,7 +34,7 @@ describe('ROUTES', function() {
    };
 
    request(requestParams, function(error, response, body) {
-     expect(response.statusCode).to.equal(201);
+     expect(response.statusCode).to.equal(200);
      done();
    });
  });
@@ -56,10 +48,11 @@ describe('ROUTES', function() {
    };
 
    request(requestParams, function(error, response, body) {
-     // Now if we request the log, that message we posted should be there:
+     // Now if we request the log, that feed we posted should be there:
      request('http://127.0.0.1:8080/api/feeds', function(error, response, body) {
-       var feed = JSON.parse(body).results;
-       expect(feeds[0].name).to.equal('Pitchfork');
+       var feed = JSON.parse(body);
+       console.log(feed)
+       expect(feed[1].name).to.equal('Pitchfork');
        done();
      });
    });
@@ -71,20 +64,5 @@ describe('ROUTES', function() {
      done();
    });
  });
-
- it('Should get individual feeds when selected', function(done) {
-   var requestParams = {method: 'POST',
-     uri: 'http://127.0.0.1:8080/api/feeds/:' /* what do we use for feedId here?*/,
-     json: {
-       name: 'Pitchfork',
-       url: 'http://pitchfork.com/rss/news/'}
-   };
-
-   request(requestParams, function(error, response, body) {
-     expect(response.statusCode).to.equal(201);
-     done();
-   });
- });
-
 
 });

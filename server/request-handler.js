@@ -9,12 +9,13 @@ exports.test = (req, res) => {
 
 //=======FEED API ROUTES=======
 exports.getAllFeeds = (req, res) => {
+  console.log('in get all feeds')
   Feed.find(function(err, feeds) {
     if (err) {
       res.send(err);
     }
 
-    res.json(feeds);
+    console.log(res.json(feeds));
   });
 };
 
