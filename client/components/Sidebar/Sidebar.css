@@ -1,6 +1,6 @@
 .sidebar-container {
   position: fixed;
-  width: 250px;
+  width: 300px;
   float: left;
   height: 100vh;
   border-right: 1px solid black;
