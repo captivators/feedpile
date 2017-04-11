@@ -1,19 +1,12 @@
-<<<<<<< HEAD
 .reader-list-container {
   max-width: 600px;
-  padding-top: 30px;
+  padding-right: 50px;
+  padding-left: 300px;
   margin: auto;
 }
-=======
-.container { /* Masonry container */
-    column-count: 4;
-    column-gap: 1em;
-}
 
-.item { /* Masonry bricks or child elements */
-    background-color: #eee;
-    display: inline-block;
-    margin: 0 0 1em;
-    width: 100%;
+@media (max-width: 600px) {
+  .reader-list-container {
+    padding-left: 50px;
+  }
 }
->>>>>>> added spec folder
