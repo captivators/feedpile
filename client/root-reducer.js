@@ -17,7 +17,6 @@ const removeTodo = (state, action) => {
 };
 
 function rootReducer(state = initialState, action) {
-  console.log(`2. In reducer ${JSON.stringify(action)}`);
   switch (action.type) {
     case 'ADD_TODO':
       return addTodo(state, action);

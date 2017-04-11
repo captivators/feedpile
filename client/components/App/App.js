@@ -13,7 +13,6 @@ class App extends React.Component {
     return (
         <Provider store={store}>
           <div className="app-container">
-            {console.log(store.getState())}
             <Sidebar />
             <ReaderList />
           </div>

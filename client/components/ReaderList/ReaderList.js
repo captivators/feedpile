@@ -16,7 +16,6 @@ const ReaderList = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  console.log(`in mapStatetoProps ${JSON.stringify(state)}`);
   return {
     articles: state.articles
   }
