@@ -1,15 +1,26 @@
 import React from 'react';
-import Sidebar from './Sidebar';
+import Sidebar, {Unwrapped as UnwrappedSidebar} from './Sidebar';
 import SidebarAll from '../SidebarAll/SidebarAll'
 import { mount, shallow } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 test('Sidebar snapshot test', () => {
-  const component = shallow(<Sidebar />);
+  const props = {
+    open: true,
+    dispatchToggle: () => {}
+  };
+  const component = shallow(<UnwrappedSidebar {...props}/>);
   const tree = shallowToJson(component);
   expect(tree).toMatchSnapshot();
 });
 test('Sidebar renders SidebarAll', () => {
-  const component = shallow(<Sidebar />);
-  expect(component.find(SidebarAll).length).toEqual(1);
+  const props = {
+    open: true,
+    dispatchToggle: () => {}
+  };
+  const component = mount(<MuiThemeProvider><UnwrappedSidebar {...props}/></MuiThemeProvider>);
+  expect(component.find('ListItem').length).toEqual(6);
 });

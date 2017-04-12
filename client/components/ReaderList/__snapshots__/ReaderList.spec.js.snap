@@ -31,7 +31,7 @@ exports[`ReaderList take a snapshot 1`] = `
     article={
       Object {
         "description": "The American attack has freed leaders in Washington and Moscow from the constraints that come with the perception of a special, friendly relationship.",
-        "image": "http://oi63.tinypic.com/4sbdpx.jpg",
+        "image": "https://s15.postimg.org/6jredm53v/news.png",
         "publisher": "New York Times",
         "title": "Feud Over Syria Missile Strike May Have an Upside for U.S. and Russia",
         "url": "http://www.nytimes.com/2017/04/11/world/missile-strike-syria-reset-russia-us-relations.html",
@@ -75,7 +75,7 @@ exports[`ReaderList take a snapshot 1`] = `
     article={
       Object {
         "description": "The White House is as much as two months behind recent standards for presidential transitions, leaving 90 percent of the positions considered critical to leadership unfilled. It did, however, manage to order the eggs for the Easter egg roll.",
-        "image": "http://oi63.tinypic.com/4sbdpx.jpg",
+        "image": "https://s15.postimg.org/6jredm53v/news.png",
         "publisher": "New York Times",
         "title": "Trump Administration Hunts for Easter Eggs, and Senior Staff",
         "url": "http://www.nytimes.com/video/us/politics/100000005018390/trump-administration-hunts-for-easter-eggs-and-senior-staff.html",

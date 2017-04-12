@@ -13,6 +13,130 @@ exports[`Sidebar snapshot test 1`] = `
   >
     Feedpile
   </h2>
-  <SidebarAll />
+  <List>
+    <ListItem
+      autoGenerateNestedIndicator={true}
+      disableKeyboardFocus={false}
+      disabled={false}
+      initiallyOpen={false}
+      insetChildren={false}
+      leftIcon={<ContentInbox />}
+      nestedItems={Array []}
+      nestedLevel={0}
+      onKeyboardFocus={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onNestedListToggle={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      open={null}
+      primaryText="Sent mail"
+      primaryTogglesNestedList={false}
+      secondaryTextLines={1}
+    />
+    <ListItem
+      autoGenerateNestedIndicator={true}
+      disableKeyboardFocus={false}
+      disabled={false}
+      initiallyOpen={false}
+      insetChildren={false}
+      leftIcon={<ContentInbox />}
+      nestedItems={Array []}
+      nestedLevel={0}
+      onKeyboardFocus={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onNestedListToggle={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      open={null}
+      primaryText="Drafts"
+      primaryTogglesNestedList={false}
+      secondaryTextLines={1}
+    />
+    <ListItem
+      autoGenerateNestedIndicator={true}
+      disableKeyboardFocus={false}
+      disabled={false}
+      initiallyOpen={true}
+      insetChildren={false}
+      leftIcon={<ContentInbox />}
+      nestedItems={
+        Array [
+          <ListItem
+            autoGenerateNestedIndicator={true}
+            disableKeyboardFocus={false}
+            disabled={false}
+            initiallyOpen={false}
+            insetChildren={false}
+            leftIcon={<ContentInbox />}
+            nestedItems={Array []}
+            nestedLevel={0}
+            onKeyboardFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onNestedListToggle={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+            open={null}
+            primaryText="Starred"
+            primaryTogglesNestedList={false}
+            secondaryTextLines={1}
+        />,
+          <ListItem
+            autoGenerateNestedIndicator={true}
+            disableKeyboardFocus={false}
+            disabled={false}
+            initiallyOpen={false}
+            insetChildren={false}
+            leftIcon={<ContentInbox />}
+            nestedItems={Array []}
+            nestedLevel={0}
+            onKeyboardFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onNestedListToggle={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+            open={null}
+            primaryText="Sent Mail"
+            primaryTogglesNestedList={false}
+            secondaryTextLines={1}
+        />,
+          <ListItem
+            autoGenerateNestedIndicator={true}
+            disableKeyboardFocus={false}
+            disabled={false}
+            initiallyOpen={false}
+            insetChildren={false}
+            leftIcon={<ContentInbox />}
+            nestedItems={Array []}
+            nestedLevel={0}
+            onKeyboardFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onNestedListToggle={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+            open={null}
+            primaryText="Inbox"
+            primaryTogglesNestedList={false}
+            secondaryTextLines={1}
+        />,
+        ]
+      }
+      nestedLevel={0}
+      onKeyboardFocus={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onNestedListToggle={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      open={null}
+      primaryText="Inbox"
+      primaryTogglesNestedList={true}
+      secondaryTextLines={1}
+    />
+  </List>
 </div>
 `;
