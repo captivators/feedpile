@@ -1,5 +1,5 @@
-export const addTodo = (todo) => {
-  return {type: "ADD_TODO", todo}
+export const toggleListItem = (item) => {
+  return {type: "TOGGLE_NESTED_ITEM", item}
 };
 
 export const removeTodo = (id) => {
