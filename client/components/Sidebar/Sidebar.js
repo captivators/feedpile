@@ -1,8 +1,13 @@
 import React from 'react';
-// import SidebarAll from '../SidebarAll/SidebarAll';
 import {List, ListItem} from 'material-ui/List';
-import Inbox from 'material-ui/svg-icons/content/inbox/';
-// import ContentInbox from 'material-ui-icons/';
+import Inbox from 'material-ui/svg-icons/content/inbox';
+import LaptopMac from 'material-ui-icons/LaptopMac';
+import Star from 'material-ui-icons/Star';
+import Games from 'material-ui-icons/Games';
+import MusicNote from 'material-ui-icons/MusicNote';
+import Public from 'material-ui-icons/Public';
+import Description from 'material-ui-icons/Description';
+
 import './Sidebar.css';
 import { connect } from 'react-redux';
 import { toggleListItem } from '../../actions'
@@ -12,60 +17,122 @@ const Sidebar = (props) => {
     <div className="sidebar-container">
       <img className="sidebar-logo" src={"https://s3-us-west-1.amazonaws.com/thesis.feedpile.images/feedpile.png"} />
       <h2 className="logo-name">Feedpile</h2>
-      {/* <SidebarAll /> */}
       <List>
-        <ListItem primaryText="Sent mail" leftIcon={<Inbox />} />
-        <ListItem primaryText="Drafts" leftIcon={<Inbox />} />
+        <ListItem primaryText="All Articles" leftIcon={<Inbox />} />
+        <ListItem primaryText="Starred" leftIcon={<Star />} />
         <ListItem
-          primaryText="Inbox"
-          leftIcon={<Inbox />}
-          initiallyOpen={true}
+          primaryText="Technology"
+          leftIcon={<LaptopMac />}
+          initiallyOpen={props.open}
+          onNestedListToggle={props.dispatchToggle}
           primaryTogglesNestedList={true}
           nestedItems={[
             <ListItem
               key={1}
-              primaryText="Starred"
-              leftIcon={<Inbox />}
+              primaryText="TechCrunch"
+              leftIcon={<Description />}
             />,
             <ListItem
               key={2}
-              primaryText="Sent Mail"
-              leftIcon={<Inbox />}
-              disabled={true}
-              nestedItems={[
-                <ListItem key={1} primaryText="Drafts" leftIcon={<Inbox />} />,
-              ]}
+              primaryText="The Verge"
+              leftIcon={<Description />}
             />,
             <ListItem
               key={3}
-              primaryText="Inbox"
-              leftIcon={<Inbox />}
-              open={props.open}
-              onNestedListToggle={props.dispatchToggle}
-              nestedItems={[
-                <ListItem key={1} primaryText="Drafts" leftIcon={<Inbox />} />,
-              ]}
+              primaryText="WIRED"
+              leftIcon={<Description />}
+            />
+          ]}
+        />
+        <ListItem
+          primaryText="Music"
+          leftIcon={<MusicNote />}
+          initiallyOpen={false}
+          primaryTogglesNestedList={true}
+          onNestedListToggle={props.dispatchToggle}
+          nestedItems={[
+            <ListItem
+              key={1}
+              primaryText="SPIN"
+              leftIcon={<Description />}
             />,
+            <ListItem
+              key={2}
+              primaryText="Rolling Stone"
+              leftIcon={<Description />}
+            />,
+            <ListItem
+              key={3}
+              primaryText="Pitchfork"
+              leftIcon={<Description />}
+            />
+          ]}
+        />
+        <ListItem
+          primaryText="Games"
+          leftIcon={<Games />}
+          initiallyOpen={false}
+          primaryTogglesNestedList={true}
+          onNestedListToggle={props.dispatchToggle}
+          nestedItems={[
+            <ListItem
+              key={1}
+              primaryText="IGN"
+              leftIcon={<Description />}
+            />,
+            <ListItem
+              key={2}
+              primaryText="Gamespot"
+              leftIcon={<Description />}
+            />,
+            <ListItem
+              key={3}
+              primaryText="Rock, Paper, Shotgun"
+              leftIcon={<Description />}
+            />
+          ]}
+        />
+        <ListItem
+          primaryText="World News"
+          leftIcon={<Public />}
+          initiallyOpen={false}
+          primaryTogglesNestedList={true}
+          nestedItems={[
+            <ListItem
+              key={1}
+              primaryText="CNN"
+              leftIcon={<Description />}
+            />,
+            <ListItem
+              key={2}
+              primaryText="BBC"
+              leftIcon={<Description />}
+            />,
+            <ListItem
+              key={3}
+              primaryText="NY Times"
+              leftIcon={<Description />}
+            />
           ]}
         />
       </List>
     </div>
   )
-}
+};
 
 const mapStateToProps = (state) => {
   return {
     open: state.open
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatchToggle(item) {
+    dispatchToggle : function(item) {
       dispatch(toggleListItem(item))
     }
   }
-}
-
+};
+export  const Unwrapped = Sidebar;
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
-// export default Sidebar;
+

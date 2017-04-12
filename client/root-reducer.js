@@ -2,23 +2,20 @@ import data from '../data.json';
 
 const initialState = {
   articles: data,
-  open: false
+  open: false,
+  toggleListItem: ''
 };
 
 const toggleListItem = (state, action) => {
-  // creates a new state reference:
-  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
-  console.log(`3. In toggleListItem of reducer`);
-  return Object.assign({}, state, {open: action.item.state.open});
+  // return Object.assign({}, state, {open: action.item.state.open});
+  return {...state, toggleListItem : action.item.props.primaryText}  //with babel-preset-stage-2
 };
 
 
 function rootReducer(state = initialState, action) {
-  console.log(`2. In reducer ${JSON.stringify(action)}`);
   switch (action.type) {
     case 'TOGGLE_NESTED_ITEM':
       return toggleListItem(state, action);
-
     default:
       return state
   }

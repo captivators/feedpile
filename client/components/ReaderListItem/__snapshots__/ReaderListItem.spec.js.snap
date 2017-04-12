@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReaderListItem snapshot test 1`] = `
+<a
+  href="http://www.nytimes.com/video/us/politics/100000005018390/trump-administration-hunts-for-easter-eggs-and-senior-staff.html"
+  target="_blank"
+>
+  <div
+    className="list-item-container"
+  >
+    <div
+      className="thumbnail-container"
+    >
+      <img
+        className="thumbnail"
+        src="http://oi63.tinypic.com/4sbdpx.jpg"
+      />
+    </div>
+    <div
+      className="article-text-container"
+    >
+      <h2
+        className="article-title"
+      >
+        Trump Administration Hunts for Easter Eggs, and Senior Staff
+      </h2>
+      <p
+        className="article-publisher"
+      >
+        New York Times
+      </p>
+      <p
+        className="article-description"
+      >
+        The White House is as much as two months behind recent standards for presidential transitions, leaving 90 percent of the positions considered critical to leadership unfilled. It did, however, manage to order the eggs for the Easter egg roll.
+      </p>
+    </div>
+  </div>
+</a>
+`;
