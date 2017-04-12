@@ -1,5 +1,12 @@
 .reader-list-container {
   max-width: 600px;
-  padding-top: 30px;
+  padding-right: 50px;
+  padding-left: 300px;
   margin: auto;
+}
+
+@media (max-width: 600px) {
+  .reader-list-container {
+    padding-left: 50px;
+  }
 }

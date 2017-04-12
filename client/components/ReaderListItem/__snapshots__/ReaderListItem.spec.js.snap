@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ReaderListItem snapshot test 1`] = `
-<div
-  className="list-item-container"
+<a
+  href="http://www.nytimes.com/video/us/politics/100000005018390/trump-administration-hunts-for-easter-eggs-and-senior-staff.html"
+  target="_blank"
 >
-  <a
-    href="http://www.nytimes.com/video/us/politics/100000005018390/trump-administration-hunts-for-easter-eggs-and-senior-staff.html"
-    target="_blank"
+  <div
+    className="list-item-container"
   >
     <div
       className="thumbnail-container"
@@ -35,6 +35,6 @@ exports[`ReaderListItem snapshot test 1`] = `
         The White House is as much as two months behind recent standards for presidential transitions, leaving 90 percent of the positions considered critical to leadership unfilled. It did, however, manage to order the eggs for the Easter egg roll.
       </p>
     </div>
-  </a>
-</div>
+  </div>
+</a>
 `;
