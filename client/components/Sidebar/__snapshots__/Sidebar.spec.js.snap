@@ -30,7 +30,7 @@ exports[`Sidebar snapshot test 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       open={null}
-      primaryText="Sent mail"
+      primaryText="All Articles"
       primaryTogglesNestedList={false}
       secondaryTextLines={1}
     />
@@ -40,7 +40,7 @@ exports[`Sidebar snapshot test 1`] = `
       disabled={false}
       initiallyOpen={false}
       insetChildren={false}
-      leftIcon={<ContentInbox />}
+      leftIcon={<pure(Star) />}
       nestedItems={Array []}
       nestedLevel={0}
       onKeyboardFocus={[Function]}
@@ -50,7 +50,7 @@ exports[`Sidebar snapshot test 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       open={null}
-      primaryText="Drafts"
+      primaryText="Starred"
       primaryTogglesNestedList={false}
       secondaryTextLines={1}
     />
@@ -60,7 +60,7 @@ exports[`Sidebar snapshot test 1`] = `
       disabled={false}
       initiallyOpen={true}
       insetChildren={false}
-      leftIcon={<ContentInbox />}
+      leftIcon={<pure(LaptopMac) />}
       nestedItems={
         Array [
           <ListItem
@@ -69,7 +69,7 @@ exports[`Sidebar snapshot test 1`] = `
             disabled={false}
             initiallyOpen={false}
             insetChildren={false}
-            leftIcon={<ContentInbox />}
+            leftIcon={<pure(Description) />}
             nestedItems={Array []}
             nestedLevel={0}
             onKeyboardFocus={[Function]}
@@ -79,7 +79,7 @@ exports[`Sidebar snapshot test 1`] = `
             onTouchEnd={[Function]}
             onTouchStart={[Function]}
             open={null}
-            primaryText="Starred"
+            primaryText="TechCrunch"
             primaryTogglesNestedList={false}
             secondaryTextLines={1}
         />,
@@ -89,7 +89,7 @@ exports[`Sidebar snapshot test 1`] = `
             disabled={false}
             initiallyOpen={false}
             insetChildren={false}
-            leftIcon={<ContentInbox />}
+            leftIcon={<pure(Description) />}
             nestedItems={Array []}
             nestedLevel={0}
             onKeyboardFocus={[Function]}
@@ -99,7 +99,7 @@ exports[`Sidebar snapshot test 1`] = `
             onTouchEnd={[Function]}
             onTouchStart={[Function]}
             open={null}
-            primaryText="Sent Mail"
+            primaryText="The Verge"
             primaryTogglesNestedList={false}
             secondaryTextLines={1}
         />,
@@ -109,7 +109,7 @@ exports[`Sidebar snapshot test 1`] = `
             disabled={false}
             initiallyOpen={false}
             insetChildren={false}
-            leftIcon={<ContentInbox />}
+            leftIcon={<pure(Description) />}
             nestedItems={Array []}
             nestedLevel={0}
             onKeyboardFocus={[Function]}
@@ -119,7 +119,7 @@ exports[`Sidebar snapshot test 1`] = `
             onTouchEnd={[Function]}
             onTouchStart={[Function]}
             open={null}
-            primaryText="Inbox"
+            primaryText="WIRED"
             primaryTogglesNestedList={false}
             secondaryTextLines={1}
         />,
@@ -133,7 +133,256 @@ exports[`Sidebar snapshot test 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       open={null}
-      primaryText="Inbox"
+      primaryText="Technology"
+      primaryTogglesNestedList={true}
+      secondaryTextLines={1}
+    />
+    <ListItem
+      autoGenerateNestedIndicator={true}
+      disableKeyboardFocus={false}
+      disabled={false}
+      initiallyOpen={false}
+      insetChildren={false}
+      leftIcon={<pure(MusicNote) />}
+      nestedItems={
+        Array [
+          <ListItem
+            autoGenerateNestedIndicator={true}
+            disableKeyboardFocus={false}
+            disabled={false}
+            initiallyOpen={false}
+            insetChildren={false}
+            leftIcon={<pure(Description) />}
+            nestedItems={Array []}
+            nestedLevel={0}
+            onKeyboardFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onNestedListToggle={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+            open={null}
+            primaryText="SPIN"
+            primaryTogglesNestedList={false}
+            secondaryTextLines={1}
+        />,
+          <ListItem
+            autoGenerateNestedIndicator={true}
+            disableKeyboardFocus={false}
+            disabled={false}
+            initiallyOpen={false}
+            insetChildren={false}
+            leftIcon={<pure(Description) />}
+            nestedItems={Array []}
+            nestedLevel={0}
+            onKeyboardFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onNestedListToggle={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+            open={null}
+            primaryText="Rolling Stone"
+            primaryTogglesNestedList={false}
+            secondaryTextLines={1}
+        />,
+          <ListItem
+            autoGenerateNestedIndicator={true}
+            disableKeyboardFocus={false}
+            disabled={false}
+            initiallyOpen={false}
+            insetChildren={false}
+            leftIcon={<pure(Description) />}
+            nestedItems={Array []}
+            nestedLevel={0}
+            onKeyboardFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onNestedListToggle={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+            open={null}
+            primaryText="Pitchfork"
+            primaryTogglesNestedList={false}
+            secondaryTextLines={1}
+        />,
+        ]
+      }
+      nestedLevel={0}
+      onKeyboardFocus={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onNestedListToggle={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      open={null}
+      primaryText="Music"
+      primaryTogglesNestedList={true}
+      secondaryTextLines={1}
+    />
+    <ListItem
+      autoGenerateNestedIndicator={true}
+      disableKeyboardFocus={false}
+      disabled={false}
+      initiallyOpen={false}
+      insetChildren={false}
+      leftIcon={<pure(Games) />}
+      nestedItems={
+        Array [
+          <ListItem
+            autoGenerateNestedIndicator={true}
+            disableKeyboardFocus={false}
+            disabled={false}
+            initiallyOpen={false}
+            insetChildren={false}
+            leftIcon={<pure(Description) />}
+            nestedItems={Array []}
+            nestedLevel={0}
+            onKeyboardFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onNestedListToggle={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+            open={null}
+            primaryText="IGN"
+            primaryTogglesNestedList={false}
+            secondaryTextLines={1}
+        />,
+          <ListItem
+            autoGenerateNestedIndicator={true}
+            disableKeyboardFocus={false}
+            disabled={false}
+            initiallyOpen={false}
+            insetChildren={false}
+            leftIcon={<pure(Description) />}
+            nestedItems={Array []}
+            nestedLevel={0}
+            onKeyboardFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onNestedListToggle={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+            open={null}
+            primaryText="Gamespot"
+            primaryTogglesNestedList={false}
+            secondaryTextLines={1}
+        />,
+          <ListItem
+            autoGenerateNestedIndicator={true}
+            disableKeyboardFocus={false}
+            disabled={false}
+            initiallyOpen={false}
+            insetChildren={false}
+            leftIcon={<pure(Description) />}
+            nestedItems={Array []}
+            nestedLevel={0}
+            onKeyboardFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onNestedListToggle={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+            open={null}
+            primaryText="Rock, Paper, Shotgun"
+            primaryTogglesNestedList={false}
+            secondaryTextLines={1}
+        />,
+        ]
+      }
+      nestedLevel={0}
+      onKeyboardFocus={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onNestedListToggle={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      open={null}
+      primaryText="Games"
+      primaryTogglesNestedList={true}
+      secondaryTextLines={1}
+    />
+    <ListItem
+      autoGenerateNestedIndicator={true}
+      disableKeyboardFocus={false}
+      disabled={false}
+      initiallyOpen={false}
+      insetChildren={false}
+      leftIcon={<pure(Public) />}
+      nestedItems={
+        Array [
+          <ListItem
+            autoGenerateNestedIndicator={true}
+            disableKeyboardFocus={false}
+            disabled={false}
+            initiallyOpen={false}
+            insetChildren={false}
+            leftIcon={<pure(Description) />}
+            nestedItems={Array []}
+            nestedLevel={0}
+            onKeyboardFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onNestedListToggle={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+            open={null}
+            primaryText="CNN"
+            primaryTogglesNestedList={false}
+            secondaryTextLines={1}
+        />,
+          <ListItem
+            autoGenerateNestedIndicator={true}
+            disableKeyboardFocus={false}
+            disabled={false}
+            initiallyOpen={false}
+            insetChildren={false}
+            leftIcon={<pure(Description) />}
+            nestedItems={Array []}
+            nestedLevel={0}
+            onKeyboardFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onNestedListToggle={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+            open={null}
+            primaryText="BBC"
+            primaryTogglesNestedList={false}
+            secondaryTextLines={1}
+        />,
+          <ListItem
+            autoGenerateNestedIndicator={true}
+            disableKeyboardFocus={false}
+            disabled={false}
+            initiallyOpen={false}
+            insetChildren={false}
+            leftIcon={<pure(Description) />}
+            nestedItems={Array []}
+            nestedLevel={0}
+            onKeyboardFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onNestedListToggle={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+            open={null}
+            primaryText="NY Times"
+            primaryTogglesNestedList={false}
+            secondaryTextLines={1}
+        />,
+        ]
+      }
+      nestedLevel={0}
+      onKeyboardFocus={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onNestedListToggle={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      open={null}
+      primaryText="World News"
       primaryTogglesNestedList={true}
       secondaryTextLines={1}
     />

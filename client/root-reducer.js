@@ -2,12 +2,13 @@ import data from '../data.json';
 
 const initialState = {
   articles: data,
-  open: false
+  open: false,
+  toggleListItem: ''
 };
 
 const toggleListItem = (state, action) => {
   // return Object.assign({}, state, {open: action.item.state.open});
-  return {...state, open : action.item.state.open}  //with babel-preset-stage-2
+  return {...state, toggleListItem : action.item.props.primaryText}  //with babel-preset-stage-2
 };
 
 

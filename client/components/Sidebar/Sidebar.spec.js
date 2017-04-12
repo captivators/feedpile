@@ -1,6 +1,5 @@
 import React from 'react';
 import Sidebar, {Unwrapped as UnwrappedSidebar} from './Sidebar';
-import SidebarAll from '../SidebarAll/SidebarAll'
 import { mount, shallow } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -22,5 +21,5 @@ test('Sidebar renders SidebarAll', () => {
     dispatchToggle: () => {}
   };
   const component = mount(<MuiThemeProvider><UnwrappedSidebar {...props}/></MuiThemeProvider>);
-  expect(component.find('ListItem').length).toEqual(6);
+  expect(component.find('ListItem').length).toEqual(9); //number of ListItem's in Sidebar
 });
