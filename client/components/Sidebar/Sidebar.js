@@ -1,6 +1,6 @@
 import React from 'react';
 import {List, ListItem} from 'material-ui/List';
-import Inbox from 'material-ui/svg-icons/content/inbox/';
+import Inbox from 'material-ui/svg-icons/content/inbox';
 import LaptopMac from 'material-ui-icons/LaptopMac';
 import Star from 'material-ui-icons/Star';
 import Games from 'material-ui-icons/Games';
@@ -23,7 +23,8 @@ const Sidebar = (props) => {
         <ListItem
           primaryText="Technology"
           leftIcon={<LaptopMac />}
-          initiallyOpen={true}
+          initiallyOpen={props.open}
+          onNestedListToggle={props.dispatchToggle}
           primaryTogglesNestedList={true}
           nestedItems={[
             <ListItem
@@ -48,6 +49,7 @@ const Sidebar = (props) => {
           leftIcon={<MusicNote />}
           initiallyOpen={false}
           primaryTogglesNestedList={true}
+          onNestedListToggle={props.dispatchToggle}
           nestedItems={[
             <ListItem
               key={1}
@@ -71,6 +73,7 @@ const Sidebar = (props) => {
           leftIcon={<Games />}
           initiallyOpen={false}
           primaryTogglesNestedList={true}
+          onNestedListToggle={props.dispatchToggle}
           nestedItems={[
             <ListItem
               key={1}
@@ -115,21 +118,21 @@ const Sidebar = (props) => {
       </List>
     </div>
   )
-}
+};
 
 const mapStateToProps = (state) => {
   return {
     open: state.open
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatchToggle(item) {
+    dispatchToggle : function(item) {
       dispatch(toggleListItem(item))
     }
   }
-}
-
+};
+export  const Unwrapped = Sidebar;
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
-// export default Sidebar;
+
