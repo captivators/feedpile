@@ -16,10 +16,10 @@ const ReaderList = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  console.log(`in mapStatetoProps ${JSON.stringify(state)}`);
   return {
     articles: state.articles
   }
 };
 
+export const Unwrapped  = ReaderList;
 export default connect(mapStateToProps)(ReaderList);

@@ -2,9 +2,6 @@ const Feed = require('./models/feed');
 const User = require('./models/user');
 const Article = require('./models/article');
 
-const parse = require('./feed-parser/parser');
-
-
 //=======API TEST ROUTE=======
 exports.test = (req, res) => {
 
