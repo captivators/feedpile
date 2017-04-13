@@ -16,7 +16,7 @@ const Sidebar = (props) => {
   return (
     <div className="sidebar-container">
       <img className="sidebar-logo" src={"https://s3-us-west-1.amazonaws.com/thesis.feedpile.images/feedpile.png"} />
-      <h2 className="logo-name">Feedpile</h2>
+      <h2 className="logo-name">FeedPile</h2>
       <List>
         <ListItem primaryText="All Articles" leftIcon={<ListIcon />} />
         <ListItem primaryText="Starred" leftIcon={<Star />} />
