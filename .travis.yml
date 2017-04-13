@@ -7,4 +7,4 @@ branches:
 notifications:
   email: true
 script:
-  npm run test-coverage
+  npm run test
