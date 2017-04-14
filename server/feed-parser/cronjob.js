@@ -100,7 +100,7 @@ const job = new CronJob({
                     }
 
                     console.log('Updated Feed: ' + updatedFeed.name + ' ' + currentURLItem._id);
-                    console.log(res);
+                    // console.log(res);
                   });
                 }
               } //for loop
@@ -325,7 +325,7 @@ const job = new CronJob({
                       newArticle.description = feedResults[i].articles[j].description;
                     }
 
-                    console.log(JSON.stringify(newArticle));
+                    // console.log(JSON.stringify(newArticle));
                     articlesToInsert.push(newArticle);
                   } //else statement for if valid link but new article
                 }
