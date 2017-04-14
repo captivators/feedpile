@@ -4,7 +4,66 @@ const Article = require('./models/article');
 
 //=======API TEST ROUTE=======
 exports.test = (req, res) => {
-  res.json({message: 'successfully received'});
+
+  const feedUrl1 = 'http://www.techradar.com/rss';
+  const feedUrl2 = 'https://www.cnet.com/rss/news';
+  const feedUrl3 = 'https://www.theregister.co.uk/headlines.atom';
+  const feedUrl4 = 'http://slashdot.org/developers.rdf';
+  const feedUrl5 = 'http://feeds.feedburner.com/TechCrunch';
+
+  var p1 = new Promise((resolve, reject) => {
+    parse.fetch(feedUrl1, function (err, meta, items) {
+      if (err) {
+        throw Error('err');
+      }
+
+      resolve({feed: feedUrl1, meta: meta, articles: items});
+    });
+  });
+
+  var p2 = new Promise((resolve, reject) => {
+    parse.fetch(feedUrl2, function (err, meta, items) {
+      if (err) {
+        throw Error('err');
+      }
+
+      resolve({feed: feedUrl2, meta: meta, articles: items});
+    });
+  });
+
+  var p3 = new Promise((resolve, reject) => {
+    parse.fetch(feedUrl3, function (err, meta, items) {
+      if (err) {
+        throw Error('err');
+      }
+
+      resolve({feed: feedUrl3, meta: meta, articles: items});
+    });
+  });
+
+  var p4 = new Promise((resolve, reject) => {
+    parse.fetch(feedUrl4, function (err, meta, items) {
+      if (err) {
+        throw Error('err');
+      }
+
+      resolve({feed: feedUrl4, meta: meta, articles: items});
+    });
+  });
+
+  var p5 = new Promise((resolve, reject) => {
+    parse.fetch(feedUrl5, function (err, meta, items) {
+      if (err) {
+        throw Error('err');
+      }
+
+      resolve({feed: feedUrl5, meta: meta, articles: items});
+    });
+  });
+
+  Promise.all([p1, p2, p3, p4, p5]).then(values => {
+    res.json({message: 'successfully received', answer: values});
+  });
 };
 
 //=======FEED API ROUTES=======

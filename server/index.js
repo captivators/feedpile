@@ -1,5 +1,5 @@
 const app = require('./app');
-const cronJob = require('./cronjob');
+const cronJob = require('./feed-parser/cronjob');
 
 const PORT = process.env.PORT || 8080;
 
