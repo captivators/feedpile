@@ -1,6 +1,6 @@
 import React from 'react';
 import {List, ListItem} from 'material-ui/List';
-import Inbox from 'material-ui/svg-icons/content/inbox';
+import ListIcon from 'material-ui-icons/List';
 import LaptopMac from 'material-ui-icons/LaptopMac';
 import Star from 'material-ui-icons/Star';
 import Games from 'material-ui-icons/Games';
@@ -16,9 +16,9 @@ const Sidebar = (props) => {
   return (
     <div className="sidebar-container">
       <img className="sidebar-logo" src={"https://s3-us-west-1.amazonaws.com/thesis.feedpile.images/feedpile.png"} />
-      <h2 className="logo-name">Feedpile</h2>
+      <h2 className="logo-name">FeedPile</h2>
       <List>
-        <ListItem primaryText="All Articles" leftIcon={<Inbox />} />
+        <ListItem primaryText="All Articles" leftIcon={<ListIcon />} />
         <ListItem primaryText="Starred" leftIcon={<Star />} />
         <ListItem
           primaryText="Technology"
@@ -135,4 +135,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 export  const Unwrapped = Sidebar;
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
-
