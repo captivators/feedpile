@@ -32,8 +32,13 @@ const job = new CronJob({
           for (var i = 0; i < feeds.length; i++) {
             if (feeds[i].url) {
               var temp = new Promise((resolve, reject) => {
+                var u = feeds[i].url;
                 parse.fetch(feeds[i].url, function (err, meta, items) {
-                  resolve({ meta: meta, articles: items });
+                  if (err) {
+                    console.log('Error getting Feed from parse.fetch()');
+                  }
+                  console.log(u);
+                  resolve({ meta: meta, articles: items, originalUrl: u });
                 });
               });
 
@@ -96,7 +101,7 @@ const job = new CronJob({
                   Feed.update({ _id: currentURLItem._id },
                   { $set: updatedFeed }, function (err, res) {
                     if (err) {
-                      reject('Error in updating Feed By Id:' + idToUpdate);
+                      reject('Error in updating Feed By Id:' + currentURLItem._id);
                     }
 
                     console.log('Updated Feed: ' + updatedFeed.name + ' ' + currentURLItem._id);
@@ -276,9 +281,10 @@ const job = new CronJob({
                     //   description: String
                     // });
 
-                    var searchFeedId = function (feedTitle) {
+                    var searchFeedId = function (feedUrl) {
                       for (var k = 0; k < localFeeds.length; k++) {
-                        if (localFeeds[k].name === feedTitle) {
+                        if (compareMD5(md5(localFeeds[k].url), md5(feedUrl))) {
+                        //if (localFeeds[k].name === feedTitle) {
                           return localFeeds[k]._id;
                         }
                       }
@@ -308,7 +314,7 @@ const job = new CronJob({
                       newArticle.datePublished = feedResults[i].articles[j].pubdate;
                     }
 
-                    var tempFeedId = searchFeedId(feedResults[i].meta.title);
+                    var tempFeedId = searchFeedId(feedResults[i].originalUrl);
                     if (tempFeedId) {
                       newArticle.feedId = tempFeedId;
                     }
