@@ -79,7 +79,7 @@ exports.getAllFeeds = (req, res) => {
 
 exports.createFeed = (req, res) => {
   var feed = new Feed();      // create a new instance of the Feed model
-  feed.name = req.body.name;
+  // feed.name = req.body.name;
   feed.url = req.body.url;
 
   // save the feed and check for errors
