@@ -5,6 +5,7 @@ import ReaderList from '../ReaderList/ReaderList';
 import Sidebar from '../Sidebar/Sidebar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import { getArticlesFromDb } from '../../actions';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
@@ -15,6 +16,10 @@ import store from '../../store';
 import './app.css';
 
 class App extends React.Component {
+  componentDidMount() {
+    store.dispatch(getArticlesFromDb);
+  }
+
   render() {
     return (
       <MuiThemeProvider>
