@@ -17,7 +17,7 @@ import './app.css';
 
 class App extends React.Component {
   componentDidMount() {
-    store.dispatch(getArticlesFromDb);
+    store.dispatch(getArticlesFromDb());
   }
 
   render() {
