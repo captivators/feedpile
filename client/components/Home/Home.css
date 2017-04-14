@@ -1,0 +1,19 @@
+.splash-icons {
+  color: #EF4C2D;
+}
+
+.splash-logo {
+  width: 15rem;
+  margin: 1rem;
+}
+
+.splash-header-row {
+  max-height: 35rem;
+  padding: 0 0 -1.5rem 0;
+  margin-bottom: 3rem;
+}
+
+.splash-header {
+  margin-bottom: -5px;
+  max-height: 35rem;
+}
