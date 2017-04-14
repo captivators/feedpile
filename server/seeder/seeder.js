@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const Feed= require('./models/feed')
-const Article = require('./models/article')
+const Feed= require('../models/feed')
+const Article = require('../models/article')
 
 mongoose.connect('mongodb://localhost:27017/feeds')
 

@@ -11,7 +11,7 @@ exports[`Sidebar snapshot test 1`] = `
   <h2
     className="logo-name"
   >
-    Feedpile
+    FeedPile
   </h2>
   <List>
     <ListItem
@@ -20,7 +20,7 @@ exports[`Sidebar snapshot test 1`] = `
       disabled={false}
       initiallyOpen={false}
       insetChildren={false}
-      leftIcon={<ContentInbox />}
+      leftIcon={<pure(List) />}
       nestedItems={Array []}
       nestedLevel={0}
       onKeyboardFocus={[Function]}

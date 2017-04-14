@@ -13,7 +13,6 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/feedpilel
   console.log('Connected to Database');
 });
 
-
 // Setup logger
 app.use(morgan('dev'));
 
@@ -26,15 +25,8 @@ app.use(bodyParser.json());
 //app.use(express.static(path.resolve(__dirname, '..', 'build')));
 app.use(express.static(path.join(__dirname, '../public')));
 
-
-
-
 //routes
 routes(app);
-
-
-
-
 
 // Always return the main index.html, so react-router render the route in the client
 app.get('*', (req, res) => {

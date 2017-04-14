@@ -2,9 +2,15 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ArticleSchema = new Schema({
+  title: String,
   url: String,
+  imageSrc: String,
+  date: Date,
   datePublished: Date,
-  feedId: String
+  feedId: String,
+  author: String,
+  summary: String,
+  description: String
 });
 
 module.exports = mongoose.model('Article', ArticleSchema);
