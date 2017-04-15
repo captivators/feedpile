@@ -1,5 +1,5 @@
 import React from 'react';
-import ReaderListItem from './ReaderListItem';
+import { Unwrapped as UnwrappedReaderList } from './ReaderListItem';
 import { shallow } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
 
@@ -11,7 +11,7 @@ test('ReaderListItem snapshot test', () => {
     "url": "http://www.nytimes.com/video/us/politics/100000005018390/trump-administration-hunts-for-easter-eggs-and-senior-staff.html",
     "description":"The White House is as much as two months behind recent standards for presidential transitions, leaving 90 percent of the positions considered critical to leadership unfilled. It did, however, manage to order the eggs for the Easter egg roll."
   };
-  const component = shallow(<ReaderListItem article={article}/>);
+  const component = shallow(<UnwrappedReaderList article={article}/>);
   const tree = shallowToJson(component);
   expect(tree).toMatchSnapshot();
 });

@@ -30,6 +30,8 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 }
+
+export const Unwrapped  = ReaderListItem;
 export default connect(null, mapDispatchToProps )(ReaderListItem);
 
 {/* <p className='article-description' dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(summary)}}></p> */}
