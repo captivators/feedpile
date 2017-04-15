@@ -23,6 +23,7 @@ const { title, imageSrc, publisher, summary, description } =  props.article;
   )
 };
 
+
 export const Unwrapped  = ReaderListItem;
 export default connect(null, {renderReadView: setCurrentArticle} )(ReaderListItem);
 
