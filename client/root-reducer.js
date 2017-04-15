@@ -3,7 +3,8 @@
 const initialState = {
   articles: [],
   open: false,
-  toggleListItem: ''
+  toggleListItem: '',
+  currentArticle: {}
 };
 
 const toggleListItem = (state, action) => {
@@ -15,12 +16,18 @@ const updateArticles = (state, action) => {
   return {...state, articles: action.articles}
 }
 
+const setCurrentArticle = (state, action) => {
+  return {...state, currentArticle: action.article}
+}
+
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case 'TOGGLE_NESTED_ITEM':
       return toggleListItem(state, action);
     case 'UPDATE_ARTICLES':
       return updateArticles(state, action);
+    case 'SET_CURRENT_ARTICLE':
+      return setCurrentArticle(state, action);
     default:
       return state
   }

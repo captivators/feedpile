@@ -5,6 +5,7 @@
   height: 100vh;
   border-right: 1px solid #888;
   background-color: #f2f2f2;
+  z-index: 1001;
 }
 
 .sidebar-logo {

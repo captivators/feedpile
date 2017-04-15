@@ -1,24 +1,30 @@
 import React from 'react';
 import './ReaderListItem.css';
 import DOMPurify from 'dompurify';
+import { connect } from 'react-redux';
+import {setCurrentArticle} from '../../actions'
 
 const ReaderListItem = (props) => {
-const { title, imageSrc, publisher, summary } =  props.article;
+const { title, imageSrc, publisher, summary, description } =  props.article;
 
   return(
-    <a href={props.article.url} target="_blank">
+    <div onClick= {() => {props.renderReadView(props.article)}}>
       <div className='list-item-container'>
         <div className='thumbnail-container'>
-          <img className='thumbnail' src={imageSrc}/>
+          <img className='thumbnail-image' src={imageSrc}/>
         </div>
         <div className='article-text-container'>
           <h2 className='article-title'>{title}</h2>
           <p className='article-publisher'>{publisher}</p>
-          <p className='article-description' dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(summary)}}></p>
+          <p className='article-summary'>{summary}</p>
         </div>
       </div>
-    </a>
+    </div>
   )
-}
+};
 
-export default ReaderListItem;
+
+export const Unwrapped  = ReaderListItem;
+export default connect(null, {renderReadView: setCurrentArticle} )(ReaderListItem);
+
+{/* <p className='article-description' dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(summary)}}></p> */}

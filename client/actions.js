@@ -9,3 +9,7 @@ export const getArticlesFromDb = (articles) => {
 export const updateArticles = (articles) => {
   return {type: "UPDATE_ARTICLES", articles}
 };
+
+export const setCurrentArticle = (article) => {
+  return {type: "SET_CURRENT_ARTICLE", article}
+};
