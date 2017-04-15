@@ -11,7 +11,7 @@ const { title, imageSrc, publisher, summary, description } =  props.article;
     <div onClick= {() => {props.renderReadView(props.article)}}>
       <div className='list-item-container'>
         <div className='thumbnail-container'>
-          <img className='thumbnail-image' src={imageSrc}/>
+          <img className='thumbnail-image' src={imageSrc ? imageSrc:'https://s15.postimg.org/6jredm53v/news.png'}/>
         </div>
         <div className='article-text-container'>
           <h2 className='article-title'>{title}</h2>
@@ -22,7 +22,6 @@ const { title, imageSrc, publisher, summary, description } =  props.article;
     </div>
   )
 };
-
 
 export const Unwrapped  = ReaderListItem;
 export default connect(null, {renderReadView: setCurrentArticle} )(ReaderListItem);

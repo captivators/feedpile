@@ -18,5 +18,5 @@ const mapStateToProps = (state) => {
   }
 };
 
-export const Unwrapped  = ReaderList;
-export default connect(mapStateToProps)(ReaderList);
+export const Unwrapped  = ReadArticle;
+export default connect(mapStateToProps)(ReadArticle);
