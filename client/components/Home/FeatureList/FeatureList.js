@@ -1,5 +1,5 @@
 import React from 'react';
-import Feature from './Feature'
+import Feature from '../Feature/Feature'
 
 const style = {
   first: {

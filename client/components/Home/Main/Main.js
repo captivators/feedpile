@@ -1,13 +1,14 @@
 import React from 'react';
+import RaisedButton from 'material-ui/RaisedButton'
 
 const style = {
   first: {
     paddingTop: '45px',
     paddingBottom: '45px',
     width: '100%',
+    backgroundColor: '#f2f2f2',
     height: '500px',
     textAlign: 'center',
-    border: '1px solid black',
     h1: {
       color: '#fff',
       marginTop: 0,
@@ -21,10 +22,10 @@ const Main = (props) => {
     <div className="container login center-align" style={style.first}>
       <div className="main">
         <i className="feedpile-logo"></i>
-        <a href="#" className="brand-logo center"><img src="./images/feedpile.png"/></a>
+        <a href="#" className="brand-logo center"><img src="https://s3-us-west-1.amazonaws.com/thesis.feedpile.images/feedpile.png"/></a>
         <h1>Feedpile</h1>
 
-        <ul><li><button>Sign up</button></li></ul>
+        <RaisedButton label="Get Started" />
       </div>
     </div>
   )
