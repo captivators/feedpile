@@ -1,11 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './ReadArticle.css';
 
-const ReadeArticle = (props) => {
+const ReadArticle = (props) => {
   return (
-    <div>
+    <div className="reader-list-container">
+      {props.articles.map((article, index) => (
+        <ReaderListItem article={article} key={index}/>
+      ))}
     </div>
   )
 }
 
-export default ReaderArticle;
+const mapStateToProps = (state) => {
+  return {
+    articles: state.articles
+  }
+};
+
+export const Unwrapped  = ReaderList;
+export default connect(mapStateToProps)(ReaderList);

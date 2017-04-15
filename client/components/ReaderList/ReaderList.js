@@ -6,11 +6,9 @@ import './ReaderList.css';
 const ReaderList = (props) => {
   return (
     <div className="reader-list-container">
-      <div className="position-container">
-        {props.articles.map((article, index) => (
-          <ReaderListItem article={article} key={index}/>
-        ))}
-      </div>
+      {props.articles.map((article, index) => (
+        <ReaderListItem article={article} key={index}/>
+      ))}
     </div>
   )
 }
