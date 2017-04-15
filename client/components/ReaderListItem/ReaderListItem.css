@@ -15,9 +15,8 @@ a {
   color: black;
 }
 
-.thumbnail {
-  width:  100px;
-  height: 100px;
+.thumbnail-image {
+  width:  150px;
   border-radius: 3px;
   margin-right: 20px;
 }
@@ -38,15 +37,11 @@ a {
   padding-bottom: 8px;
 }
 
-.article-description {
+.article-summary {
   color: #555;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   line-height: 150%;
-}
-
-.article-description img {
-  display: none;
 }
 
 @media (max-width: 600px) {

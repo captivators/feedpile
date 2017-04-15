@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from '../Navbar/Navbar';
 import ReaderListItem from '../ReaderListItem/ReaderListItem';
 import { connect } from 'react-redux';
 import './ReaderList.css';
@@ -7,7 +6,6 @@ import './ReaderList.css';
 const ReaderList = (props) => {
   return (
     <div className="reader-list-container">
-      <Navbar />
       {props.articles.map((article, index) => (
         <ReaderListItem article={article} key={index}/>
       ))}

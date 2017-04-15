@@ -4,8 +4,7 @@ exports[`ReaderList take a snapshot 1`] = `
 <div
   className="reader-list-container"
 >
-  <Navbar />
-  <ReaderListItem
+  <Connect(ReaderListItem)
     article={
       Object {
         "description": "The secretary of state said President Vladimir Putin of Russia must end his alliance with Bashar al-Assad or risk becoming irrelevant in the Middle East.",
@@ -16,7 +15,7 @@ exports[`ReaderList take a snapshot 1`] = `
       }
     }
   />
-  <ReaderListItem
+  <Connect(ReaderListItem)
     article={
       Object {
         "description": "<img width=\\"680\\" height=\\"428\\" src=\\"https://tctechcrunch2011.files.wordpress.com/2017/04/execc81cution_de_marie_antoinette_le_16_octobre_1793-e1492125699842.jpg?w=680\\" class=\\"attachment-large size-large wp-post-image\\" alt=\\"\\" srcset=\\"https://tctechcrunch2011.files.wordpress.com/2017/04/execc81cution_de_marie_antoinette_le_16_octobre_1793-e1492125699842.jpg?w=680 680w, https://tctechcrunch2011.files.wordpress.com/2017/04/execc81cution_de_marie_antoinette_le_16_octobre_1793-e1492125699842.jpg?w=1360 1360w, https://tctechcrunch2011.files.wordpress.com/2017/04/execc81cution_de_marie_antoinette_le_16_octobre_1793-e1492125699842.jpg?w=150 150w, https://tctechcrunch2011.files.wordpress.com/2017/04/execc81cution_de_marie_antoinette_le_16_octobre_1793-e1492125699842.jpg?w=300 300w, https://tctechcrunch2011.files.wordpress.com/2017/04/execc81cution_de_marie_antoinette_le_16_octobre_1793-e1492125699842.jpg?w=768 768w\\" sizes=\\"(max-width: 680px) 100vw, 680px\\" />&nbsp;For every bad idea, there&#8217;s a crowdsourcing campaign with a soapbox and a big-ass megaphone, ready to make it even worse. Interested? In case you missed it, it&#8217;s not too late to vote to shake up the executive branch &#8212; surely the number one priority of every red-blooded American in these mostly ho-hum, sleepy times. As the giant stack of paper behind Office of Management&hellip; <a href=\\"https://techcrunch.com/2017/04/13/omb-reorganizing-executive-branch/?ncid=rss\\">Read More</a>",
@@ -27,7 +26,7 @@ exports[`ReaderList take a snapshot 1`] = `
       }
     }
   />
-  <ReaderListItem
+  <Connect(ReaderListItem)
     article={
       Object {
         "description": "The American attack has freed leaders in Washington and Moscow from the constraints that come with the perception of a special, friendly relationship.",
@@ -38,7 +37,7 @@ exports[`ReaderList take a snapshot 1`] = `
       }
     }
   />
-  <ReaderListItem
+  <Connect(ReaderListItem)
     article={
       Object {
         "description": "President Trump's Twitter posts capture his quandary in dealing with the nuclear threat from North Korea: Only China can realistically force a change in the behavior of Kim Jong-un.",
@@ -49,7 +48,7 @@ exports[`ReaderList take a snapshot 1`] = `
       }
     }
   />
-  <ReaderListItem
+  <Connect(ReaderListItem)
     article={
       Object {
         "description": "President Trump is confronting North Korean aggression with a set of tools that has had limited success for the United States in the past.",
@@ -60,7 +59,7 @@ exports[`ReaderList take a snapshot 1`] = `
       }
     }
   />
-  <ReaderListItem
+  <Connect(ReaderListItem)
     article={
       Object {
         "description": "With key staff positions unfilled and no on-site first lady, the White House is trying to organize the most elaborate and heavily scrutinized public event of the year.",
@@ -71,7 +70,7 @@ exports[`ReaderList take a snapshot 1`] = `
       }
     }
   />
-  <ReaderListItem
+  <Connect(ReaderListItem)
     article={
       Object {
         "description": "The White House is as much as two months behind recent standards for presidential transitions, leaving 90 percent of the positions considered critical to leadership unfilled. It did, however, manage to order the eggs for the Easter egg roll.",
@@ -82,7 +81,7 @@ exports[`ReaderList take a snapshot 1`] = `
       }
     }
   />
-  <ReaderListItem
+  <Connect(ReaderListItem)
     article={
       Object {
         "description": "The revelations highlight the lax oversight at the A.T.F. that allowed agents and informants to spend millions while avoiding the normal accounting process.",

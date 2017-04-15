@@ -2,15 +2,15 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import App from './components/App/App';
-import About from './components/About/About';
+import Home from './components/Home/Home/Home';
 import NotFound from './components/NotFound/NotFound';
 
 const Routes = (props) => (
   <BrowserRouter>
     <div>
       <Switch>
-        <Route exact path="/" component={App} />
-        <Route path="/about" component={About} />
+        <Route exact path="/app" component={App} />
+        <Route path="/" component={Home} />
         <Route component={NotFound} />
       </Switch>
     </div>
