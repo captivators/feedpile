@@ -7,6 +7,7 @@ const style = {
     overflowY: 'auto',
     marginBottom: '24px',
     textAlign: 'center',
+    height: '100px',
   },
   porthole: {
     borderRadius: '100%',

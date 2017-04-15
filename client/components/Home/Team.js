@@ -7,6 +7,7 @@ const style = {
     paddingBottom: '45px',
     width: '100%',
     textAlign: 'center',
+    border: '1px solid blue',
     h1: {
       color: '#fff',
       marginTop: 0,
