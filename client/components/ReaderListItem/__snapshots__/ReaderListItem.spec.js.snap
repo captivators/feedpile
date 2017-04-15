@@ -13,7 +13,6 @@ exports[`ReaderListItem snapshot test 1`] = `
     >
       <img
         className="thumbnail"
-        src="http://oi63.tinypic.com/4sbdpx.jpg"
       />
     </div>
     <div
@@ -31,9 +30,12 @@ exports[`ReaderListItem snapshot test 1`] = `
       </p>
       <p
         className="article-description"
-      >
-        The White House is as much as two months behind recent standards for presidential transitions, leaving 90 percent of the positions considered critical to leadership unfilled. It did, however, manage to order the eggs for the Easter egg roll.
-      </p>
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "",
+          }
+        }
+      />
     </div>
   </div>
 </a>
