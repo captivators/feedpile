@@ -1,6 +1,8 @@
 const CronJob = require('cron').CronJob;
 const urlParser = require('url');
 const md5 = require('md5');
+const htmlToText = require('html-to-text');
+
 const parse = require('./parser');
 const Feed = require('../models/feed');
 const Article = require('../models/article');
@@ -229,9 +231,16 @@ const job = new CronJob({
                     //   console.log('5555 ' + updatedArticle.author);
                     // }
 
+                    var summaryText = htmlToText.fromString(feedResults[i].articles[j].summary, {
+                      ignoreHref: true,
+                      ignoreImage: true,
+                      uppercaseHeadings: false
+                    });
+
                     //if (feedResults[i].articles[j].summary && feedResults[i].articles[j].summary != updatedArticle.summary) {
-                    if (feedResults[i].articles[j].summary && updatedArticle.summary && !compareMD5(md5(feedResults[i].articles[j].summary), md5(updatedArticle.summary))) {
-                      updatedArticle.summary = feedResults[i].articles[j].summary;
+                    if (feedResults[i].articles[j].summary && updatedArticle.summary && !compareMD5(md5(summaryText), md5(updatedArticle.summary))) {
+                      //updatedArticle.summary = feedResults[i].articles[j].summary;
+                      updatedArticle.summary = summaryText;
                       updatedFlag = true;
                       // console.log('666');
                     }
@@ -261,7 +270,7 @@ const job = new CronJob({
                             reject('Error in updating Feed By Id:' + idToUpdate);
                           }
 
-                          // console.log('Updated Article: ' + aa);
+                          console.log('Updated Article: ' + aa);
                           // console.log(res);
                         });
                       })(currentArticleDB._id, updatedArticle);
@@ -323,8 +332,17 @@ const job = new CronJob({
                       newArticle.author = feedResults[i].articles[j].author;
                     }
 
-                    if (feedResults[i].articles[j].summary) {
-                      newArticle.summary = feedResults[i].articles[j].summary;
+                    var summaryText = htmlToText.fromString(feedResults[i].articles[j].summary, {
+                      ignoreHref: true,
+                      ignoreImage: true,
+                      uppercaseHeadings: false
+                    });
+
+                    // if (feedResults[i].articles[j].summary) {
+                    //   newArticle.summary = feedResults[i].articles[j].summary;
+                    // }
+                    if (summaryText) {
+                      newArticle.summary = summaryText;
                     }
 
                     if (feedResults[i].articles[j].description[j]) {
