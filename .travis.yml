@@ -5,6 +5,10 @@ branches:
   only:
     master
 notifications:
-  email: true
+  email:
+    - darinallen@gmail.com
+    - faizmohammed178@gmail.com
+    - mohammad.farooqi@gmail.com
+    - alexrosenthalster@gmail.com
 script:
   npm run test
