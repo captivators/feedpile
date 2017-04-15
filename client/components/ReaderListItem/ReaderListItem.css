@@ -45,6 +45,10 @@ a {
   line-height: 150%;
 }
 
+.article-description img {
+  display: none;
+}
+
 @media (max-width: 600px) {
   .list-item-container {
     display: block;

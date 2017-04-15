@@ -1,6 +1,8 @@
 const CronJob = require('cron').CronJob;
 const urlParser = require('url');
 const md5 = require('md5');
+const htmlToText = require('html-to-text');
+
 const parse = require('./parser');
 const Feed = require('../models/feed');
 const Article = require('../models/article');
@@ -32,8 +34,13 @@ const job = new CronJob({
           for (var i = 0; i < feeds.length; i++) {
             if (feeds[i].url) {
               var temp = new Promise((resolve, reject) => {
+                var u = feeds[i].url;
                 parse.fetch(feeds[i].url, function (err, meta, items) {
-                  resolve({ meta: meta, articles: items });
+                  if (err) {
+                    console.log('Error getting Feed from parse.fetch()');
+                  }
+                  console.log(u);
+                  resolve({ meta: meta, articles: items, originalUrl: u });
                 });
               });
 
@@ -96,7 +103,7 @@ const job = new CronJob({
                   Feed.update({ _id: currentURLItem._id },
                   { $set: updatedFeed }, function (err, res) {
                     if (err) {
-                      reject('Error in updating Feed By Id:' + idToUpdate);
+                      reject('Error in updating Feed By Id:' + currentURLItem._id);
                     }
 
                     console.log('Updated Feed: ' + updatedFeed.name + ' ' + currentURLItem._id);
@@ -224,9 +231,16 @@ const job = new CronJob({
                     //   console.log('5555 ' + updatedArticle.author);
                     // }
 
+                    var summaryText = htmlToText.fromString(feedResults[i].articles[j].summary, {
+                      ignoreHref: true,
+                      ignoreImage: true,
+                      uppercaseHeadings: false
+                    });
+
                     //if (feedResults[i].articles[j].summary && feedResults[i].articles[j].summary != updatedArticle.summary) {
-                    if (feedResults[i].articles[j].summary && updatedArticle.summary && !compareMD5(md5(feedResults[i].articles[j].summary), md5(updatedArticle.summary))) {
-                      updatedArticle.summary = feedResults[i].articles[j].summary;
+                    if (feedResults[i].articles[j].summary && updatedArticle.summary && !compareMD5(md5(summaryText), md5(updatedArticle.summary))) {
+                      //updatedArticle.summary = feedResults[i].articles[j].summary;
+                      updatedArticle.summary = summaryText;
                       updatedFlag = true;
                       // console.log('666');
                     }
@@ -256,7 +270,7 @@ const job = new CronJob({
                             reject('Error in updating Feed By Id:' + idToUpdate);
                           }
 
-                          // console.log('Updated Article: ' + aa);
+                          console.log('Updated Article: ' + aa);
                           // console.log(res);
                         });
                       })(currentArticleDB._id, updatedArticle);
@@ -276,9 +290,10 @@ const job = new CronJob({
                     //   description: String
                     // });
 
-                    var searchFeedId = function (feedTitle) {
+                    var searchFeedId = function (feedUrl) {
                       for (var k = 0; k < localFeeds.length; k++) {
-                        if (localFeeds[k].name === feedTitle) {
+                        if (compareMD5(md5(localFeeds[k].url), md5(feedUrl))) {
+                        //if (localFeeds[k].name === feedTitle) {
                           return localFeeds[k]._id;
                         }
                       }
@@ -308,7 +323,7 @@ const job = new CronJob({
                       newArticle.datePublished = feedResults[i].articles[j].pubdate;
                     }
 
-                    var tempFeedId = searchFeedId(feedResults[i].meta.title);
+                    var tempFeedId = searchFeedId(feedResults[i].originalUrl);
                     if (tempFeedId) {
                       newArticle.feedId = tempFeedId;
                     }
@@ -317,8 +332,17 @@ const job = new CronJob({
                       newArticle.author = feedResults[i].articles[j].author;
                     }
 
-                    if (feedResults[i].articles[j].summary) {
-                      newArticle.summary = feedResults[i].articles[j].summary;
+                    var summaryText = htmlToText.fromString(feedResults[i].articles[j].summary, {
+                      ignoreHref: true,
+                      ignoreImage: true,
+                      uppercaseHeadings: false
+                    });
+
+                    // if (feedResults[i].articles[j].summary) {
+                    //   newArticle.summary = feedResults[i].articles[j].summary;
+                    // }
+                    if (summaryText) {
+                      newArticle.summary = summaryText;
                     }
 
                     if (feedResults[i].articles[j].description[j]) {

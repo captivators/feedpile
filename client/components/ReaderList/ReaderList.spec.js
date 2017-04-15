@@ -16,8 +16,3 @@ test('ReaderList should render a ReaderListItem for each article', () => {
   const component = shallow(<UnwrappedReaderList articles={data}/>);
   expect(component.find(ReaderListItem).length).toEqual(data.length);
 });
-test('ReaderList should render a ReaderListItem for each article with Redux store', () => {
-  const component = render(<Provider store={store}><ReaderList articles={data}/></Provider>);
-  expect(component.find('.list-item-container').length).toEqual(data.length);
-});
-
