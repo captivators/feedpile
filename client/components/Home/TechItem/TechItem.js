@@ -8,12 +8,12 @@ const style = {
     boxSizing: 'border-box',
     width: '100%',
     maxWidth: '150px',
-    maxHeight: '150px',
+    maxHeight: '300px',
     margin: '2px 10px'
   },
    gridList: {
     width: '25%',
-    overflowY: 'auto',
+    overflowY: 'hidden',
     marginBottom: '24px',
     textAlign: 'center'
   }
