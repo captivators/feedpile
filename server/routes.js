@@ -19,7 +19,8 @@ module.exports = (app, express) => {
 
   //article api routes
   app.get('/api/articles', requestHandler.getAllArticles);
-  app.post('/api/articles', requestHandler.createArticle);
+  // app.post('/api/articles', requestHandler.createArticle);
+  app.post('/api/articles', requestHandler.getArticlesByFeedId);
   app.get('/api/articles/:articleId', requestHandler.getOneArticle);
   app.delete('/api/articles/:articleId', requestHandler.deleteArticle);
 };
