@@ -5,14 +5,13 @@ import ReaderList, {Unwrapped as UnwrappedReaderList} from './ReaderList';
 import { shallow, render } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json'
 import data from '../../../data.json'
-import { Unwrapped as UnwrappedReaderListItem } from '../ReaderListItem/ReaderListItem'
 
 test('ReaderList take a snapshot', () => {
   const component = shallow(<UnwrappedReaderList articles={data}/>);
   const tree = shallowToJson(component);
   expect(tree).toMatchSnapshot();
 });
-// test('ReaderList should render a ReaderListItem for each article', () => {
-//   const component = shallow(<UnwrappedReaderList articles={data}/>);
-//   expect(component.find('.list-item-container').length).toEqual(data.length);
-// });
+test('ReaderList should render a ReaderListItem for each article', () => {
+  const component = render(<Provider store={store}><UnwrappedReaderList articles={data}/></Provider>);
+  expect(component.find('.list-item-container').length).toEqual(data.length);
+});

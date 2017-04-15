@@ -21,17 +21,10 @@ const { title, imageSrc, publisher, summary, description } =  props.article;
       </div>
     </div>
   )
-}
+};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-  renderReadView: function (article) {
-    dispatch(setCurrentArticle(article))
-    }
-  }
-}
 
 export const Unwrapped  = ReaderListItem;
-export default connect(null, mapDispatchToProps )(ReaderListItem);
+export default connect(null, {renderReadView: setCurrentArticle} )(ReaderListItem);
 
 {/* <p className='article-description' dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(summary)}}></p> */}
