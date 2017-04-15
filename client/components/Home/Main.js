@@ -5,7 +5,9 @@ const style = {
     paddingTop: '45px',
     paddingBottom: '45px',
     width: '100%',
+    height: '500px',
     textAlign: 'center',
+    border: '1px solid black',
     h1: {
       color: '#fff',
       marginTop: 0,

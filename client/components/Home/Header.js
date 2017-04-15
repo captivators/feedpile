@@ -4,6 +4,7 @@ const style = {
   root: {
     display: 'flex',
     flexWrap: 'wrap',
+    border: '1px solid black',
     justifyContent: 'space-around',
   }
 }
