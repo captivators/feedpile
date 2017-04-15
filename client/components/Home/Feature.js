@@ -3,7 +3,10 @@ const style = {
   first: {
     paddingTop: '45px',
     paddingBottom: '45px',
+    border: '1px solid blue',
+    boxSizing: 'border-box',
     width: '100%',
+    height: '200px',
     textAlign: 'center',
     h1: {
       color: '#fff',
