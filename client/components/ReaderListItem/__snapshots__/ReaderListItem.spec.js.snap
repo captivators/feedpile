@@ -1,9 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ReaderListItem snapshot test 1`] = `
-<a
-  href="http://www.nytimes.com/video/us/politics/100000005018390/trump-administration-hunts-for-easter-eggs-and-senior-staff.html"
-  target="_blank"
+<div
+  onClick={[Function]}
 >
   <div
     className="list-item-container"
@@ -12,7 +11,7 @@ exports[`ReaderListItem snapshot test 1`] = `
       className="thumbnail-container"
     >
       <img
-        className="thumbnail"
+        className="thumbnail-image"
       />
     </div>
     <div
@@ -29,14 +28,9 @@ exports[`ReaderListItem snapshot test 1`] = `
         New York Times
       </p>
       <p
-        className="article-description"
-        dangerouslySetInnerHTML={
-          Object {
-            "__html": "",
-          }
-        }
+        className="article-summary"
       />
     </div>
   </div>
-</a>
+</div>
 `;

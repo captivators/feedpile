@@ -15,6 +15,7 @@ exports[`App take a snapshot 1`] = `
     <div
       className="app-container"
     >
+      <Navbar />
       <Connect(Sidebar) />
       <Connect(ReaderList) />
     </div>
