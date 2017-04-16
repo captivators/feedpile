@@ -6,7 +6,7 @@ import './ReadArticle.css';
 const ReadArticle = (props) => {
   return (
     <div >
-      <Link to="/"><button>back</button></Link>
+      <Link to="/app"><button>back</button></Link>
       <h1>In ReadArticle</h1>
     </div>
   )

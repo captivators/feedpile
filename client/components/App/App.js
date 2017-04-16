@@ -18,9 +18,6 @@ const muiTheme = getMuiTheme({
     textColor: grey700,
   }
 });
-
-import store from '../../store';
-
 import './app.css';
 
 class App extends React.Component {
