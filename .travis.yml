@@ -11,8 +11,8 @@ notifications:
       - faizmohammed178@gmail.com
       - mohammad.farooqi@gmail.com
       - alexrosenthalster@gmail.com
-    on_success: always # default: change
-    on_failure: always # default: always
+    on_success: always
+    on_failure: always 
 
 script:
   npm run test-coverage
