@@ -12,6 +12,7 @@ exports[`ReaderListItem snapshot test 1`] = `
     >
       <img
         className="thumbnail-image"
+        src="https://s15.postimg.org/6jredm53v/news.png"
       />
     </div>
     <div
