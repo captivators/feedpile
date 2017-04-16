@@ -8,10 +8,9 @@ import NotFound from './components/NotFound/NotFound';
 const Routes = (
     <div>
       <Switch>
-        <Route exact path="/" component={App} />
+        <Route exact path="/" component={Home} />
+        <Route path="/app" component={App} />
         <Route path="/read" component={ReadArticle} />
-        <Route exact path="/app" component={App} />
-        <Route path="/" component={Home} />
         <Route component={NotFound} />
       </Switch>
     </div>

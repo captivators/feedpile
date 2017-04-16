@@ -13,7 +13,6 @@ import Description from 'material-ui-icons/Description';
 
 import './Sidebar.css';
 import { getArticlesFromDb } from '../../actions';
-import store from '../../store';
 import { connect } from 'react-redux';
 import { toggleListItem } from '../../actions'
 
@@ -28,11 +27,7 @@ const styles = {
     height: 72,
     padding: 16
   }
-}
-
-const handleRefresh = () => {
-  store.dispatch(getArticlesFromDb());
-}
+};
 
 const Sidebar = (props) => {
   return (
@@ -139,7 +134,7 @@ const Sidebar = (props) => {
         />
       </List>
       <span className="refresh-icon">
-        <IconButton onClick={handleRefresh} iconStyle={styles.smallIcon} style={styles.small}>
+        <IconButton onClick={props.getArticlesFromDb} iconStyle={styles.smallIcon} style={styles.small}>
           <Refresh />
         </IconButton>
       </span>
@@ -158,12 +153,7 @@ const mapStateToProps = (state) => {
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatchToggle : function(item) {
-      dispatch(toggleListItem(item))
-    }
-  }
-};
 export const Unwrapped = Sidebar;
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+export default connect(mapStateToProps, {
+  dispatchToggle : toggleListItem, getArticlesFromDb
+})(Sidebar);
