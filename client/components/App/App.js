@@ -21,6 +21,7 @@ const muiTheme = getMuiTheme({
 import './app.css';
 
 class App extends React.Component {
+
   render() {
     const { history } = this.props;
     return (
