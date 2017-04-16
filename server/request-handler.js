@@ -164,29 +164,45 @@ exports.deleteUser = (req, res) => {
 
 //=======ARTICLE API ROUTES=======
 exports.getAllArticles = (req, res) => {
-  Article.find(function(err, articles) {
+  //Article.find({}).sort().
+
+  Article.find({}, null, { sort: {date: -1} }, function(err, articles) {
     if (err) {
-      res.send(err);
+      res.json({status: 400, message: err});
     }
 
     res.json(articles);
   });
 };
 
-exports.createArticle = (req, res) => {
-  var article = new Article();      // create a new instance of the article model
-  article.url = req.body.url;
-  article.datePublished = req.body.datePublished;
-  article.feedId = req.body.feedId;
+// exports.createArticle = (req, res) => {
+//   var article = new Article();      // create a new instance of the article model
+//   article.url = req.body.url;
+//   article.datePublished = req.body.datePublished;
+//   article.feedId = req.body.feedId;
 
-  // save the article and check for errors
-  article.save(function(err) {
-    if (err) {
-      res.send(err);
-    }
+//   // save the article and check for errors
+//   article.save(function(err) {
+//     if (err) {
+//       res.send(err);
+//     }
 
-    res.json({ status: 201, message: 'Article created!' });
-  });
+//     res.json({ status: 201, message: 'Article created!' });
+//   });
+// };
+
+exports.getArticlesByFeedId = (req, res) => {
+  if (req.body.feedId) {
+    Article.find({feedId: req.body.feedId}, null, { sort: {date: -1} }, function(err, articles) {
+      if (err) {
+        res.json({status: 400, message: err});
+      }
+
+      res.json(articles);
+    });
+  } else {
+    res.json({status: 404, message: 'feedId not provided in body'});
+  }
 };
 
 exports.getOneArticle = (req, res) => {
