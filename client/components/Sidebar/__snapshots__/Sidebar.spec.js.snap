@@ -387,5 +387,56 @@ exports[`Sidebar snapshot test 1`] = `
       secondaryTextLines={1}
     />
   </List>
+  <span
+    className="refresh-icon"
+  >
+    <IconButton
+      disableTouchRipple={false}
+      disabled={false}
+      iconStyle={
+        Object {
+          "height": 36,
+          "width": 36,
+        }
+      }
+      onClick={[Function]}
+      style={
+        Object {
+          "height": 72,
+          "padding": 16,
+          "width": 72,
+        }
+      }
+      tooltipPosition="bottom-center"
+      touch={false}
+    >
+      <pure(Refresh) />
+    </IconButton>
+  </span>
+  <span
+    className="archive-icon"
+  >
+    <IconButton
+      disableTouchRipple={false}
+      disabled={false}
+      iconStyle={
+        Object {
+          "height": 36,
+          "width": 36,
+        }
+      }
+      style={
+        Object {
+          "height": 72,
+          "padding": 16,
+          "width": 72,
+        }
+      }
+      tooltipPosition="bottom-center"
+      touch={false}
+    >
+      <pure(Archive) />
+    </IconButton>
+  </span>
 </div>
 `;
