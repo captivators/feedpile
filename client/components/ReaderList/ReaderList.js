@@ -4,14 +4,16 @@ import { connect } from 'react-redux';
 import './ReaderList.css';
 
 const ReaderList = (props) => {
-  return (
-    <div className="reader-list-container">
-      {props.articles.map((article, index) => (
-        <ReaderListItem article={article} key={index}/>
-      ))}
-    </div>
-  )
-}
+    return (
+        <div className="reader-list-container">
+          {props.articles.map((article, index) => (
+              <ReaderListItem history={props.history}
+                              article={article}
+                              key={index}/>
+          ))}
+        </div>
+    )
+};
 
 const mapStateToProps = (state) => {
   return {
