@@ -6,9 +6,15 @@ branches:
     master
 notifications:
   email:
-    - darinallen@gmail.com
-    - faizmohammed178@gmail.com
-    - mohammad.farooqi@gmail.com
-    - alexrosenthalster@gmail.com
+    recipients:
+      - darinallen@gmail.com
+      - faizmohammed178@gmail.com
+      - mohammad.farooqi@gmail.com
+      - alexrosenthalster@gmail.com
+    on_success: always # default: change
+    on_failure: always # default: always
+
 script:
-  npm run test
+  npm run test-coverage
+after_success:
+  npm run report-coverage
