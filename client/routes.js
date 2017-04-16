@@ -1,20 +1,19 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
+import { Route, Switch } from 'react-router-dom';
+import ReadArticle from './components/ReadArticle/ReadArticle'
 import App from './components/App/App';
 import About from './components/About/About';
 import NotFound from './components/NotFound/NotFound';
 
-const Routes = (props) => (
-  <BrowserRouter>
+const Routes = (
     <div>
       <Switch>
         <Route exact path="/" component={App} />
         <Route path="/about" component={About} />
+        <Route path="/read" component={ReadArticle} />
         <Route component={NotFound} />
       </Switch>
     </div>
-  </BrowserRouter>
 );
 
 export default Routes;

@@ -2,23 +2,12 @@
 
 exports[`App take a snapshot 1`] = `
 <MuiThemeProvider>
-  <Provider
-    store={
-      Object {
-        "dispatch": [Function],
-        "getState": [Function],
-        "replaceReducer": [Function],
-        "subscribe": [Function],
-      }
-    }
+  <div
+    className="app-container"
   >
-    <div
-      className="app-container"
-    >
-      <Navbar />
-      <Connect(Sidebar) />
-      <Connect(ReaderList) />
-    </div>
-  </Provider>
+    <Navbar />
+    <Connect(Sidebar) />
+    <Connect(ReaderList) />
+  </div>
 </MuiThemeProvider>
 `;
