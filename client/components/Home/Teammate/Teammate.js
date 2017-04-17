@@ -11,7 +11,7 @@ const style = {
   porthole: {
     borderRadius: '100%',
     width: '75%',
-    maxWidth: '100px',
+    maxWidth: '150px',
     margin: '15px auto',
     imageAlign: 'center'
   }

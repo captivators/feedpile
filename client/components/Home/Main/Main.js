@@ -1,32 +1,26 @@
 import React from 'react';
+import Card from 'material-ui/Card'
 import RaisedButton from 'material-ui/RaisedButton'
-
-const style = {
-  first: {
-    paddingTop: '45px',
-    paddingBottom: '45px',
-    width: '100%',
-    backgroundColor: '#f2f2f2',
-    height: '500px',
-    textAlign: 'center',
-    h1: {
-      color: '#fff',
-      marginTop: 0,
-      fontSize: '48px',
-    }
-  }
-}
+import './Main.css'
 
 const Main = (props) => {
   return (
-    <div className="container login center-align" style={style.first}>
-      <div className="main">
+    <div className="main-container" style={{backgroundColor: "#304FFE"}}>
+    <Card className="main-card" zDepth={0} style={{backgroundColor: "#304FFE"}}>
+      <div className="main" >
         <i className="feedpile-logo"></i>
-        <a href="#" className="brand-logo center"><img src="https://s3-us-west-1.amazonaws.com/thesis.feedpile.images/feedpile.png"/></a>
-        <h1>Feedpile</h1>
+        <a href="#" className="brand-logo center"><img className="main-image" src="https://s13.postimg.org/8y3id7gjr/book-logo-main.png"/></a>
+        <ul>
+          <li><h1 className="main-h1">Feedpile</h1></li>
+          <br/>
 
-        <RaisedButton label="Get Started" />
+          <li><RaisedButton
+          label="Get Started"
+          primary={true}
+          className="sign-up"/></li>
+        </ul>
       </div>
+      </Card>
     </div>
   )
 }

@@ -8,13 +8,15 @@ const style = {
     alignItems: 'center',
     justifyContent: 'center',
     flexWrap: 'wrap',
-    height: '200px',
+    height: '800px',
+    backgroundColor: '#eee',
   },
   first: {
     paddingTop: '45px',
     paddingBottom: '45px',
     width: '100%',
     textAlign: 'center',
+    backgroundColor: '#eee',
     h1: {
       color: '#fff',
       marginTop: 0,
@@ -26,6 +28,16 @@ const style = {
 
 const techList = [
   {
+    name: "React",
+    link: "https://facebook.github.io/react/",
+    image: "https://s27.postimg.org/ud14uv8v7/logo-578x270.png"
+  },
+  {
+    name: "React Router",
+    link: "https://react-router.js.org",
+    image: "https://s11.postimg.org/9ewo3bnmr/react-router.png"
+  },
+  {
     name: "Redux",
     link: 'http://redux.js.org/',
     image: "https://s30.postimg.org/50zpvkri9/logo-redux.png"
@@ -34,6 +46,11 @@ const techList = [
     name: "Babel",
     link: "http://www.babeljs.io/",
     image: "https://s30.postimg.org/z92z4actt/babel.png"
+  },
+  {
+    name: "Webpack",
+    link: "https://www.webpack.js.org/",
+    image: "https://s15.postimg.org/p04co7pej/webpack.png",
   },
   {
     name: "Node",
@@ -45,35 +62,27 @@ const techList = [
     image: "https://s7.postimg.org/c5kgs8wh7/express.png",
     link: "https://expressjs.com"
   },
-  {
-    name: "Webpack",
-    link: "https://www.webpack.js.org/",
-    image: "https://s15.postimg.org/p04co7pej/webpack.png",
-  },
+
   {
     name: "MongoDB",
     link: "https://www.mongodb.com",
-    image: "https://s23.postimg.org/6zm6jjb7f/mongodb-logo-rgb-j6w271g1xn.jpg",
+    image: "https://s24.postimg.org/hx7jao6qd/mongodb-logo-1.png",
   },
   {
     name: "Travis CI",
     link: "https://travis-ci.org",
     image: "https://s23.postimg.org/n1i0g8re3/Travis_CI-_Mascot-1-20feeadb48fc2492ba741d89cb5a5c.png"
   },
-  {
-    name: "React",
-    link: "https://facebook.github.io/react/",
-    image: "https://s27.postimg.org/ud14uv8v7/logo-578x270.png"
-  },
-  {
-    name: "React Router",
-    link: "https://react-router.js.org",
-    image: "https://s11.postimg.org/9ewo3bnmr/react-router.png"
-  },
+
   {
     name: "Docker",
     link: "https://www.docker.com",
     image: "https://s4.postimg.org/l4sfu2sql/docker.png"
+  },
+  {
+    name: "Jest",
+    link: '',
+    image: "https://s24.postimg.org/rgds3co7p/jest.9ec4c2ad.png"
   },
   {
     name: "Enzyme",
@@ -81,9 +90,19 @@ const techList = [
     image: "https://s7.postimg.org/p125vwx4r/1-pu9_U8_EYL3_KGrgvapyp1p_Sg.png"
   },
   {
+    name: "Mocha Chai",
+    link: "http://chaijs.com/",
+    image: "https://s9.postimg.org/q5c35f0zj/chaijs-mocha.png"
+  },
+  {
     name: "Material UI",
     link: "http://www.material-ui.com/#/customization/themes",
     image: "https://s11.postimg.org/975jiaz8j/material-ui_1.png"
+  },
+  {
+    name: "NPM",
+    link: "https://www.npmjs.com/",
+    image: "https://s14.postimg.org/nhna7dump/npm.png"
   }
 ]
 

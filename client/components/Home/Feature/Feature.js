@@ -4,7 +4,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {CardHeader, Card, CardText} from 'material-ui/Card';
-import Amber from 'material-ui/styles/colors'
 
 const Feature = (props) => {
   return (

@@ -5,16 +5,14 @@ const style = {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    boxSizing: 'border-box',
     width: '100%',
-    maxWidth: '150px',
-    maxHeight: '300px',
-    margin: '2px 10px'
+    maxWidth: '100px',
+    maxHeight: '150px',
+    margin: '2px 5px'
   },
    gridList: {
-    width: '25%',
+    width: '20%',
     overflowY: 'hidden',
-    marginBottom: '24px',
     textAlign: 'center'
   }
 }
@@ -23,8 +21,6 @@ const TechItem = (props) => {
   return (
     <div style={style.gridList}>
     <a style={style.logos} href={ props.tech.link }><img src={ props.tech.image }/></a>
-    <br/>
-    { props.tech.name }
     <br />
     { props.tech.description }
     </div>
