@@ -1,48 +1,35 @@
 import React from 'react';
 import Feature from '../Feature/Feature'
-
-const style = {
-  first: {
-    paddingTop: '45px',
-    paddingBottom: '45px',
-    width: '100%',
-    textAlign: 'center',
-    h1: {
-      color: '#fff',
-      marginTop: 0,
-      fontSize: '48px',
-    },
-  },
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-  }
-}
+import Amber from 'material-ui/styles/colors'
+import './FeatureList.css'
 
 const featureList = [
   {
     name: 'RSS',
     featureName: 'Seamless updates',
-    description: 'Receive the newest articles instantaneously'
+    description: 'Receive the newest articles instantaneously',
+    color: "Amber"
   },
   {
     name: 'News',
     featureName: 'Access to any feed',
-    description: 'Unlimited resources all at your fingertips'
+    description: 'Unlimited resources all at your fingertips',
+    color: "Carrot"
   }
 ]
 
 const FeatureList = (props) => {
   console.log(props)
   return (
-    <div style={style.first}>
-      <h2>Features</h2>
-      <div className="team" style={style.root}>
+    <div className="features">
+    <ul>
+    <li><h2 className="h3">Features</h2></li>
+      <li><div className="team" >
         {featureList.map((feature, index) => (
           <Feature info={ feature } key={ index } />
         ))}
-      </div>
+      </div></li>
+      </ul>
     </div>
     )
 }

@@ -1,0 +1,24 @@
+  .features {
+    display: flex;
+    padding-top: 45px;,
+    padding-bottom: 45px;,
+    width: 100%;
+    height: 600px;
+    text-align: center;
+    background-color: #00BCD4;
+  }
+
+.h3 {
+  font-size: 3em;
+  line-height: 1;
+  display: block;
+  color: #fff;
+  margin: .5em 0;
+  }
+
+  .team {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
