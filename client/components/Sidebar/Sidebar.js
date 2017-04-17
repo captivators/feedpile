@@ -21,7 +21,6 @@ const styles = {
   smallIcon: {
     width: 36,
     height: 36
-
   },
   small: {
     width: 72,
