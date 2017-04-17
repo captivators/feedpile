@@ -64,6 +64,13 @@ h2{
   margin: 15px 0;
 }
 
+.card-header {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 45px;
+  padding-bottom: 45px;
+  background-color: #00BCD4;
+}
 
 
 

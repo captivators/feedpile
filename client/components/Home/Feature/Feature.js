@@ -13,12 +13,13 @@ const Feature = (props) => {
     <Card zDepth={5}>
       <CardHeader
         title={props.info.name}
-        textStyle={{alignSelf: "center"}}
+        titleColor={'white'}
         actAsExpander={true}
         showExpandableButton={true}
-        className="first"
+        className="card-header"
       />
-      <CardText expandable={true}>
+      <CardText
+      expandable={true}>
         <ul>
         <li>{props.info.featureName}</li>
         <br/>

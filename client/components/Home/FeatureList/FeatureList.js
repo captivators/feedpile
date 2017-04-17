@@ -1,7 +1,7 @@
 import React from 'react';
 import Feature from '../Feature/Feature'
-import Amber from 'material-ui/styles/colors'
 import './FeatureList.css'
+
 
 const featureList = [
   {
