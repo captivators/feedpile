@@ -195,6 +195,14 @@ const job = new CronJob({
                     //   console.log('2222');
                     // }
 
+                    //else if no image then use enclosures.url
+                    if (feedResults[i].articles[j].enclosures[0] && feedResults[i].articles[j].enclosures[0].url && (feedResults[i].articles[j].enclosures[0].type).indexOf('image') > -1 && updatedArticle.imageSrc && !compareMD5(md5(feedResults[i].articles[j].enclosures[0].url), md5(updatedArticle.imageSrc))) {
+                      updatedArticle.imageSrc = feedResults[i].articles[j].enclosures[0].url;
+                      updatedFlag = true;
+                      // console.log('222');
+                      console.log('here 1');
+                    }
+
                     //if (feedResults[i].articles[j].date && feedResults[i].articles[j].date != updatedArticle.date) {
                     if (feedResults[i].articles[j].date && updatedArticle.date && !compareMD5(md5(feedResults[i].articles[j].date), md5(updatedArticle.date))) {
                       updatedArticle.date = feedResults[i].articles[j].date;
@@ -313,6 +321,11 @@ const job = new CronJob({
 
                     if (feedResults[i].articles[j].image && feedResults[i].articles[j].image.url) {
                       newArticle.imageSrc = feedResults[i].articles[j].image.url;
+                    }
+
+                    if (feedResults[i].articles[j].enclosures[0] && feedResults[i].articles[j].enclosures[0].url && (feedResults[i].articles[j].enclosures[0].type).indexOf('image') > -1) {
+                      newArticle.imageSrc = feedResults[i].articles[j].enclosures[0].url;
+                      console.log('here 2')
                     }
 
                     if (feedResults[i].articles[j].date) {

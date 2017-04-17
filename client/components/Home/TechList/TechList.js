@@ -62,7 +62,6 @@ const techList = [
     image: "https://s7.postimg.org/c5kgs8wh7/express.png",
     link: "https://expressjs.com"
   },
-
   {
     name: "MongoDB",
     link: "https://www.mongodb.com",
@@ -73,7 +72,6 @@ const techList = [
     link: "https://travis-ci.org",
     image: "https://s23.postimg.org/n1i0g8re3/Travis_CI-_Mascot-1-20feeadb48fc2492ba741d89cb5a5c.png"
   },
-
   {
     name: "Docker",
     link: "https://www.docker.com",

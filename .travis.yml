@@ -1,14 +1,23 @@
 sudo: false
 language: node_js
 node_js: 6
+cache:
+  directories:
+    - node_modules
 branches:
   only:
     master
 notifications:
   email:
-    - darinallen@gmail.com
-    - faizmohammed178@gmail.com
-    - mohammad.farooqi@gmail.com
-    - alexrosenthalster@gmail.com
+    recipients:
+      - darinallen@gmail.com
+      - faizmohammed178@gmail.com
+      - mohammad.farooqi@gmail.com
+      - alexrosenthalster@gmail.com
+    on_success: always
+    on_failure: always
+
 script:
-  npm run test
+  npm run test-coverage
+after_success:
+  npm run report-coverage

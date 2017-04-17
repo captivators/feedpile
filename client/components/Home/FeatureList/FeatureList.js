@@ -2,19 +2,16 @@ import React from 'react';
 import Feature from '../Feature/Feature'
 import './FeatureList.css'
 
-
 const featureList = [
   {
     name: 'RSS',
     featureName: 'Seamless updates',
     description: 'Receive the newest articles instantaneously',
-    color: "Amber"
   },
   {
     name: 'News',
     featureName: 'Access to any feed',
     description: 'Unlimited resources all at your fingertips',
-    color: "Carrot"
   }
 ]
 
