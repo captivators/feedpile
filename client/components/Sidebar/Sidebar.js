@@ -6,11 +6,28 @@ import Star from 'material-ui-icons/Star';
 import Games from 'material-ui-icons/Games';
 import MusicNote from 'material-ui-icons/MusicNote';
 import Public from 'material-ui-icons/Public';
+import Refresh from 'material-ui-icons/Refresh';
+import Archive from 'material-ui-icons/Archive';
+import IconButton from 'material-ui/IconButton';
 import Description from 'material-ui-icons/Description';
 
 import './Sidebar.css';
+import { getArticlesFromDb } from '../../actions';
 import { connect } from 'react-redux';
 import { toggleListItem } from '../../actions'
+
+const styles = {
+  smallIcon: {
+    width: 36,
+    height: 36
+
+  },
+  small: {
+    width: 72,
+    height: 72,
+    padding: 16
+  }
+};
 
 const Sidebar = (props) => {
   return (
@@ -116,6 +133,16 @@ const Sidebar = (props) => {
           ]}
         />
       </List>
+      <span className="refresh-icon">
+        <IconButton onClick={props.getArticlesFromDb} iconStyle={styles.smallIcon} style={styles.small}>
+          <Refresh />
+        </IconButton>
+      </span>
+      <span className="archive-icon">
+        <IconButton iconStyle={styles.smallIcon} style={styles.small}>
+          <Archive />
+        </IconButton>
+      </span>
     </div>
   )
 };
@@ -126,12 +153,7 @@ const mapStateToProps = (state) => {
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatchToggle : function(item) {
-      dispatch(toggleListItem(item))
-    }
-  }
-};
-export  const Unwrapped = Sidebar;
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+export const Unwrapped = Sidebar;
+export default connect(mapStateToProps, {
+  dispatchToggle : toggleListItem, getArticlesFromDb
+})(Sidebar);

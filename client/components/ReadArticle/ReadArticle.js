@@ -1,22 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 import './ReadArticle.css';
 
 const ReadArticle = (props) => {
   return (
-    <div className="reader-list-container">
-      {props.articles.map((article, index) => (
-        <ReaderListItem article={article} key={index}/>
-      ))}
+    <div >
+      <Link to="/app"><button>back</button></Link>
+      <p><b>Selected article's description</b> {props.selectedArticle.description}</p>
     </div>
   )
-}
+};
 
 const mapStateToProps = (state) => {
   return {
-    articles: state.articles
+    selectedArticle: state.articles[state.currentArticleIndex]
   }
 };
 
-export const Unwrapped  = ReaderList;
-export default connect(mapStateToProps)(ReaderList);
+export default connect(mapStateToProps)(ReadArticle);
