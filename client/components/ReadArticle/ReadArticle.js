@@ -38,7 +38,7 @@ const ReadArticle = (props) => {
           <div className="read-article-content" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(props.selectedArticle.description)}}></div>
         </div>
         <div className="url-button-container">
-          <a className="url-button" href={props.selectedArticle.url}>
+          <a className="url-button" href={props.selectedArticle.url} target="_blank">
             <RaisedButton label="Visit Website" style={buttonStyle} />
           </a>
         </div>
