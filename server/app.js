@@ -3,15 +3,25 @@ const morgan = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+
+require('dotenv').config();
+
 const routes = require('./routes');
 
 const app = express();
 
 // connect to our database
-//mongoose.connect(process.env.MONGODB_URI || MONGODB_URI);
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/feedpilelocal', function () {
+mongoose.connect(process.env.MONGODB_URI || process.env.MONGODB_URI_LOCAL, function (err) {
+  if (err) {
+    console.log(err);
+  }
+
   console.log('Connected to Database');
 });
+
+// mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/feedpilelocal', function () {
+//   console.log('Connected to Database');
+// });
 
 // Setup logger
 app.use(morgan('dev'));

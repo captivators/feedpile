@@ -10,6 +10,7 @@ import Refresh from 'material-ui-icons/Refresh';
 import Archive from 'material-ui-icons/Archive';
 import IconButton from 'material-ui/IconButton';
 import Description from 'material-ui-icons/Description';
+import feedPileImg from '../../images/feedpile.png'
 
 import './Sidebar.css';
 import { getArticlesFromDb } from '../../actions';
@@ -32,7 +33,7 @@ const styles = {
 const Sidebar = (props) => {
   return (
     <div className="sidebar-container">
-      <img className="sidebar-logo" src={"https://s3-us-west-1.amazonaws.com/thesis.feedpile.images/feedpile.png"} />
+      <img className="sidebar-logo" src={feedPileImg} />
       <h2 className="logo-name">FeedPile</h2>
       <List>
         <ListItem primaryText="All Articles" leftIcon={<ListIcon />} />

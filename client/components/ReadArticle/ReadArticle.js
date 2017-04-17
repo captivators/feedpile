@@ -7,17 +7,15 @@ const ReadArticle = (props) => {
   return (
     <div >
       <Link to="/app"><button>back</button></Link>
-      <h1>In ReadArticle</h1>
+      <p><b>Selected article's description</b> {props.selectedArticle.description}</p>
     </div>
   )
 };
-//
-// const mapStateToProps = (state) => {
-//   return {
-//     articles: state.articles
-//   }
-// };
-//
-// export const Unwrapped  = ReaderList;
-// export default connect(mapStateToProps)(ReaderList);
-export default ReadArticle;
+
+const mapStateToProps = (state) => {
+  return {
+    selectedArticle: state.articles[state.currentArticleIndex]
+  }
+};
+
+export default connect(mapStateToProps)(ReadArticle);
