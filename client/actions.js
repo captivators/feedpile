@@ -10,6 +10,6 @@ export const updateArticles = (articles) => {
   return {type: "UPDATE_ARTICLES", articles}
 };
 
-export const setCurrentArticle = (article) => {
-  return {type: "SET_CURRENT_ARTICLE", article}
+export const setCurrentArticle = (articleIndex) => {
+  return {type: "SET_CURRENT_ARTICLE", articleIndex}
 };

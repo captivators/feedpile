@@ -9,8 +9,8 @@ const ReaderListItem = (props) => {
 
   return(
       <div onClick={() => {
-        props.history.push('/read')
-        props.renderReadView(props.article)
+        props.history.push(`/read/${props.articleIndex}`)
+        props.renderReadView(props.articleIndex)
       }}>
       <div className='list-item-container'>
         <div className='thumbnail-container'>
