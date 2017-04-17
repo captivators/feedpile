@@ -4,7 +4,7 @@ const initialState = {
   articles: [],
   open: false,
   toggleListItem: '',
-  currentArticle: {}
+  currentArticleIndex: null
 };
 
 const toggleListItem = (state, action) => {
@@ -14,11 +14,11 @@ const toggleListItem = (state, action) => {
 
 const updateArticles = (state, action) => {
   return {...state, articles: action.articles}
-}
+};
 
 const setCurrentArticle = (state, action) => {
-  return {...state, currentArticle: action.article}
-}
+  return {...state, currentArticleIndex: action.articleIndex}
+};
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {

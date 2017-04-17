@@ -17,7 +17,8 @@ class ReaderList extends React.Component {
           {this.props.articles.map((article, index) => (
               <ReaderListItem history={this.props.history}
                               article={article}
-                              key={index}/>
+                              key={index} articleIndex={index}
+              />
           ))}
         </div>
     )
