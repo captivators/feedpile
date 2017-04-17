@@ -8,6 +8,7 @@
   max-width: 680px;
   margin: auto;
   font-family: "Roboto", sans-serif;
+  color: #333;
   line-height: 150%;
 }
 
@@ -16,13 +17,13 @@
   font-size: 28px;
   line-height: 120%;
   font-weight: bold;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .read-article-content img {
   max-width: 100%;
   height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .url-button-container {
