@@ -4,6 +4,7 @@ exports[`ReaderList take a snapshot 1`] = `
 <div
   className="reader-list-container"
 >
+  <Connect(ReaderListHeader) />
   <Connect(ReaderListItem)
     article={
       Object {
