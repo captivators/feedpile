@@ -27,10 +27,10 @@
 }
 
 .url-button-container {
+  margin-top: 20px;
   text-align: center;
 }
 
 .url-button {
-  margin-top: 20px;
   display: inline-block;
 }

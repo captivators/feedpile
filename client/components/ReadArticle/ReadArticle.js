@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import IconButton from 'material-ui/IconButton';
 import Close from 'material-ui-icons/Close';
+import OpenInNew from 'material-ui-icons/OpenInNew';
 import RaisedButton from 'material-ui/RaisedButton';
 import DOMPurify from 'dompurify';
 import './ReadArticle.css';
@@ -38,9 +39,13 @@ const ReadArticle = (props) => {
           <div className="read-article-content" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(props.selectedArticle.description)}}></div>
         </div>
         <div className="url-button-container">
-          <a className="url-button" href={props.selectedArticle.url} target="_blank">
-            <RaisedButton label="Visit Website" style={buttonStyle} />
-          </a>
+          <RaisedButton
+            href={props.selectedArticle.url}
+            target="_blank"
+            label="Visit Website"
+            style={buttonStyle}
+            icon={<OpenInNew />}
+          />
         </div>
       </div>
     </MuiThemeProvider>

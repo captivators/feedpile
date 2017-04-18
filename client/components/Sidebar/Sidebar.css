@@ -31,6 +31,12 @@
   left: 0px;
 }
 
+.add-icon {
+  position: absolute;
+  bottom: 0px;
+  right: 88px;
+}
+
 .archive-icon {
   position: absolute;
   bottom: 0px;
