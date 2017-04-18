@@ -40,6 +40,13 @@ exports[`ReadArticle take a snapshot 1`] = `
         12 tech-inspired Mother’s Day gifts
       </div>
       <div
+        className="default-image"
+      >
+        <img
+          src="test-file-stub"
+        />
+      </div>
+      <div
         className="read-article-content"
         dangerouslySetInnerHTML={
           Object {
