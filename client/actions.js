@@ -13,3 +13,8 @@ export const updateArticles = (articles) => {
 export const setCurrentArticle = (articleIndex) => {
   return {type: "SET_CURRENT_ARTICLE", articleIndex}
 };
+
+export const toggleModal = (openStatus) => {
+  console.log('Inside toggleModal action, openStatus: ', openStatus);
+  return {type: "TOGGLE_MODAL", openStatus}
+}

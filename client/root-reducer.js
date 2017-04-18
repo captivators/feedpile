@@ -3,6 +3,7 @@
 const initialState = {
   articles: [],
   open: false,
+  modalOpen: false,
   toggleListItem: '',
   currentArticleIndex: null
 };
@@ -20,6 +21,10 @@ const setCurrentArticle = (state, action) => {
   return {...state, currentArticleIndex: action.articleIndex}
 };
 
+const toggleModal = (state, action) => {
+  return {...state, modalOpen: action.openStatus}
+};
+
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case 'TOGGLE_NESTED_ITEM':
@@ -28,6 +33,8 @@ function rootReducer(state = initialState, action) {
       return updateArticles(state, action);
     case 'SET_CURRENT_ARTICLE':
       return setCurrentArticle(state, action);
+    case 'TOGGLE_MODAL':
+      return toggleModal(state, action)
     default:
       return state
   }
