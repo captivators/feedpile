@@ -7,6 +7,7 @@ import Close from 'material-ui-icons/Close';
 import OpenInNew from 'material-ui-icons/OpenInNew';
 import RaisedButton from 'material-ui/RaisedButton';
 import DOMPurify from 'dompurify';
+import feedPileImg from '../../images/feedpile.png'
 import './ReadArticle.css';
 
 const styles = {
@@ -36,6 +37,9 @@ const ReadArticle = (props) => {
         </Link>
         <div className="read-article-container">
           <div className="read-article-title">{props.selectedArticle.title}</div>
+          <div className="default-image">
+            <img src={props.selectedArticle.description.includes('img') ? '':feedPileImg}/>
+          </div>
           <div className="read-article-content" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(props.selectedArticle.description)}}></div>
         </div>
         <div className="url-button-container">

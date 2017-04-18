@@ -4,6 +4,7 @@
   padding-right: 50px;
   padding-left: 300px;
   margin: auto;
+  background-color: #fff;
 }
 
 @media (max-width: 600px) {
