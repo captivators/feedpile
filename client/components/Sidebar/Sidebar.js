@@ -8,6 +8,7 @@ import MusicNote from 'material-ui-icons/MusicNote';
 import Public from 'material-ui-icons/Public';
 import Refresh from 'material-ui-icons/Refresh';
 import Archive from 'material-ui-icons/Archive';
+import AddCircle from 'material-ui-icons/AddCircle';
 import IconButton from 'material-ui/IconButton';
 import Description from 'material-ui-icons/Description';
 import feedPileImg from '../../images/feedpile.png'
@@ -134,12 +135,17 @@ const Sidebar = (props) => {
         />
       </List>
       <span className="refresh-icon">
-        <IconButton onClick={props.getArticlesFromDb} iconStyle={styles.smallIcon} style={styles.small}>
+        <IconButton onClick={props.getArticlesFromDb} className="refresh-icon" iconStyle={styles.smallIcon} style={styles.small}>
           <Refresh />
         </IconButton>
       </span>
       <span className="archive-icon">
-        <IconButton iconStyle={styles.smallIcon} style={styles.small}>
+        <IconButton iconStyle={styles.smallIcon} className="add-icon" style={styles.small}>
+          <AddCircle />
+        </IconButton>
+      </span>
+      <span className="archive-icon">
+        <IconButton iconStyle={styles.smallIcon} className="archive-icon" style={styles.small}>
           <Archive />
         </IconButton>
       </span>
