@@ -33,7 +33,6 @@ const styles = {
 
 let SelectableList = makeSelectable(List);
 
-
 function wrapState(ComposedComponent) {
   return class SelectableList extends Component {
     static propTypes = {
@@ -67,9 +66,6 @@ function wrapState(ComposedComponent) {
 }
 
 SelectableList = wrapState(SelectableList);
-
-
-
 
 const Sidebar = (props) => {
   return (
