@@ -23,4 +23,8 @@ module.exports = (app, express) => {
   app.post('/api/articles', requestHandler.getArticlesByFeedId);
   app.get('/api/articles/:articleId', requestHandler.getOneArticle);
   app.delete('/api/articles/:articleId', requestHandler.deleteArticle);
+
+  //category api routes
+  app.get('/api/categories', requestHandler.getAllCategories);
+  app.post('/api/categories', requestHandler.createCategory);
 };

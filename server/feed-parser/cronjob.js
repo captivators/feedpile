@@ -135,255 +135,337 @@ const job = new CronJob({
         getArticles
           .then(function (articles) {
             //console.log(result.localFeeds);
-
-            var findArticleByUrl = function (urlToFind) {
-              for (var i = 0; i < articles.length; i++) {
-                if (articles[i].url === urlToFind) {
-                  return articles[i];
+            return new Promise(function (resolve, reject) {
+              var findArticleByUrl = function (urlToFind) {
+                for (var i = 0; i < articles.length; i++) {
+                  if (articles[i].url === urlToFind) {
+                    return articles[i];
+                  }
                 }
-              }
 
-              return null;
-            };
+                return null;
+              };
 
-            var compareMD5 = function (oldValue, newValue) {
-              return oldValue === newValue;
-            };
+              var compareMD5 = function (oldValue, newValue) {
+                return oldValue === newValue;
+              };
 
-            for (var i = 0; i < feedResults.length; i++) {
-              var articlesToInsert = [];
+              var iCounterMax = feedResults.length - 1;
+              var jCounterMax = feedResults[iCounterMax].articles.length;
 
-              for (var j = 0; j < feedResults[i].articles.length; j++) {
+              for (var i = 0; i < feedResults.length; i++) {
+                var articlesToInsert = [];
+                var j;
 
-                //old article?
-                if (feedResults[i].articles[j].link) {
-                  var currentArticleDB = findArticleByUrl(feedResults[i].articles[j].link);
+                for (j = 0; j < feedResults[i].articles.length; j++) {
 
-                  if (currentArticleDB) {
-                    //check if values match if not update
-                    // console.log('title: ' + currentArticleDB.title + ' \nfeedId: ' + currentArticleDB.feedId + ' \nid: ' + currentArticleDB._id);
+                  //old article?
+                  if (feedResults[i].articles[j].link) {
+                    var currentArticleDB = findArticleByUrl(feedResults[i].articles[j].link);
 
-                    var updatedArticle = {};
+                    if (currentArticleDB) {
+                      //check if values match if not update
+                      // console.log('title: ' + currentArticleDB.title + ' \nfeedId: ' + currentArticleDB.feedId + ' \nid: ' + currentArticleDB._id);
 
-                    Object.assign(updatedArticle, currentArticleDB);
+                      var updatedArticle = {};
 
-                    var updatedFlag = false;
+                      Object.assign(updatedArticle, currentArticleDB);
 
-                    if (updatedArticle._id) delete updatedArticle._id;
+                      var updatedFlag = false;
 
-                    //if (updatedArticle.title != feedResults[i].articles[j].title) {
-                    if (updatedArticle.title && feedResults[i].articles[j].title && !compareMD5(md5(updatedArticle.title), md5(feedResults[i].articles[j].title))) {
-                      updatedArticle.title = feedResults[i].articles[j].title;
-                      updatedFlag = true;
-                      // console.log('111');
-                    }
-                    // else if (feedResults[i].articles[i].title && !updatedArticle.title) {
-                    //   updatedArticle.title = feedResults[i].articles[j].title;
-                    //   updatedFlag = true;
-                    //   console.log('1111 ' + updatedArticle.title);
-                    // }
+                      if (updatedArticle._id) delete updatedArticle._id;
 
-                    //if (feedResults[i].articles[j].image && feedResults[i].articles[j].image.url && feedResults[i].articles[j].image.url != updatedArticle.imageSrc) {
-                    if (feedResults[i].articles[j].image && feedResults[i].articles[j].image.url && updatedArticle.imageSrc && !compareMD5(md5(feedResults[i].articles[j].image.url), md5(updatedArticle.imageSrc))) {
-                      updatedArticle.imageSrc = feedResults[i].articles[j].image.url;
-                      updatedFlag = true;
-                      // console.log('222');
-                    }
-                    // else if (feedResults[i].articles[j].image && feedResults[i].articles[j].image.url && !updatedArticle.imageSrc) {
-                    //   updatedArticle.imageSrc = feedResults[i].articles[j].image.url;
-                    //   updatedFlag = true;
-                    //   console.log('2222');
-                    // }
+                      //if (updatedArticle.title != feedResults[i].articles[j].title) {
+                      if (updatedArticle.title && feedResults[i].articles[j].title && !compareMD5(md5(updatedArticle.title), md5(feedResults[i].articles[j].title))) {
+                        updatedArticle.title = feedResults[i].articles[j].title;
+                        updatedFlag = true;
+                        // console.log('111');
+                      }
+                      // else if (feedResults[i].articles[i].title && !updatedArticle.title) {
+                      //   updatedArticle.title = feedResults[i].articles[j].title;
+                      //   updatedFlag = true;
+                      //   console.log('1111 ' + updatedArticle.title);
+                      // }
 
-                    //else if no image then use enclosures.url
-                    if (feedResults[i].articles[j].enclosures[0] && feedResults[i].articles[j].enclosures[0].url && (feedResults[i].articles[j].enclosures[0].type).indexOf('image') > -1 && updatedArticle.imageSrc && !compareMD5(md5(feedResults[i].articles[j].enclosures[0].url), md5(updatedArticle.imageSrc))) {
-                      updatedArticle.imageSrc = feedResults[i].articles[j].enclosures[0].url;
-                      updatedFlag = true;
-                      // console.log('222');
-                      console.log('here 1');
-                    }
+                      //if (feedResults[i].articles[j].image && feedResults[i].articles[j].image.url && feedResults[i].articles[j].image.url != updatedArticle.imageSrc) {
+                      if (feedResults[i].articles[j].image && feedResults[i].articles[j].image.url && updatedArticle.imageSrc && !compareMD5(md5(feedResults[i].articles[j].image.url), md5(updatedArticle.imageSrc))) {
+                        updatedArticle.imageSrc = feedResults[i].articles[j].image.url;
+                        updatedFlag = true;
+                        // console.log('222');
+                      }
+                      // else if (feedResults[i].articles[j].image && feedResults[i].articles[j].image.url && !updatedArticle.imageSrc) {
+                      //   updatedArticle.imageSrc = feedResults[i].articles[j].image.url;
+                      //   updatedFlag = true;
+                      //   console.log('2222');
+                      // }
 
-                    //if (feedResults[i].articles[j].date && feedResults[i].articles[j].date != updatedArticle.date) {
-                    if (feedResults[i].articles[j].date && updatedArticle.date && !compareMD5(md5(feedResults[i].articles[j].date), md5(updatedArticle.date))) {
-                      updatedArticle.date = feedResults[i].articles[j].date;
-                      updatedFlag = true;
-                      // console.log('333');
-                    }
-                    // else if (feedResults[i].articles[j].date && !updatedArticle.date) {
-                    //   updatedArticle.date = feedResults[i].articles[j].date;
-                    //   updatedFlag = true;
-                    //   console.log('3333 ' + updatedArticle.date);
-                    // }
-
-                    //if (feedResults[i].articles.pubdate && feedResults[i].articles[j].pubdate != updatedArticle.datePublished) {
-                    if (feedResults[i].articles[j].pubdate && updatedArticle.datePublished && !compareMD5(md5(feedResults[i].articles[j].pubdate), md5(updatedArticle.datePublished))) {
-                      updatedArticle.datePublished = feedResults[i].articles[j].pubdate;
-                      updatedFlag = true;
-                      // console.log('444');
-                    }
-                    // else if (feedResults[i].articles[j].pubdate && !updatedArticle.datePublished) {
-                    //   updatedArticle.datePublished = feedResults[i].articles[j].pubdate;
-                    //   updatedFlag = true;
-                    //   console.log('4444 ' + updatedArticle.datePublished);
-                    // }
-
-                    //if (feedResults[i].articles[j].author && feedResults[i].articles[j].author != updatedArticle.author) {
-                    if (feedResults[i].articles[j].author && updatedArticle.author && !compareMD5(md5(feedResults[i].articles[j].author), md5(updatedArticle.author))) {
-                      updatedArticle.author = feedResults[i].articles[j].author;
-                      updatedFlag = true;
-                      // console.log('555');
-                    }
-                    // else if (feedResults[i].articles[j].author && !updatedArticle.author) {
-                    //   updatedArticle.author = feedResults[i].articles[j].author;
-                    //   updatedFlag = true;
-                    //   console.log('5555 ' + updatedArticle.author);
-                    // }
-
-                    var summaryText = htmlToText.fromString(feedResults[i].articles[j].summary, {
-                      ignoreHref: true,
-                      ignoreImage: true,
-                      uppercaseHeadings: false
-                    });
-
-                    //if (feedResults[i].articles[j].summary && feedResults[i].articles[j].summary != updatedArticle.summary) {
-                    if (feedResults[i].articles[j].summary && updatedArticle.summary && !compareMD5(md5(summaryText), md5(updatedArticle.summary))) {
-                      //updatedArticle.summary = feedResults[i].articles[j].summary;
-                      updatedArticle.summary = summaryText;
-                      updatedFlag = true;
-                      // console.log('666');
-                    }
-                    // else if (feedResults[i].articles[j].summary && !updatedArticle.summary) {
-                    //   updatedArticle.summary = feedResults[i].articles[j].summary;
-                    //   updatedFlag = true;
-                    //   console.log('6666 ' + updatedArticle.summary);
-                    // }
-
-                    //if (feedResults[i].articles[j].description && feedResults[i].articles[j].description != updatedArticle.description) {
-                    if (feedResults[i].articles[j].description && updatedArticle.description && !compareMD5(md5(feedResults[i].articles[j].description), md5(updatedArticle.description))) {
-                      updatedArticle.description = feedResults[i].articles[j].description;
-                      updatedFlag = true;
-                      // console.log('777');
-                    }
-                    // else if (feedResults[i].articles[j].description && !updatedArticle.description) {
-                    //   updatedArticle.description = feedResults[i].articles[j].description;
-                    //   updatedFlag = true;
-                    //   console.log('7777 ' + updatedArticle.description);
-                    // }
-
-                    if (updatedFlag) {
-                      (function (aa, bb) {
-                        Article.update({ _id: aa },
-                        { $set: bb }, function (err, res) {
-                          if (err) {
-                            reject('Error in updating Feed By Id:' + idToUpdate);
-                          }
-
-                          console.log('Updated Article: ' + aa);
-                          // console.log(res);
-                        });
-                      })(currentArticleDB._id, updatedArticle);
-                    }
-                  } else {
-                    //new article
-
-                    // var ArticleSchema = new Schema({
-                    //   title: String,
-                    //   url: String,
-                    //   imageSrc: String,
-                    //   date: Date,
-                    //   datePublished: Date,
-                    //   feedId: String,
-                    //   author: String,
-                    //   summary: String,
-                    //   description: String
-                    // });
-
-                    var searchFeedId = function (feedUrl) {
-                      for (var k = 0; k < localFeeds.length; k++) {
-                        if (compareMD5(md5(localFeeds[k].url), md5(feedUrl))) {
-                        //if (localFeeds[k].name === feedTitle) {
-                          return localFeeds[k]._id;
-                        }
+                      //else if no image then use enclosures.url
+                      if (feedResults[i].articles[j].enclosures[0] && feedResults[i].articles[j].enclosures[0].url && (feedResults[i].articles[j].enclosures[0].type).indexOf('image') > -1 && updatedArticle.imageSrc && !compareMD5(md5(feedResults[i].articles[j].enclosures[0].url), md5(updatedArticle.imageSrc))) {
+                        updatedArticle.imageSrc = feedResults[i].articles[j].enclosures[0].url;
+                        updatedFlag = true;
+                        // console.log('222');
+                        console.log('here 1');
                       }
 
-                      return null;
-                    };
+                      //if (feedResults[i].articles[j].date && feedResults[i].articles[j].date != updatedArticle.date) {
+                      if (feedResults[i].articles[j].date && updatedArticle.date && !compareMD5(md5(feedResults[i].articles[j].date), md5(updatedArticle.date))) {
+                        updatedArticle.date = feedResults[i].articles[j].date;
+                        updatedFlag = true;
+                        // console.log('333');
+                      }
+                      // else if (feedResults[i].articles[j].date && !updatedArticle.date) {
+                      //   updatedArticle.date = feedResults[i].articles[j].date;
+                      //   updatedFlag = true;
+                      //   console.log('3333 ' + updatedArticle.date);
+                      // }
 
-                    var newArticle = {};
-                    // console.log(feedResults[i].articles[j]);
-                    if (feedResults[i].articles[j].title) {
-                      newArticle.title = feedResults[i].articles[j].title;
-                    }
+                      //if (feedResults[i].articles.pubdate && feedResults[i].articles[j].pubdate != updatedArticle.datePublished) {
+                      if (feedResults[i].articles[j].pubdate && updatedArticle.datePublished && !compareMD5(md5(feedResults[i].articles[j].pubdate), md5(updatedArticle.datePublished))) {
+                        updatedArticle.datePublished = feedResults[i].articles[j].pubdate;
+                        updatedFlag = true;
+                        // console.log('444');
+                      }
+                      // else if (feedResults[i].articles[j].pubdate && !updatedArticle.datePublished) {
+                      //   updatedArticle.datePublished = feedResults[i].articles[j].pubdate;
+                      //   updatedFlag = true;
+                      //   console.log('4444 ' + updatedArticle.datePublished);
+                      // }
 
-                    if (feedResults[i].articles[j].link) {
-                      newArticle.url = feedResults[i].articles[j].link;
-                    }
+                      //if (feedResults[i].articles[j].author && feedResults[i].articles[j].author != updatedArticle.author) {
+                      if (feedResults[i].articles[j].author && updatedArticle.author && !compareMD5(md5(feedResults[i].articles[j].author), md5(updatedArticle.author))) {
+                        updatedArticle.author = feedResults[i].articles[j].author;
+                        updatedFlag = true;
+                        // console.log('555');
+                      }
+                      // else if (feedResults[i].articles[j].author && !updatedArticle.author) {
+                      //   updatedArticle.author = feedResults[i].articles[j].author;
+                      //   updatedFlag = true;
+                      //   console.log('5555 ' + updatedArticle.author);
+                      // }
 
-                    if (feedResults[i].articles[j].image && feedResults[i].articles[j].image.url) {
-                      newArticle.imageSrc = feedResults[i].articles[j].image.url;
-                    }
+                      var summaryText = htmlToText.fromString(feedResults[i].articles[j].summary, {
+                        ignoreHref: true,
+                        ignoreImage: true,
+                        uppercaseHeadings: false
+                      });
 
-                    if (feedResults[i].articles[j].enclosures[0] && feedResults[i].articles[j].enclosures[0].url && (feedResults[i].articles[j].enclosures[0].type).indexOf('image') > -1) {
-                      newArticle.imageSrc = feedResults[i].articles[j].enclosures[0].url;
-                      console.log('here 2')
-                    }
+                      //if (feedResults[i].articles[j].summary && feedResults[i].articles[j].summary != updatedArticle.summary) {
+                      if (feedResults[i].articles[j].summary && updatedArticle.summary && !compareMD5(md5(summaryText), md5(updatedArticle.summary))) {
+                        //updatedArticle.summary = feedResults[i].articles[j].summary;
+                        updatedArticle.summary = summaryText;
+                        updatedFlag = true;
+                        // console.log('666');
+                      }
+                      // else if (feedResults[i].articles[j].summary && !updatedArticle.summary) {
+                      //   updatedArticle.summary = feedResults[i].articles[j].summary;
+                      //   updatedFlag = true;
+                      //   console.log('6666 ' + updatedArticle.summary);
+                      // }
 
-                    if (feedResults[i].articles[j].date) {
-                      newArticle.date = feedResults[i].articles[j].date;
-                    }
+                      //if (feedResults[i].articles[j].description && feedResults[i].articles[j].description != updatedArticle.description) {
+                      if (feedResults[i].articles[j].description && updatedArticle.description && !compareMD5(md5(feedResults[i].articles[j].description), md5(updatedArticle.description))) {
+                        updatedArticle.description = feedResults[i].articles[j].description;
+                        updatedFlag = true;
+                        // console.log('777');
+                      }
+                      // else if (feedResults[i].articles[j].description && !updatedArticle.description) {
+                      //   updatedArticle.description = feedResults[i].articles[j].description;
+                      //   updatedFlag = true;
+                      //   console.log('7777 ' + updatedArticle.description);
+                      // }
 
-                    if (feedResults[i].articles[j].pubdate) {
-                      newArticle.datePublished = feedResults[i].articles[j].pubdate;
-                    }
+                      if (updatedFlag) {
+                        (function (aa, bb) {
+                          Article.update({ _id: aa },
+                          { $set: bb }, function (err, res) {
+                            if (err) {
+                              reject('Error in updating Feed By Id:' + idToUpdate);
+                            }
 
-                    var tempFeedId = searchFeedId(feedResults[i].originalUrl);
-                    if (tempFeedId) {
-                      newArticle.feedId = tempFeedId;
-                    }
+                            console.log('Updated Article: ' + aa);
+                            // console.log(res);
+                          });
+                        })(currentArticleDB._id, updatedArticle);
+                      }
+                    } else {
+                      //new article
 
-                    if (feedResults[i].articles[j].author) {
-                      newArticle.author = feedResults[i].articles[j].author;
-                    }
+                      // var ArticleSchema = new Schema({
+                      //   title: String,
+                      //   url: String,
+                      //   imageSrc: String,
+                      //   date: Date,
+                      //   datePublished: Date,
+                      //   feedId: String,
+                      //   author: String,
+                      //   summary: String,
+                      //   description: String
+                      // });
 
-                    var summaryText = htmlToText.fromString(feedResults[i].articles[j].summary, {
-                      ignoreHref: true,
-                      ignoreImage: true,
-                      uppercaseHeadings: false
-                    });
+                      var searchFeedId = function (feedUrl) {
+                        for (var k = 0; k < localFeeds.length; k++) {
+                          if (compareMD5(md5(localFeeds[k].url), md5(feedUrl))) {
+                          //if (localFeeds[k].name === feedTitle) {
+                            return localFeeds[k]._id;
+                          }
+                        }
 
-                    // if (feedResults[i].articles[j].summary) {
-                    //   newArticle.summary = feedResults[i].articles[j].summary;
-                    // }
-                    if (summaryText) {
-                      newArticle.summary = summaryText;
-                    }
+                        return null;
+                      };
 
-                    if (feedResults[i].articles[j].description[j]) {
-                      newArticle.description = feedResults[i].articles[j].description;
-                    }
+                      var newArticle = {};
+                      // console.log(feedResults[i].articles[j]);
+                      if (feedResults[i].articles[j].title) {
+                        newArticle.title = feedResults[i].articles[j].title;
+                      }
 
-                    // console.log(JSON.stringify(newArticle));
-                    articlesToInsert.push(newArticle);
-                  } //else statement for if valid link but new article
-                }
-              }
+                      if (feedResults[i].articles[j].link) {
+                        newArticle.url = feedResults[i].articles[j].link;
+                      }
 
-              if (articlesToInsert.length > 0) {
-                console.log('articlesToInsertLength = ' + articlesToInsert.length);
+                      if (feedResults[i].articles[j].image && feedResults[i].articles[j].image.url) {
+                        newArticle.imageSrc = feedResults[i].articles[j].image.url;
+                      }
 
-                Article.insertMany(articlesToInsert, function (err, docs) {
-                  if (err) {
-                    console.log('Error inserting Many articles');
+                      if (feedResults[i].articles[j].enclosures[0] && feedResults[i].articles[j].enclosures[0].url && (feedResults[i].articles[j].enclosures[0].type).indexOf('image') > -1) {
+                        newArticle.imageSrc = feedResults[i].articles[j].enclosures[0].url;
+                        console.log('here 2')
+                      }
+
+                      if (feedResults[i].articles[j].date) {
+                        newArticle.date = feedResults[i].articles[j].date;
+                      }
+
+                      if (feedResults[i].articles[j].pubdate) {
+                        newArticle.datePublished = feedResults[i].articles[j].pubdate;
+                      }
+
+                      var tempFeedId = searchFeedId(feedResults[i].originalUrl);
+                      if (tempFeedId) {
+                        newArticle.feedId = tempFeedId;
+                      }
+
+                      if (feedResults[i].articles[j].author) {
+                        newArticle.author = feedResults[i].articles[j].author;
+                      }
+
+                      var summaryText = htmlToText.fromString(feedResults[i].articles[j].summary, {
+                        ignoreHref: true,
+                        ignoreImage: true,
+                        uppercaseHeadings: false
+                      });
+
+                      // if (feedResults[i].articles[j].summary) {
+                      //   newArticle.summary = feedResults[i].articles[j].summary;
+                      // }
+                      if (summaryText) {
+                        newArticle.summary = summaryText;
+                      }
+
+                      if (feedResults[i].articles[j].description[j]) {
+                        newArticle.description = feedResults[i].articles[j].description;
+                      }
+
+                      // console.log(JSON.stringify(newArticle));
+                      articlesToInsert.push(newArticle);
+                    } //else statement for if valid link but new article
                   }
-                  // console.log(docs);
-                  console.log('Successfully inserted articles');
-                });
-              } //feedResults[i].articles for loop
-            } //feedResults for loop
+                }
+
+                if (articlesToInsert.length > 0) {
+                  console.log('articlesToInsertLength = ' + articlesToInsert.length);
+
+                  Article.insertMany(articlesToInsert, function (err, docs) {
+                    if (err) {
+                      console.log('Error inserting Many articles');
+                    }
+                    // console.log(docs);
+                    console.log('Successfully inserted articles');
+                  });
+                } //feedResults[i].articles for loop
+
+                if (i === iCounterMax && j === jCounterMax) {
+                  resolve("this");
+                }
+              } //feedResults for loop
+            }); //promise
+          })
+          .then(function (text) {
+            console.log('in then -> ' + text);
+
+            //fetch all users
+            var users = new Promise(function (resolve, reject) {
+              User.find(function(err, users) {
+                if (err) {
+                  console.log('error getting users');
+                }
+                resolve(users);
+              });
+            });
+
+            users
+              .then(function (users) {
+                console.log('in users')
+
+                var saveUser = function (indexA, indexB, newArr) {
+                  var u = users[indexA];
+                  u.feeds[indexB].articles = newArr;
+
+                  u.save(function (err, o) {
+                    if (err) {
+                      console.log(err)
+                    }
+                    console.log('Successfully added articles to user');
+                  });
+                };
+
+                var articlesUpdateForuser = function (f, a, indexA, indexB) {
+                  var searchObj = function (arr, id) {
+                    for (var c = 0; c < arr.length; c++) {
+                      if (arr[c].articleId == id) {
+                        return true;
+                      }
+                    }
+
+                    return false;
+                  };
+
+                  Article.find({feedId: f}, function(err, articles) {
+                    if (err) {
+                      console.log('error getting articles by feedId');
+                    }
+
+                    for (var k = 0; k < articles.length; k++) {
+                      //console.log(articles[k]._id);
+                      if (!searchObj(a, articles[k]._id)) {
+                        //push to array to add for user
+                        a.push({articleId: articles[k]._id, readFlag: false});
+                      }
+                    }
+
+                    saveUser(indexA, indexB, a);
+                  });
+                };
+
+                for (var i = 0; i < users.length; i++) {
+                  var user = users[i];
+
+                  for (var j = 0; j < user.feeds.length; j++) {
+                    var feedId = user.feeds[j].feedId;
+                    var articlesToAddForUser = user.feeds[j].articles;
+
+                    //fetch all articles for a particular feedId
+                    articlesUpdateForuser(feedId, articlesToAddForUser, i, j);
+                  } //for j users.feeds.length
+                } //for i users.length
+              }); //users .then
+          })
+          .catch(function (error) {
+            console.log('Failed 1: ' + error);
           });
       })
       .catch(function (error) {
-        console.log('Failed: ' + error);
+        console.log('Failed 2: ' + error);
       });
 
   },
