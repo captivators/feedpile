@@ -95,53 +95,92 @@ exports.getAllFeeds = (req, res) => {
 };
 
 exports.createFeed = (req, res) => {
-  var feed = new Feed();      // create a new instance of the Feed model
-  // feed.name = req.body.name;
-  feed.url = req.body.url;
+  Feed.findOne({url: req.body.url}, function (err, feed) {
+    if (feed === null) {
+      var feed1 = new Feed();      // create a new instance of the Feed model
+      // feed.name = req.body.name;
+      feed1.url = req.body.url;
 
-  if (req.body.userId && req.body.categoryId) {
-    feed.save(function(err, doc) {
-      if (err) {
-        res.send(err);
-      }
-
-      User.findOne({_id: req.body.userId}, function (err, user) {
-        if (err) {
-          res.send(err);
-        }
-
-        var newUser = user;
-        delete newUser._id;
-
-        var obj = {};
-
-        obj.feedId = doc._id;
-        obj.categoryId = req.body.categoryId;
-
-        newUser.feeds.push(obj);
-
-        User.update({ _id: user._id },
-        { $set: newUser }, function (err, result) {
+      if (req.body.userId && req.body.categoryId) {
+        feed1.save(function(err, doc) {
           if (err) {
             res.send(err);
           }
 
-          res.json({ status: 201, message: 'Feed created (' + doc._id +') and added to user (' + user._id +')'});
+          User.findOne({userId: req.body.userId}, function (err, user) {
+            if (err) {
+              res.send(err);
+            }
+
+            var newUser = user;
+            delete newUser._id;
+
+            var obj = {};
+
+            obj.feedId = doc._id;
+            obj.categoryId = req.body.categoryId;
+
+            newUser.feeds.push(obj);
+
+            User.update({ _id: user._id },
+            { $set: newUser }, function (err, result) {
+              if (err) {
+                res.send(err);
+              }
+
+              res.json({ status: 201, message: 'Feed created (' + doc._id +') and added to user _id (' + user._id +')/userId ' + user.userId});
+            });
+
+          });
+          // res.json({ status: 201, message: 'Feed created!' });
         });
+      } else {
+        // save the feed and check for errors
+        feed1.save(function(err) {
+          if (err) {
+            res.send(err);
+          }
 
-      });
-      // res.json({ status: 201, message: 'Feed created!' });
-    });
-  } else {
-    // save the feed and check for errors
-    feed.save(function(err) {
-      if (err) {
-        res.send(err);
+          res.json({ status: 201, message: 'Feed created!' });
+        });
       }
+    } else {  //feed does exist
+      if (req.body.userId && req.body.categoryId) {
+        feed.save(function(err, doc) {
+          if (err) {
+            res.send(err);
+          }
 
-      res.json({ status: 201, message: 'Feed created!' });
-    });
-  }
+          User.findOne({userId: req.body.userId}, function (err, user) {
+            if (err) {
+              res.send(err);
+            }
+
+            var newUser = user;
+            delete newUser._id;
+
+            var obj = {};
+
+            obj.feedId = doc._id;
+            obj.categoryId = req.body.categoryId;
+
+            newUser.feeds.push(obj);
+
+            User.update({ _id: user._id },
+            { $set: newUser }, function (err, result) {
+              if (err) {
+                res.send(err);
+              }
+
+              res.json({ status: 201, message: 'Feed created (' + doc._id +') and added to user _id (' + user._id +')/userId ' + user.userId});
+            });
+
+          });
+          // res.json({ status: 201, message: 'Feed created!' });
+        });
+      }
+    }
+  });
 };
 
 exports.getOneFeed = (req, res) => {
