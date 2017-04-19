@@ -40,6 +40,13 @@ exports[`ReadArticle take a snapshot 1`] = `
         12 tech-inspired Mother’s Day gifts
       </div>
       <div
+        className="default-image"
+      >
+        <img
+          src="test-file-stub"
+        />
+      </div>
+      <div
         className="read-article-content"
         dangerouslySetInnerHTML={
           Object {
@@ -51,24 +58,22 @@ exports[`ReadArticle take a snapshot 1`] = `
     <div
       className="url-button-container"
     >
-      <a
-        className="url-button"
+      <RaisedButton
+        disabled={false}
+        fullWidth={false}
         href="http://feedproxy.google.com/~r/Techcrunch/~3/BsZCJrFPZRA/"
-      >
-        <RaisedButton
-          disabled={false}
-          fullWidth={false}
-          label="Visit Website"
-          labelPosition="after"
-          primary={false}
-          secondary={false}
-          style={
-            Object {
-              "margin": 12,
-            }
+        icon={<pure(OpenInNew) />}
+        label="Visit Website"
+        labelPosition="after"
+        primary={false}
+        secondary={false}
+        style={
+          Object {
+            "margin": 12,
           }
-        />
-      </a>
+        }
+        target="_blank"
+      />
     </div>
   </div>
 </MuiThemeProvider>

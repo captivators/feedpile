@@ -13,7 +13,9 @@ exports[`Sidebar snapshot test 1`] = `
   >
     FeedPile
   </h2>
-  <List>
+  <SelectableList
+    defaultValue={1}
+  >
     <ListItem
       autoGenerateNestedIndicator={true}
       disableKeyboardFocus={false}
@@ -33,6 +35,7 @@ exports[`Sidebar snapshot test 1`] = `
       primaryText="All Articles"
       primaryTogglesNestedList={false}
       secondaryTextLines={1}
+      value={1}
     />
     <ListItem
       autoGenerateNestedIndicator={true}
@@ -53,6 +56,7 @@ exports[`Sidebar snapshot test 1`] = `
       primaryText="Starred"
       primaryTogglesNestedList={false}
       secondaryTextLines={1}
+      value={2}
     />
     <ListItem
       autoGenerateNestedIndicator={true}
@@ -82,6 +86,7 @@ exports[`Sidebar snapshot test 1`] = `
             primaryText="TechCrunch"
             primaryTogglesNestedList={false}
             secondaryTextLines={1}
+            value={5}
         />,
           <ListItem
             autoGenerateNestedIndicator={true}
@@ -102,6 +107,7 @@ exports[`Sidebar snapshot test 1`] = `
             primaryText="The Verge"
             primaryTogglesNestedList={false}
             secondaryTextLines={1}
+            value={6}
         />,
           <ListItem
             autoGenerateNestedIndicator={true}
@@ -122,6 +128,7 @@ exports[`Sidebar snapshot test 1`] = `
             primaryText="WIRED"
             primaryTogglesNestedList={false}
             secondaryTextLines={1}
+            value={7}
         />,
         ]
       }
@@ -134,8 +141,9 @@ exports[`Sidebar snapshot test 1`] = `
       onTouchStart={[Function]}
       open={null}
       primaryText="Technology"
-      primaryTogglesNestedList={true}
+      primaryTogglesNestedList={false}
       secondaryTextLines={1}
+      value={4}
     />
     <ListItem
       autoGenerateNestedIndicator={true}
@@ -165,6 +173,7 @@ exports[`Sidebar snapshot test 1`] = `
             primaryText="SPIN"
             primaryTogglesNestedList={false}
             secondaryTextLines={1}
+            value={9}
         />,
           <ListItem
             autoGenerateNestedIndicator={true}
@@ -185,6 +194,7 @@ exports[`Sidebar snapshot test 1`] = `
             primaryText="Rolling Stone"
             primaryTogglesNestedList={false}
             secondaryTextLines={1}
+            value={10}
         />,
           <ListItem
             autoGenerateNestedIndicator={true}
@@ -205,6 +215,7 @@ exports[`Sidebar snapshot test 1`] = `
             primaryText="Pitchfork"
             primaryTogglesNestedList={false}
             secondaryTextLines={1}
+            value={11}
         />,
         ]
       }
@@ -217,8 +228,9 @@ exports[`Sidebar snapshot test 1`] = `
       onTouchStart={[Function]}
       open={null}
       primaryText="Music"
-      primaryTogglesNestedList={true}
+      primaryTogglesNestedList={false}
       secondaryTextLines={1}
+      value={8}
     />
     <ListItem
       autoGenerateNestedIndicator={true}
@@ -248,6 +260,7 @@ exports[`Sidebar snapshot test 1`] = `
             primaryText="IGN"
             primaryTogglesNestedList={false}
             secondaryTextLines={1}
+            value={13}
         />,
           <ListItem
             autoGenerateNestedIndicator={true}
@@ -268,6 +281,7 @@ exports[`Sidebar snapshot test 1`] = `
             primaryText="Gamespot"
             primaryTogglesNestedList={false}
             secondaryTextLines={1}
+            value={14}
         />,
           <ListItem
             autoGenerateNestedIndicator={true}
@@ -288,6 +302,7 @@ exports[`Sidebar snapshot test 1`] = `
             primaryText="Rock, Paper, Shotgun"
             primaryTogglesNestedList={false}
             secondaryTextLines={1}
+            value={15}
         />,
         ]
       }
@@ -300,8 +315,9 @@ exports[`Sidebar snapshot test 1`] = `
       onTouchStart={[Function]}
       open={null}
       primaryText="Games"
-      primaryTogglesNestedList={true}
+      primaryTogglesNestedList={false}
       secondaryTextLines={1}
+      value={12}
     />
     <ListItem
       autoGenerateNestedIndicator={true}
@@ -331,6 +347,7 @@ exports[`Sidebar snapshot test 1`] = `
             primaryText="CNN"
             primaryTogglesNestedList={false}
             secondaryTextLines={1}
+            value={17}
         />,
           <ListItem
             autoGenerateNestedIndicator={true}
@@ -351,6 +368,7 @@ exports[`Sidebar snapshot test 1`] = `
             primaryText="BBC"
             primaryTogglesNestedList={false}
             secondaryTextLines={1}
+            value={18}
         />,
           <ListItem
             autoGenerateNestedIndicator={true}
@@ -371,6 +389,7 @@ exports[`Sidebar snapshot test 1`] = `
             primaryText="NY Times"
             primaryTogglesNestedList={false}
             secondaryTextLines={1}
+            value={19}
         />,
         ]
       }
@@ -383,14 +402,37 @@ exports[`Sidebar snapshot test 1`] = `
       onTouchStart={[Function]}
       open={null}
       primaryText="World News"
-      primaryTogglesNestedList={true}
+      primaryTogglesNestedList={false}
       secondaryTextLines={1}
+      value={16}
     />
-  </List>
+    <ListItem
+      autoGenerateNestedIndicator={true}
+      disableKeyboardFocus={false}
+      disabled={false}
+      initiallyOpen={false}
+      insetChildren={false}
+      leftIcon={<pure(Archive) />}
+      nestedItems={Array []}
+      nestedLevel={0}
+      onKeyboardFocus={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onNestedListToggle={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      open={null}
+      primaryText="Archived"
+      primaryTogglesNestedList={false}
+      secondaryTextLines={1}
+      value={20}
+    />
+  </SelectableList>
   <span
     className="refresh-icon"
   >
     <IconButton
+      className="refresh-icon"
       disableTouchRipple={false}
       disabled={false}
       iconStyle={
@@ -416,6 +458,34 @@ exports[`Sidebar snapshot test 1`] = `
     className="archive-icon"
   >
     <IconButton
+      className="add-icon"
+      disableTouchRipple={false}
+      disabled={false}
+      iconStyle={
+        Object {
+          "height": 36,
+          "width": 36,
+        }
+      }
+      onClick={[Function]}
+      style={
+        Object {
+          "height": 72,
+          "padding": 16,
+          "width": 72,
+        }
+      }
+      tooltipPosition="bottom-center"
+      touch={false}
+    >
+      <pure(AddCircle) />
+    </IconButton>
+  </span>
+  <span
+    className="archive-icon"
+  >
+    <IconButton
+      className="archive-icon"
       disableTouchRipple={false}
       disabled={false}
       iconStyle={
@@ -437,5 +507,6 @@ exports[`Sidebar snapshot test 1`] = `
       <pure(Archive) />
     </IconButton>
   </span>
+  <Connect(AddFeed) />
 </div>
 `;

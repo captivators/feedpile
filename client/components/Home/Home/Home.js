@@ -69,7 +69,7 @@ const Home = (props) => {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
         <div>
-        <Header />
+        <Header history={props.history}/>
 
         <Main />
 
