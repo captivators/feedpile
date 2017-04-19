@@ -7,6 +7,7 @@ import FlatButton from 'material-ui/FlatButton'
 import { connect } from 'react-redux';
 import { loginSuccess, loginError} from '../../../actions'
 import Auth0Lock from 'auth0-lock';
+
 const style = {
   root: {
     display: 'flex',

@@ -1,39 +1,58 @@
 import React from 'react';
 import TechItem from '../TechItem/TechItem';
-
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Paper from 'material-ui/Paper';
 
 const style = {
   logoList: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    boxSizing: 'border-box',
     flexWrap: 'wrap',
-    height: '200px',
+    backgroundColor: '#888',
   },
   first: {
-    paddingTop: '45px',
-    paddingBottom: '45px',
+    paddingTop: '20px',
+    paddingBottom: '20px',
     width: '100%',
     textAlign: 'center',
+    backgroundColor: '#888',
     h1: {
       color: '#fff',
       marginTop: 0,
       fontSize: '48px',
-    }
-  }
+    },
+  },
+
 }
 
 
 const techList = [
+  {
+    name: "React",
+    link: "https://facebook.github.io/react/",
+    image: "https://s27.postimg.org/ud14uv8v7/logo-578x270.png"
+  },
+  {
+    name: "React Router",
+    link: "https://react-router.js.org",
+    image: "https://s11.postimg.org/9ewo3bnmr/react-router.png"
+  },
   {
     name: "Redux",
     link: 'http://redux.js.org/',
     image: "https://s30.postimg.org/50zpvkri9/logo-redux.png"
   },
   {
+    name: "Webpack",
+    link: "https://www.webpack.js.org/",
+    image: "https://s15.postimg.org/p04co7pej/webpack.png",
+  },
+  {
     name: "Babel",
     link: "http://www.babeljs.io/",
-    image: "https://s30.postimg.org/z92z4actt/babel.png"
+    image: "https://s28.postimg.org/59tbpai4t/babel_1.png"
   },
   {
     name: "Node",
@@ -46,14 +65,9 @@ const techList = [
     link: "https://expressjs.com"
   },
   {
-    name: "Webpack",
-    link: "https://www.webpack.js.org/",
-    image: "https://s15.postimg.org/p04co7pej/webpack.png",
-  },
-  {
     name: "MongoDB",
     link: "https://www.mongodb.com",
-    image: "https://s23.postimg.org/6zm6jjb7f/mongodb-logo-rgb-j6w271g1xn.jpg",
+    image: "https://s24.postimg.org/hx7jao6qd/mongodb-logo-1.png",
   },
   {
     name: "Travis CI",
@@ -61,19 +75,14 @@ const techList = [
     image: "https://s23.postimg.org/n1i0g8re3/Travis_CI-_Mascot-1-20feeadb48fc2492ba741d89cb5a5c.png"
   },
   {
-    name: "React",
-    link: "https://facebook.github.io/react/",
-    image: "https://s27.postimg.org/ud14uv8v7/logo-578x270.png"
-  },
-  {
-    name: "React Router",
-    link: "https://react-router.js.org",
-    image: "https://s11.postimg.org/9ewo3bnmr/react-router.png"
-  },
-  {
     name: "Docker",
     link: "https://www.docker.com",
     image: "https://s4.postimg.org/l4sfu2sql/docker.png"
+  },
+  {
+    name: "Jest",
+    link: '',
+    image: "https://s24.postimg.org/rgds3co7p/jest.9ec4c2ad.png"
   },
   {
     name: "Enzyme",
@@ -81,24 +90,33 @@ const techList = [
     image: "https://s7.postimg.org/p125vwx4r/1-pu9_U8_EYL3_KGrgvapyp1p_Sg.png"
   },
   {
+    name: "Mocha Chai",
+    link: "http://chaijs.com/",
+    image: "https://s9.postimg.org/q5c35f0zj/chaijs-mocha.png"
+  },
+  {
     name: "Material UI",
     link: "http://www.material-ui.com/#/customization/themes",
     image: "https://s11.postimg.org/975jiaz8j/material-ui_1.png"
+  },
+  {
+    name: "NPM",
+    link: "https://www.npmjs.com/",
+    image: "https://s14.postimg.org/nhna7dump/npm.png"
   }
 ]
 
 const TechList = (props) => {
   return (
-    <div>
-      <div style={style.first}>
-        <h2>The Tech </h2>
-      </div>
+    <MuiThemeProvider>
+    <Paper zDepth={5} style={style.first}>
       <div className="stack" style={style.logoList}>
         {techList.map((tech, index) => (
           <TechItem tech= { tech } key={ index } />
         ))}
       </div>
-    </div>
+    </Paper>
+    </MuiThemeProvider>
   )
 }
 
