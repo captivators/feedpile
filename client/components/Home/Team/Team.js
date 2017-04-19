@@ -31,7 +31,7 @@ const teamInfo = [
   {
     name: 'Faiz Mohammad',
     job: 'Software Engineer',
-    image: 'https://s9.postimg.org/8e7mxjsm7/19718788.png'
+    image: 'https://s15.postimg.org/mnsiyo6ob/19718788.png'
   },
   {
     name: 'Mohammad Farooqi',

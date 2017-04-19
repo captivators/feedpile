@@ -31,7 +31,7 @@
 
 .features-list {
   margin: auto;
-  max-width: 60%;
+  max-width: 90%;
   justify-content: space-between;
 }
 
@@ -41,7 +41,6 @@
     flex-wrap: wrap;
     width: auto;
     align-items: flex-end;
-    padding: 10px;
     width: 100%;
     justify-content: space-between;
 }
@@ -49,7 +48,7 @@
 .info-a {
   order: 1;
   max-width: 500px;
-  min-width: 200px;
+  min-width: 400px;
   padding: 10px;
   font-family: 'Bitter', serif;
   width: auto;
@@ -67,13 +66,11 @@
 }
 
 .icon-a {
-  flex-grow: 1;
   order: 0;
   align-self: center;
 }
 
 .icon-b {
-  flex-grow: 1;
   order: 2;
   align-self: center;
 }
