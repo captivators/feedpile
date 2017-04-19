@@ -14,7 +14,17 @@ const logout = () => {
 const Navbar = (props) => {
   return (
     <div className="navbar">
-      <div className="nav-item-container">
+      <div className="greeting">
+        <ListItem
+          disabled={true}
+          leftAvatar={
+            <Avatar src={props.profile.picture} />
+          }
+        >
+          <span>Welcome, {props.profile.given_name || props.profile.name}</span>
+        </ListItem>
+      </div>
+      <div className="logout">
         <FlatButton onClick={()=> {
           logout();
           props.logoutSuccess();
@@ -32,25 +42,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {logoutSuccess})(Navbar);
-
-  /*
-
-   <List>
-   <ListItem
-   leftAvatar={
-   <Avatar
-   src={props.profile.picture}
-   size={50}
-   style={style}
-   />
-   }
-   >
-   </ListItem>
-   <span>Welcome, {props.profile.given_name || props.profile.name}</span>
-   <FlatButton onClick={()=> {
-   logout();
-   props.logoutSuccess();
-   props.history.replace('/');
-   }} label="Logout"/>
-   </List>
-   */
