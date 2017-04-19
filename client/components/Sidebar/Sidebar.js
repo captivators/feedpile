@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {List, ListItem, makeSelectable} from 'material-ui/List';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import AddFeed from '../AddFeed/AddFeed'
 import ListIcon from 'material-ui-icons/List';
 import LaptopMac from 'material-ui-icons/LaptopMac';
@@ -35,10 +35,10 @@ let SelectableList = makeSelectable(List);
 
 function wrapState(ComposedComponent) {
   return class SelectableList extends Component {
-    static propTypes = {
-      children: PropTypes.node.isRequired,
-      defaultValue: PropTypes.number.isRequired,
-    };
+    // static propTypes = {
+    //   children: PropTypes.node.isRequired,
+    //   defaultValue: PropTypes.number.isRequired,
+    // };
 
     componentWillMount() {
       this.setState({
