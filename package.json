@@ -46,6 +46,7 @@
     }
   },
   "dependencies": {
+    "auth0-lock": "^10.14.0",
     "axios": "^0.16.1",
     "body-parser": "^1.17.1",
     "coveralls": "^2.13.0",
@@ -56,6 +57,7 @@
     "html-to-text": "^3.2.0",
     "iconv-lite": "^0.4.15",
     "json-loader": "^0.5.4",
+    "jwt-decode": "^2.2.0",
     "material-ui": "^0.16.7",
     "material-ui-icons": "^1.0.0-alpha.2",
     "md5": "^2.2.1",
