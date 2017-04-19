@@ -5,7 +5,7 @@ import './Main.css'
 const Main = (props) => {
   return (
     <div className="main-container" style={{backgroundColor: "#00BCD4"}}>
-    <div className="tagline-container">
+      <div className="tagline-container">
         <h1 className="tagline">Simply a refreshing way to read the news</h1>
       </div>
       <div className="main" >

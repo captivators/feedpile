@@ -46,7 +46,7 @@ const FeatureList = (props) => {
     <div className="features">
       <ul className="features-list">
         <li>
-          <div className="root">
+          <div className="feature-item">
             <div className="icon-a">
               <i>{featureList[0].icon}</i>
             </div>
@@ -60,7 +60,7 @@ const FeatureList = (props) => {
           </div>
         </li>
         <li>
-          <div className="root">
+          <div className="feature-item">
             <div className="icon-b">
             <i>{featureList[1].icon}</i>
             </div>
@@ -76,7 +76,7 @@ const FeatureList = (props) => {
         </li>
 
         <li>
-          <div className="root">
+          <div className="feature-item">
           <div className="icon-a">
           <i>{featureList[2].icon}</i>
           </div>
