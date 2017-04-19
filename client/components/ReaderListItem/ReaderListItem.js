@@ -1,6 +1,5 @@
 import React from 'react';
 import './ReaderListItem.css';
-import DOMPurify from 'dompurify';
 import {connect} from 'react-redux';
 import {setCurrentArticle} from '../../actions'
 
@@ -29,6 +28,3 @@ const ReaderListItem = (props) => {
 
 export const Unwrapped = ReaderListItem;
 export default connect(null, {renderReadView: setCurrentArticle})(ReaderListItem);
-
-{/* <p className='article-description' dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(summary)}}></p> */
-}

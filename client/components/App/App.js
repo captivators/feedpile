@@ -24,10 +24,11 @@ class App extends React.Component {
 
   render() {
     const { history } = this.props;
+
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
           <div className='app-container'>
-            <Navbar />
+            <Navbar history={history}/>
             <Sidebar />
             <ReaderList history={history}/>
           </div>

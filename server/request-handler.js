@@ -1,6 +1,8 @@
 const Feed = require('./models/feed');
 const User = require('./models/user');
 const Article = require('./models/article');
+const Category = require('./models/category');
+
 
 const parse = require('./feed-parser/parser');
 
@@ -97,14 +99,49 @@ exports.createFeed = (req, res) => {
   // feed.name = req.body.name;
   feed.url = req.body.url;
 
-  // save the feed and check for errors
-  feed.save(function(err) {
-    if (err) {
-      res.send(err);
-    }
+  if (req.body.userId && req.body.categoryId) {
+    feed.save(function(err, doc) {
+      if (err) {
+        res.send(err);
+      }
 
-    res.json({ status: 201, message: 'Feed created!' });
-  });
+      User.findOne({_id: req.body.userId}, function (err, user) {
+        if (err) {
+          res.send(err);
+        }
+
+        var newUser = user;
+        delete newUser._id;
+
+        var obj = {};
+
+        obj.feedId = doc._id;
+        obj.categoryId = req.body.categoryId;
+
+        newUser.feeds.push(obj);
+
+        User.update({ _id: user._id },
+        { $set: newUser }, function (err, result) {
+          if (err) {
+            res.send(err);
+          }
+
+          res.json({ status: 201, message: 'Feed created (' + doc._id +') and added to user (' + user._id +')'});
+        });
+
+      });
+      // res.json({ status: 201, message: 'Feed created!' });
+    });
+  } else {
+    // save the feed and check for errors
+    feed.save(function(err) {
+      if (err) {
+        res.send(err);
+      }
+
+      res.json({ status: 201, message: 'Feed created!' });
+    });
+  }
 };
 
 exports.getOneFeed = (req, res) => {
@@ -142,21 +179,26 @@ exports.getAllUsers = (req, res) => {
 
 exports.createUser = (req, res) => {
   var user = new User();      // create a new instance of the user model
-  user.username = req.body.username;
-  user.password = req.body.password;
+  // user.username = req.body.username;
+  // user.password = req.body.password;
+  user.userId = req.body.userId;
 
-  // save the user and check for errors
-  user.save(function(err) {
-    if (err) {
-      res.send(err);
-    }
+  if (user.userId) {
+    // save the user and check for errors
+    user.save(function(err) {
+      if (err) {
+        res.send(err);
+      }
 
-    res.json({ status: 201, message: 'User created!' });
-  });
+      res.json({ status: 201, message: 'User created!' });
+    });
+  } else {
+    res.json({ status: 400, message: 'UserId missing!' });
+  }
 };
 
 exports.getOneUser = (req, res) => {
-  User.findById(req.params.userId, function(err, user) {
+  User.findOne({userId: req.params.userId}, function(err, user) {
     if (err) {
       res.send(err);
     }
@@ -240,4 +282,33 @@ exports.deleteArticle = (req, res) => {
 
     res.json({ status: 200, message: 'Article deleted!' });
   });
+};
+
+//=======CATEGORIES API ROUTES=======
+exports.getAllCategories = (req, res) => {
+  Category.find(function(err, category) {
+    if (err) {
+      res.send(err);
+    }
+
+    res.json(category);
+  });
+};
+
+exports.createCategory = (req, res) => {
+  var category = new Category();      // create a new instance of the category model
+  category.name = req.body.name;
+
+  if (req.body.name) {
+    // save the user and check for errors
+    category.save(function(err) {
+      if (err) {
+        res.send(err);
+      }
+
+      res.json({ status: 201, message: 'Category created!' });
+    });
+  } else {
+    res.json({ status: 400, message: 'Category name missing!' });
+  }
 };

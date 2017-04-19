@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReadArticle take a snapshot 1`] = `
+<MuiThemeProvider>
+  <div
+    className="read-article-page"
+  >
+    <Link
+      replace={false}
+      to="/app"
+    >
+      <IconButton
+        disableTouchRipple={false}
+        disabled={false}
+        iconStyle={
+          Object {
+            "height": 36,
+            "width": 36,
+          }
+        }
+        style={
+          Object {
+            "height": 72,
+            "padding": 16,
+            "width": 72,
+          }
+        }
+        tooltipPosition="bottom-center"
+        touch={false}
+      >
+        <pure(Close) />
+      </IconButton>
+    </Link>
+    <div
+      className="read-article-container"
+    >
+      <div
+        className="read-article-title"
+      >
+        12 tech-inspired Mother’s Day gifts
+      </div>
+      <div
+        className="default-image"
+      >
+        <img
+          src="test-file-stub"
+        />
+      </div>
+      <div
+        className="read-article-content"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "Test",
+          }
+        }
+      />
+    </div>
+    <div
+      className="url-button-container"
+    >
+      <RaisedButton
+        disabled={false}
+        fullWidth={false}
+        href="http://feedproxy.google.com/~r/Techcrunch/~3/BsZCJrFPZRA/"
+        icon={<pure(OpenInNew) />}
+        label="Visit Website"
+        labelPosition="after"
+        primary={false}
+        secondary={false}
+        style={
+          Object {
+            "margin": 12,
+          }
+        }
+        target="_blank"
+      />
+    </div>
+  </div>
+</MuiThemeProvider>
+`;

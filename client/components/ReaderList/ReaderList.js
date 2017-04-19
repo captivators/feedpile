@@ -1,4 +1,5 @@
 import React from 'react';
+import ReaderListHeader from '../ReaderListHeader/ReaderListHeader'
 import ReaderListItem from '../ReaderListItem/ReaderListItem';
 import {connect} from 'react-redux';
 import { getArticlesFromDb } from '../../actions';
@@ -14,6 +15,7 @@ class ReaderList extends React.Component {
   render() {
     return (
         <div className="reader-list-container">
+          <ReaderListHeader />
           {this.props.articles.map((article, index) => (
               <ReaderListItem history={this.props.history}
                               article={article}

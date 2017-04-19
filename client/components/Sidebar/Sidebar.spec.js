@@ -15,11 +15,12 @@ test('Sidebar snapshot test', () => {
   const tree = shallowToJson(component);
   expect(tree).toMatchSnapshot();
 });
-test('Sidebar renders SidebarAll', () => {
-  const props = {
-    open: true,
-    dispatchToggle: () => {}
-  };
-  const component = mount(<MuiThemeProvider><UnwrappedSidebar {...props}/></MuiThemeProvider>);
-  expect(component.find('ListItem').length).toEqual(9); //number of ListItem's in Sidebar
-});
+
+// test('Sidebar renders SidebarAll', () => {
+//   const props = {
+//     open: true,
+//     dispatchToggle: () => {}
+//   };
+//   const component = mount(<MuiThemeProvider><UnwrappedSidebar {...props}/></MuiThemeProvider>);
+//   expect(component.find('ListItem').length).toEqual(9); //number of ListItem's in Sidebar
+// });
