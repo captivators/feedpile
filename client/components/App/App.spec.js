@@ -1,5 +1,6 @@
 import React from 'react';
 import {Provider} from 'react-redux';
+import '../../../__mocks__/localStorageMock'
 import store from '../../store';
 import App from './App'
 import { shallow, render } from 'enzyme';
