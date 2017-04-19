@@ -198,7 +198,7 @@ exports.createUser = (req, res) => {
 };
 
 exports.getOneUser = (req, res) => {
-  User.findById(req.params.userId, function(err, user) {
+  User.findOne({userId: req.params.userId}, function(err, user) {
     if (err) {
       res.send(err);
     }
