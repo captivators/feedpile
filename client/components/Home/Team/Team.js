@@ -30,17 +30,17 @@ const style = {
 const teamInfo = [
   {
     name: 'Faiz Mohammad',
-    job: 'Senior Software Engineer',
+    job: 'Software Engineer',
     image: 'https://s9.postimg.org/8e7mxjsm7/19718788.png'
   },
   {
     name: 'Mohammad Farooqi',
-    job: 'Senior Software Engineer',
+    job: 'Software Engineer',
     image: 'https://s1.postimg.org/wn4d9fo2n/10905290.png'
   },
   {
     name: 'Alex Rosenthal',
-    job: 'Scrum Master, Software Engineer',
+    job: 'Software Engineer',
     image: 'https://s18.postimg.org/g99jey3nd/22188424.jpg'
   },
   {

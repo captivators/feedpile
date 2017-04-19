@@ -1,28 +1,30 @@
 import React from 'react';
 import TechItem from '../TechItem/TechItem';
-
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Paper from 'material-ui/Paper';
 
 const style = {
   logoList: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    boxSizing: 'border-box',
     flexWrap: 'wrap',
-    height: '800px',
-    backgroundColor: '#eee',
+    backgroundColor: '#888',
   },
   first: {
-    paddingTop: '45px',
-    paddingBottom: '45px',
+    paddingTop: '20px',
+    paddingBottom: '20px',
     width: '100%',
     textAlign: 'center',
-    backgroundColor: '#eee',
+    backgroundColor: '#888',
     h1: {
       color: '#fff',
       marginTop: 0,
       fontSize: '48px',
-    }
-  }
+    },
+  },
+
 }
 
 
@@ -43,14 +45,14 @@ const techList = [
     image: "https://s30.postimg.org/50zpvkri9/logo-redux.png"
   },
   {
-    name: "Babel",
-    link: "http://www.babeljs.io/",
-    image: "https://s30.postimg.org/z92z4actt/babel.png"
-  },
-  {
     name: "Webpack",
     link: "https://www.webpack.js.org/",
     image: "https://s15.postimg.org/p04co7pej/webpack.png",
+  },
+  {
+    name: "Babel",
+    link: "http://www.babeljs.io/",
+    image: "https://s28.postimg.org/59tbpai4t/babel_1.png"
   },
   {
     name: "Node",
@@ -106,16 +108,15 @@ const techList = [
 
 const TechList = (props) => {
   return (
-    <div>
-      <div style={style.first}>
-        <h2>The Tech </h2>
-      </div>
+    <MuiThemeProvider>
+    <Paper zDepth={5} style={style.first}>
       <div className="stack" style={style.logoList}>
         {techList.map((tech, index) => (
           <TechItem tech= { tech } key={ index } />
         ))}
       </div>
-    </div>
+    </Paper>
+    </MuiThemeProvider>
   )
 }
 

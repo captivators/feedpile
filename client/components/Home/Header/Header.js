@@ -30,7 +30,14 @@ const Header = (props) => {
     <AppBar className="header"
     title="Feedpile"
     iconElementRight={<FlatButton label="Sign in" />}
+    showMenuIconButton={false}
     zDepth={4}
+    style={
+      {
+        backgroundColor: "#A9A9A9",
+        color: 'black',
+      }
+    }
     />
     </MuiThemeProvider>
   )
