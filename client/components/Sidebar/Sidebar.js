@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {List, ListItem, makeSelectable} from 'material-ui/List';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import AddFeed from '../AddFeed/AddFeed'
 import ListIcon from 'material-ui-icons/List';
 import LaptopMac from 'material-ui-icons/LaptopMac';
@@ -13,7 +13,7 @@ import Archive from 'material-ui-icons/Archive';
 import AddCircle from 'material-ui-icons/AddCircle';
 import IconButton from 'material-ui/IconButton';
 import Description from 'material-ui-icons/Description';
-// import feedPileImg from '../../images/feedpile.png'
+import feedPileImg from '../../images/feedpile.png'
 
 import './Sidebar.css';
 import { getArticlesFromDb, toggleListItem, toggleModal } from '../../actions';
@@ -70,7 +70,7 @@ SelectableList = wrapState(SelectableList);
 const Sidebar = (props) => {
   return (
     <div className="sidebar-container">
-      // <img className="sidebar-logo" src={feedPileImg} />
+      <img className="sidebar-logo" src={feedPileImg} />
       <h2 className="logo-name">FeedPile</h2>
       <SelectableList defaultValue={1}>
         <ListItem value={1} primaryText="All Articles" leftIcon={<ListIcon />} />
