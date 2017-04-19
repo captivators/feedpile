@@ -1,4 +1,5 @@
 import React from 'react';
+import FlatButton from 'material-ui/FlatButton';
 import './Navbar.css';
 import { connect } from 'react-redux'
 import { logoutSuccess } from '../../actions'
@@ -9,17 +10,16 @@ const logout = () => {
   localStorage.removeItem('id_token');
   localStorage.removeItem('profile');
 };
-const style = {margin: 5};
+
 const Navbar = (props) => {
   return (
     <div className="navbar">
       <div className="nav-item-container">
-        <button onClick={()=> {
+        <FlatButton onClick={()=> {
           logout();
           props.logoutSuccess();
           props.history.replace('/');
-        }}
-                className="logout">Logout</button>
+        }} label="Logout" />
       </div>
     </div>
   )

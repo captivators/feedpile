@@ -45,8 +45,9 @@ table {
 
 html, body {
   font-family: "Roboto", sans-serif;
+  height: 100%;
 }
 
 .app-container {
-
+  
 }
