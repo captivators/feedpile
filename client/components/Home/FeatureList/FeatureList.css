@@ -17,7 +17,7 @@
   }
 
 * {
-  font-family: 'Bitter', serif;
+
 }
 
 .description {
@@ -25,7 +25,7 @@
   text-align: justify;
   text-justify: inter-word;
   max-width: auto;
-
+  line-height: 130%;
   padding: 20px;
 }
 
@@ -51,7 +51,6 @@
   order: 1;
   max-width: 500px;
   padding: 10px;
-  font-family: 'Bitter', serif;
   width: auto;
 }
 
@@ -63,7 +62,6 @@
   padding: 10px;
   align-self: flex-reverse;
   width: auto;
-  font-family: 'Bitter', serif;
 }
 
 .icon-a {
