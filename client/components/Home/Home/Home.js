@@ -16,7 +16,7 @@ const Home = (props) => {
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
-        <div>
+        <div style={{backgroundColor: "#00BCD4"}}>
         <Header />
 
         <Main />
