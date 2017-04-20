@@ -32,7 +32,9 @@
 .features-list {
   margin: auto;
   max-width: 90%;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin: auto;
+  padding-bottom: 150px;
 }
 
 
