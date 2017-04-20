@@ -16,7 +16,7 @@ import Description from 'material-ui-icons/Description';
 import feedPileImg from '../../images/feedpile.png'
 
 import './Sidebar.css';
-import { getArticlesFromDb, toggleListItem, toggleModal,
+import { fetchArticlesForFeedsFromDb, toggleListItem, toggleModal,
 findCreateUser, setSidebarFeed } from '../../actions';
 import { connect } from 'react-redux';
 
@@ -107,7 +107,7 @@ class Sidebar extends React.Component {
           </SelectableList>
 
           <span className="refresh-icon">
-        <IconButton onClick={this.props.getArticlesFromDb} className="refresh-icon" iconStyle={styles.smallIcon}
+        <IconButton onClick={this.props.fetchArticlesForFeedsFromDb} className="refresh-icon" iconStyle={styles.smallIcon}
                     style={styles.small}>
           <Refresh />
         </IconButton>
@@ -140,6 +140,6 @@ const mapStateToProps = (state) => {
 export const Unwrapped = Sidebar;
 
 export default connect(mapStateToProps, {
-  dispatchToggle : toggleListItem, getArticlesFromDb, toggleModal,
+  dispatchToggle : toggleListItem, fetchArticlesForFeedsFromDb, toggleModal,
   findCreateUser, setSidebarFeed
 })(Sidebar);
