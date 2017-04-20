@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Feature list snapshot test 1`] = `
+<div
+  className="features"
+>
+  <ul
+    className="features-list"
+  >
+    <li>
+      <div
+        className="feature-item"
+      >
+        <div
+          className="icon-a"
+        >
+          <i>
+            <pure(RssFeed)
+              style={
+                Object {
+                  "height": "60px",
+                  "marginTop": "50px",
+                  "width": "60px",
+                }
+              }
+            />
+          </i>
+        </div>
+        <div
+          className="info-a"
+        >
+          <ul>
+            <li
+              style={
+                Object {
+                  "fontSize": "24px",
+                }
+              }
+            >
+              Syndication
+            </li>
+            <br />
+            <li
+              className="description"
+            >
+              Keeping abreast of the news is demanding and visiting multiple sites frequently to find out if content has been updated is a waste of time. Feedpile uses aggregation technology to consolidate many news outlets into a one page application, saving you time and energy.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div
+        className="feature-item"
+      >
+        <div
+          className="icon-b"
+        >
+          <i>
+            <pure(StayCurrentPortrait)
+              style={
+                Object {
+                  "height": "60px",
+                  "marginTop": "50px",
+                  "order": "2",
+                  "width": "60px",
+                }
+              }
+            />
+          </i>
+        </div>
+        <div
+          className="info-b"
+        >
+          <ul>
+            <li
+              style={
+                Object {
+                  "fontSize": "24px",
+                }
+              }
+            >
+              Responsive Design
+            </li>
+            <br />
+            <li
+              className="description"
+            >
+              Our responsive design provides you not only with the sleakest desktop platform but also a clean RSS feed reader for any mobile device.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div
+        className="feature-item"
+      >
+        <div
+          className="icon-a"
+        >
+          <i>
+            <pure(PersonPin)
+              style={
+                Object {
+                  "height": "60px",
+                  "marginTop": "50px",
+                  "order": "0",
+                  "width": "60px",
+                }
+              }
+            />
+          </i>
+        </div>
+        <div
+          className="info-a"
+        >
+          <ul>
+            <li
+              style={
+                Object {
+                  "fontSize": "24px",
+                }
+              }
+            >
+              Customization
+            </li>
+            <br />
+            <li
+              className="description"
+            >
+              Escape the monotonous echo chamber of mainstream media and curate your own personal newspaper easily by subscribing to content from you favorite sites. Store collections of feeds in categories to customize your content. Save articles with Evernote integration and share them over social media.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+`;

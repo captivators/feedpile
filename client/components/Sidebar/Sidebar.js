@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {List, ListItem, makeSelectable} from 'material-ui/List';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import AddFeed from '../AddFeed/AddFeed'
 import ListIcon from 'material-ui-icons/List';
 import LaptopMac from 'material-ui-icons/LaptopMac';

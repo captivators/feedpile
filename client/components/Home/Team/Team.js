@@ -4,6 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Paper from 'material-ui/Paper';
+import './Team.css'
 
 const style = {
   first: {
@@ -29,30 +30,30 @@ const style = {
 const teamInfo = [
   {
     name: 'Faiz Mohammad',
-    job: 'Senior Software Engineer',
-    image: 'https://s4.postimg.org/ajdilslgt/batman.jpg'
+    job: 'Software Engineer',
+    image: 'https://s15.postimg.org/mnsiyo6ob/19718788.png'
   },
   {
     name: 'Mohammad Farooqi',
-    job: 'Senior Software Engineer',
-    image: 'https://s4.postimg.org/ajdilslgt/batman.jpg'
+    job: 'Software Engineer',
+    image: 'https://s1.postimg.org/wn4d9fo2n/10905290.png'
   },
   {
     name: 'Alex Rosenthal',
-    job: 'Scrum Master, Software Engineer',
-    image: 'https://s4.postimg.org/ajdilslgt/batman.jpg'
+    job: 'Software Engineer',
+    image: 'https://s18.postimg.org/g99jey3nd/22188424.jpg'
   },
   {
     name: 'Darin Allen',
     job: 'Product Owner, Software Engineer',
-    image: 'https://s4.postimg.org/ajdilslgt/batman.jpg'
+    image: 'https://s15.postimg.org/yl8x4qctn/14929585.jpg'
   }
 ]
 
 const Team = (props) => {
   return (
     <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
-    <Paper style={style.first} zDepth={4}>
+    <Paper className="team-container" style={style.first} zDepth={5}>
       <h2>Made with ♥ by </h2>
         <div className="team" style={style.root}>
           {teamInfo.map((teamMate, index) => (
