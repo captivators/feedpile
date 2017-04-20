@@ -2,21 +2,32 @@ import React from 'react';
 import ReaderListHeader from '../ReaderListHeader/ReaderListHeader'
 import ReaderListItem from '../ReaderListItem/ReaderListItem';
 import {connect} from 'react-redux';
-import { getArticlesFromDb } from '../../actions';
 import './ReaderList.css';
+import { fetchArticlesForFeedsFromDb } from '../../actions'
 
 class ReaderList extends React.Component {
   constructor (props){
     super(props);
   }
   componentDidMount() {
-    if(!this.props.articles.length) this.props.getArticlesFromDb();
+    this.props.fetchArticlesForFeedsFromDb();
   }
   render() {
+    let articlesFound = [];
+    if(!Array.isArray(this.props.articles)) {
+      if(this.props.currentFeed !== "") {
+        console.log(`this.props.articles ---> ${JSON.stringify(this.props.articles)}`)
+        articlesFound = this.props.articles[this.props.currentFeed];
+      } else {
+        for(var key in this.props.articles) {
+          articlesFound = articlesFound.concat(this.props.articles[key]);
+        }
+      }
+    }
     return (
         <div className="reader-list-container">
           <ReaderListHeader />
-          {this.props.articles.map((article, index) => (
+          {articlesFound.map((article, index) => (
               <ReaderListItem history={this.props.history}
                               article={article}
                               key={index} articleIndex={index}
@@ -29,9 +40,10 @@ class ReaderList extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    articles: state.articles
+    articles: state.articles,
+    currentFeed: state.currentFeed
   }
 };
 
 export const Unwrapped = ReaderList;
-export default connect(mapStateToProps, {getArticlesFromDb})(ReaderList);
+export default connect(mapStateToProps, {fetchArticlesForFeedsFromDb})(ReaderList);

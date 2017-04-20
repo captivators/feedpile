@@ -19,10 +19,14 @@ const initialState = {
   open: false,
   modalOpen: false,
   toggleListItem: '',
-  currentArticleIndex: null,
+  currentArticle: '',
   isAuthenticated: checkTokenExpiry(),
   profile: JSON.parse(localStorage.getItem('profile')),
-  error: ''
+  error: '',
+  user: {},
+  categories: [],
+  feeds: [],
+  currentFeed: ""
 };
 
 const toggleListItem = (state, action) => {
@@ -34,7 +38,7 @@ const updateArticles = (state, action) => {
 };
 
 const setCurrentArticle = (state, action) => {
-  return {...state, currentArticleIndex: action.articleIndex}
+  return {...state, currentArticle: action.article}
 };
 
 const toggleModal = (state, action) => {
@@ -49,6 +53,17 @@ const logoutSuccess = (state, action) => {
 };
 const loginError = (state, action) => {
   return { ...state, isAuthenticated: false, profile: null, error: action.error }
+};
+const setUser = (state, action) => {
+  return { ...state, user: action.userObj, categories: action.categoryList, feeds: action.feedList}
+};
+
+const getArticlesForAllFeeds = (state, action) => {
+  return { ...state, articles: action.articleList}
+};
+
+const setSidebarFeed = (state, action) => {
+  return { ...state, currentFeed: action.currentFeed}
 };
 
 function rootReducer(state = initialState, action) {
@@ -67,6 +82,12 @@ function rootReducer(state = initialState, action) {
       return logoutSuccess(state, action);
     case 'LOGIN_ERROR':
       return loginError(state, action);
+    case 'SET_USER':
+      return setUser(state, action);
+    case 'GET_ARTICLES_FOR_ALL_FEEDS':
+      return getArticlesForAllFeeds(state, action);
+    case 'SET_SIDEBAR_FEED':
+      return setSidebarFeed(state, action);
     default:
       return state
   }
