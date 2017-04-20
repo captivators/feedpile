@@ -5,7 +5,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar'
 import FlatButton from 'material-ui/FlatButton'
 import { connect } from 'react-redux';
-import { loginSuccess, loginError} from '../../../actions'
+import { findCreateUser, loginError} from '../../../actions'
 import Auth0Lock from 'auth0-lock';
 const style = {
   root: {
@@ -27,7 +27,7 @@ const Header = React.createClass({
         }
         localStorage.setItem('id_token', authResult.idToken);
         localStorage.setItem('profile', JSON.stringify(profile));
-        this.props.loginSuccess(localStorage.getItem('profile'));
+        this.props.findCreateUser(profile.identities[0].user_id);
         this.props.history.push(`/app`);
       }.bind(this));
     }.bind(this));
@@ -44,4 +44,4 @@ const Header = React.createClass({
   }
 });
 
-export default connect(null, {loginSuccess, loginError})(Header);
+export default connect(null, {findCreateUser, loginError})(Header);

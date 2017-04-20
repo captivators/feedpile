@@ -224,13 +224,23 @@ exports.createUser = (req, res) => {
 
   if (user.userId) {
     // save the user and check for errors
-    user.save(function(err) {
+    User.findOne({userId: req.body.userId}, function(err, usr) {
       if (err) {
         res.send(err);
       }
+      if (!usr) {
+        user.save(function(err, usr) {
+          if (err) {
+            res.send(err);
+          }
+          // res.json({ status: 201, message: 'User created!' });
+          res.status(201).send(usr);
+        });
+      } else { // user was found
+        res.status(200).send(usr);
 
-      res.json({ status: 201, message: 'User created!' });
-    });
+      }
+    })
   } else {
     res.json({ status: 400, message: 'UserId missing!' });
   }
