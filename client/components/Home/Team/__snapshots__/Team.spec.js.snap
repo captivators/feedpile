@@ -440,8 +440,10 @@ exports[`Landingpage: Team section snapshot test 1`] = `
     transitionEnabled={true}
     zDepth={5}
   >
-    <h2>
-      Made with ♥ by 
+    <h2
+      className="team-header"
+    >
+      Made by
     </h2>
     <div
       className="team"
@@ -484,7 +486,8 @@ exports[`Landingpage: Team section snapshot test 1`] = `
         info={
           Object {
             "image": "https://s15.postimg.org/yl8x4qctn/14929585.jpg",
-            "job": "Product Owner, Software Engineer",
+            "job": "Product Owner,
+           Software Engineer",
             "name": "Darin Allen",
           }
         }
