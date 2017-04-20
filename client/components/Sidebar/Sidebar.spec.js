@@ -11,7 +11,7 @@ test('Sidebar snapshot test', () => {
     open: true,
     dispatchToggle: () => {}
   };
-  const component = shallow(<UnwrappedSidebar {...props}/>);
+  const component = shallow(<UnwrappedSidebar user={{}}/>);
   const tree = shallowToJson(component);
   expect(tree).toMatchSnapshot();
 });

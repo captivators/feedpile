@@ -16,5 +16,6 @@ test('App should render a Sidebar and ReaderList', () => {
   const component = render(<Provider store={store}><App history={{}}/></Provider>);
   expect(component.find('.sidebar-container').length).toEqual(1);
   expect(component.find('.reader-list-container').length).toEqual(1);
+  expect(component.find('.navbar').length).toEqual(1);
 });
 

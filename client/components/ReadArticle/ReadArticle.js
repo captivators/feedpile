@@ -58,7 +58,7 @@ const ReadArticle = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    selectedArticle: state.articles[state.currentArticleIndex]
+    selectedArticle: state.currentArticle
   }
 };
 

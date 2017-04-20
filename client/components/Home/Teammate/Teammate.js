@@ -11,7 +11,7 @@ const style = {
   porthole: {
     borderRadius: '100%',
     width: '75%',
-    maxWidth: '100px',
+    maxWidth: '150px',
     margin: '15px auto',
     imageAlign: 'center'
   }
@@ -20,7 +20,7 @@ const style = {
 const Teammate = (props) => {
   return (
     <div className="team-mate" style={style.gridList}>
-      <img src={ props.info.image } style={style.porthole} alt=""/><br/>
+      <img className="teammate-image" src={ props.info.image } style={style.porthole} alt=""/><br/>
       { props.info.name } <br />
       { props.info.job } <br />
     </div>
