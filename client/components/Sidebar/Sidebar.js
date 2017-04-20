@@ -13,6 +13,9 @@ import Archive from 'material-ui-icons/Archive';
 import AddCircle from 'material-ui-icons/AddCircle';
 import IconButton from 'material-ui/IconButton';
 import Description from 'material-ui-icons/Description';
+import PanoramaFishEye from 'material-ui-icons/PanoramaFishEye';
+import Lens from 'material-ui-icons/Lens';
+
 import feedPileImg from '../../images/feedpile.png'
 
 import './Sidebar.css';
@@ -90,7 +93,7 @@ class Sidebar extends React.Component {
             <ListItem value={2} primaryText="Starred" leftIcon={<Star />}/>
             {categories.map((categoryId, index) => {
               return (<ListItem value={index+4} key={index+4} primaryText={this.props.user[categoryId].categoryName}
-                        leftIcon={<ListIcon />} primaryTogglesNestedList={true} initiallyOpen={false}
+                        leftIcon={<Description />} primaryTogglesNestedList={true} initiallyOpen={false}
                                 nestedItems=
                                   {this.props.user[categoryId].feeds.map((feed, i) => {
                                     return (<ListItem
@@ -98,7 +101,7 @@ class Sidebar extends React.Component {
                                         key={i}
                                         primaryText={feed.name}
                                         onClick={() => this.props.setSidebarFeed(feed.feedId)}
-                                        leftIcon={<Description />}
+                                        leftIcon={<PanoramaFishEye />}
                                     />)
                                   })}
                         />)

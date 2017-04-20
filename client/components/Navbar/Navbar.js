@@ -18,10 +18,12 @@ const Navbar = (props) => {
         <ListItem
           disabled={true}
           leftAvatar={
-            <Avatar src={props.profile.picture} />
+            // <Avatar src={props.profile.picture} />
+            <Avatar src={"https://scontent.fphl2-1.fna.fbcdn.net/v/t1.0-9/17759828_10154626070208565_1493812434276669037_n.jpg?oh=a066ef49d0edf3e1d702fb3821659dfe&oe=599379CF"} />
           }
         >
-          <span>Welcome, {props.profile.given_name || props.profile.name}</span>
+          <span>Welcome, Darin</span>
+          {/* <span>Welcome, {props.profile.given_name || props.profile.name}</span> */}
         </ListItem>
       </div>
       <div className="logout">
