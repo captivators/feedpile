@@ -13,9 +13,6 @@ var counter = 0;
 const job = new CronJob({
   cronTime: '0-59/30 * * * * *',
   onTick: function() {
-    /*
-     * Runs every 5 seconds.
-     */
 
     console.log(++counter);
 
@@ -199,6 +196,8 @@ const job = new CronJob({
                       //   console.log('2222');
                       // }
 
+                      // if (!feedResults[i].articles[j].image || )
+
                       //else if no image then use enclosures.url
                       if (feedResults[i].articles[j].enclosures[0] && feedResults[i].articles[j].enclosures[0].url && (feedResults[i].articles[j].enclosures[0].type).indexOf('image') > -1 && updatedArticle.imageSrc && !compareMD5(md5(feedResults[i].articles[j].enclosures[0].url), md5(updatedArticle.imageSrc))) {
                         updatedArticle.imageSrc = feedResults[i].articles[j].enclosures[0].url;
@@ -303,6 +302,7 @@ const job = new CronJob({
                       // });
 
                       var searchFeedId = function (feedUrl) {
+                        // console.log(feedUrl)
                         for (var k = 0; k < localFeeds.length; k++) {
                           if (compareMD5(md5(localFeeds[k].url), md5(feedUrl))) {
                           //if (localFeeds[k].name === feedTitle) {
@@ -362,7 +362,7 @@ const job = new CronJob({
                         newArticle.summary = summaryText;
                       }
 
-                      if (feedResults[i].articles[j].description[j]) {
+                      if (feedResults[i].articles[j].description) {
                         newArticle.description = feedResults[i].articles[j].description;
                       }
 
