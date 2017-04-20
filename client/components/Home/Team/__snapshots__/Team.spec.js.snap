@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Landingpage: snapshot test 1`] = `
+exports[`Landingpage: Team section snapshot test 1`] = `
 <MuiThemeProvider
   muiTheme={
     Object {
@@ -418,12 +418,78 @@ exports[`Landingpage: snapshot test 1`] = `
     }
   }
 >
-  <div>
-    <Connect(Header) />
-    <Main />
-    <FeatureList />
-    <Team />
-    <TechList />
-  </div>
+  <Paper
+    circle={false}
+    className="team-container"
+    rounded={true}
+    style={
+      Object {
+        "backgroundColor": "#eee",
+        "h1": Object {
+          "color": "#fff",
+          "fontFamily": "Roboto, sans-serif",
+          "fontSize": "48px",
+          "marginTop": 0,
+        },
+        "paddingBottom": "45px",
+        "paddingTop": "45px",
+        "textAlign": "center",
+        "width": "100%",
+      }
+    }
+    transitionEnabled={true}
+    zDepth={5}
+  >
+    <h2>
+      Made with ♥ by 
+    </h2>
+    <div
+      className="team"
+      style={
+        Object {
+          "display": "flex",
+          "flexWrap": "wrap",
+          "justifyContent": "space-around",
+        }
+      }
+    >
+      <Teammate
+        info={
+          Object {
+            "image": "https://s15.postimg.org/mnsiyo6ob/19718788.png",
+            "job": "Software Engineer",
+            "name": "Faiz Mohammad",
+          }
+        }
+      />
+      <Teammate
+        info={
+          Object {
+            "image": "https://s1.postimg.org/wn4d9fo2n/10905290.png",
+            "job": "Software Engineer",
+            "name": "Mohammad Farooqi",
+          }
+        }
+      />
+      <Teammate
+        info={
+          Object {
+            "image": "https://s18.postimg.org/g99jey3nd/22188424.jpg",
+            "job": "Software Engineer",
+            "name": "Alex Rosenthal",
+          }
+        }
+      />
+      <Teammate
+        info={
+          Object {
+            "image": "https://s15.postimg.org/yl8x4qctn/14929585.jpg",
+            "job": "Product Owner, Software Engineer",
+            "name": "Darin Allen",
+          }
+        }
+      />
+    </div>
+  </Paper>
 </MuiThemeProvider>
 `;

@@ -21,7 +21,7 @@ const style = {
 
 const TechItem = (props) => {
   return (
-    <a style={style.logos} href={ props.tech.link }><img src={ props.tech.image }/></a>
+    <a className="tech-logo" style={style.logos} href={ props.tech.link }><img src={ props.tech.image }/></a>
   )
 }
 

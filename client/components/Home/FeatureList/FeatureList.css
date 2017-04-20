@@ -33,22 +33,23 @@
   margin: auto;
   max-width: 90%;
   justify-content: space-between;
+  margin: auto;
+  padding-bottom: 150px;
 }
 
 
-.root{
+.feature-item {
     display: flex;
     flex-wrap: wrap;
     width: auto;
     align-items: flex-end;
     width: 100%;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .info-a {
   order: 1;
   max-width: 500px;
-  min-width: 400px;
   padding: 10px;
   font-family: 'Bitter', serif;
   width: auto;
@@ -68,6 +69,7 @@
 .icon-a {
   order: 0;
   align-self: center;
+  margin: auto;
 }
 
 .icon-b {
@@ -75,3 +77,22 @@
   align-self: center;
 }
 
+@media screen and (max-width: 480px) {
+  .icon-b {
+    order: 0;
+  }
+  .info-b {
+    order: 1;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .icon-b {
+    text-align: center;
+    order: 0;
+    margin: auto;
+  }
+  .info-b {
+    order: 1;
+  }
+}

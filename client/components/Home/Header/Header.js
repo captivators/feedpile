@@ -13,6 +13,7 @@ const style = {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
+    backgroundColor: '#888',
   }
 };
 
