@@ -2,6 +2,7 @@
     display: flex;
     padding-top: -245px;,
     padding-bottom: 45px;,
+    margin: auto;
     width: 100%;
     text-align: center;
     background-color: #00BCD4;
@@ -33,7 +34,6 @@
   margin: auto;
   max-width: 90%;
   justify-content: space-between;
-  margin: auto;
   padding-bottom: 150px;
 }
 
@@ -42,7 +42,7 @@
     display: flex;
     flex-wrap: wrap;
     width: auto;
-    align-items: flex-end;
+    align-items: flex-start;
     width: 100%;
     justify-content: space-around;
 }

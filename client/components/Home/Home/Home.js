@@ -16,16 +16,19 @@ const Home = (props) => {
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
-        <div>
-        <Header history={props.history}/>
 
-        <Main />
+        <div style={{backgroundColor: "#00BCD4"}}>
 
-        <FeatureList />
+          <Header history={props.history}/>
 
-        <Team />
+          <Main />
 
-        <TechList />
+          <FeatureList />
+
+          <Team />
+
+          <TechList />
+
         </div>
 
       </MuiThemeProvider>

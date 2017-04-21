@@ -7,6 +7,8 @@ const style = {
     marginBottom: '24px',
     fontFamily: 'Roboto, sans-serif',
     textAlign: 'center',
+    fontFamily: 'Roboto',
+
   },
   porthole: {
     borderRadius: '100%',

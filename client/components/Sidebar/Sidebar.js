@@ -93,7 +93,8 @@ class Sidebar extends React.Component {
             <ListItem value={2} primaryText="Starred" leftIcon={<Star />}/>
             {categories.map((categoryId, index) => {
               return (<ListItem value={index+4} key={index+4} primaryText={this.props.user[categoryId].categoryName}
-                        leftIcon={<Description />} primaryTogglesNestedList={true} initiallyOpen={false}
+
+                        leftIcon={<ListIcon />} primaryTogglesNestedList={true} initiallyOpen={false}
                                 nestedItems=
                                   {this.props.user[categoryId].feeds.map((feed, i) => {
                                     return (<ListItem
