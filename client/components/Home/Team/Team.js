@@ -36,7 +36,7 @@ const teamInfo = [
   {
     name: 'Mohammad Farooqi',
     job: 'Software Engineer',
-    image: 'https://s1.postimg.org/wn4d9fo2n/10905290.png'
+    image: 'https://s21.postimg.org/l5w02gp7r/10905290.png'
   },
   {
     name: 'Alex Rosenthal',
@@ -54,12 +54,11 @@ const Team = (props) => {
   return (
     <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
     <Paper className="team-container" style={style.first} zDepth={5}>
-      <h2 className="team-header">Made by</h2>
-        <div className="team" style={style.root}>
-          {teamInfo.map((teamMate, index) => (
-            <Teammate info={ teamMate } key={ index } />
-          ))}
-        </div>
+      <div className="team" style={style.root}>
+        {teamInfo.map((teamMate, index) => (
+          <Teammate info={ teamMate } key={ index } />
+        ))}
+      </div>
     </Paper>
     </MuiThemeProvider>
     )

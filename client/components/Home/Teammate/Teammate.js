@@ -7,7 +7,7 @@ const style = {
     marginBottom: '24px',
     fontFamily: 'Roboto, sans-serif',
     textAlign: 'center',
-    fontFamily: 'Bitter',
+    fontFamily: 'Roboto',
 
   },
   porthole: {
