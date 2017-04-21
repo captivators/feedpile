@@ -14,7 +14,6 @@ const ReaderListHeader = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-
     // open: state.open
   }
 };

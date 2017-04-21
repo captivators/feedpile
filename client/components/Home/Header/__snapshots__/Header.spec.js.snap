@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Landingpage: snapshot test 1`] = `
+exports[`Header take a snapshot 1`] = `
 <MuiThemeProvider
   muiTheme={
     Object {
@@ -418,18 +418,33 @@ exports[`Landingpage: snapshot test 1`] = `
     }
   }
 >
-  <div
+  <AppBar
+    iconElementRight={
+      <FlatButton
+        disabled={false}
+        label="Sign in / Sign up"
+        labelPosition="after"
+        labelStyle={Object {}}
+        onClick={[Function]}
+        onKeyboardFocus={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onTouchStart={[Function]}
+        primary={false}
+        secondary={false}
+      />
+    }
+    showMenuIconButton={true}
     style={
       Object {
-        "backgroundColor": "#00BCD4",
+        "backgroundColor": "#888",
+        "display": "flex",
+        "flexWrap": "wrap",
+        "justifyContent": "space-around",
       }
     }
-  >
-    <Connect(Header) />
-    <Main />
-    <FeatureList />
-    <Team />
-    <TechList />
-  </div>
+    title="Feedpile"
+    zDepth={1}
+  />
 </MuiThemeProvider>
 `;

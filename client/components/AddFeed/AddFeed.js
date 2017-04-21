@@ -132,5 +132,5 @@ const mapStateToProps = (state) => {
     modalOpen: state.modalOpen
   }
 }
-
+export const Unwrapped = AddFeed;
 export default connect(mapStateToProps, {toggleModal})(AddFeed);

@@ -46,4 +46,6 @@ const Header = React.createClass({
   }
 });
 
+
+export const Unwrapped = Header;
 export default connect(null, {findCreateUser, loginError})(Header);

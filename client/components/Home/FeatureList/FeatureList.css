@@ -2,6 +2,7 @@
     display: flex;
     padding-top: -245px;,
     padding-bottom: 45px;,
+    margin: auto;
     width: 100%;
     text-align: center;
     background-color: #00BCD4;
@@ -17,7 +18,7 @@
   }
 
 * {
-  font-family: 'Bitter', serif;
+
 }
 
 .description {
@@ -25,7 +26,7 @@
   text-align: justify;
   text-justify: inter-word;
   max-width: auto;
-
+  line-height: 130%;
   padding: 20px;
 }
 
@@ -33,7 +34,6 @@
   margin: auto;
   max-width: 90%;
   justify-content: space-between;
-  margin: auto;
   padding-bottom: 150px;
 }
 
@@ -42,7 +42,7 @@
     display: flex;
     flex-wrap: wrap;
     width: auto;
-    align-items: flex-end;
+    align-items: flex-start;
     width: 100%;
     justify-content: space-around;
 }
@@ -51,7 +51,6 @@
   order: 1;
   max-width: 500px;
   padding: 10px;
-  font-family: 'Bitter', serif;
   width: auto;
 }
 
@@ -63,7 +62,6 @@
   padding: 10px;
   align-self: flex-reverse;
   width: auto;
-  font-family: 'Bitter', serif;
 }
 
 .icon-a {

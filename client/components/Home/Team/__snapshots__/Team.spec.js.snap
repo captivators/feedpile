@@ -440,9 +440,6 @@ exports[`Landingpage: Team section snapshot test 1`] = `
     transitionEnabled={true}
     zDepth={5}
   >
-    <h2>
-      Made with ♥ by 
-    </h2>
     <div
       className="team"
       style={
@@ -465,7 +462,7 @@ exports[`Landingpage: Team section snapshot test 1`] = `
       <Teammate
         info={
           Object {
-            "image": "https://s1.postimg.org/wn4d9fo2n/10905290.png",
+            "image": "https://s21.postimg.org/l5w02gp7r/10905290.png",
             "job": "Software Engineer",
             "name": "Mohammad Farooqi",
           }
@@ -484,7 +481,8 @@ exports[`Landingpage: Team section snapshot test 1`] = `
         info={
           Object {
             "image": "https://s15.postimg.org/yl8x4qctn/14929585.jpg",
-            "job": "Product Owner, Software Engineer",
+            "job": "Product Owner,
+           Software Engineer",
             "name": "Darin Allen",
           }
         }

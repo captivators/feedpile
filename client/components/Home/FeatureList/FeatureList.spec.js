@@ -3,7 +3,7 @@ import FeatureList from './FeatureList'
 import { shallow, render } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
 
-test('Feature list snapshot test', () => {
+test('Landingpage: Feature list snapshot test', () => {
 
   const component = shallow(
     <FeatureList />

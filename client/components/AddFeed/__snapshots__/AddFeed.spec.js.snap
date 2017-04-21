@@ -1,0 +1,215 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header take a snapshot 1`] = `
+<div>
+  <Dialog
+    actions={
+      Array [
+        <FlatButton
+          disabled={false}
+          label="Cancel"
+          labelPosition="after"
+          labelStyle={Object {}}
+          onKeyboardFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onTouchStart={[Function]}
+          onTouchTap={[Function]}
+          primary={true}
+          secondary={false}
+      />,
+        <RaisedButton
+          disabled={false}
+          fullWidth={false}
+          label="Submit"
+          labelPosition="after"
+          onTouchTap={[Function]}
+          primary={true}
+          secondary={false}
+      />,
+      ]
+    }
+    autoDetectWindowHeight={true}
+    autoScrollBodyContent={false}
+    contentStyle={
+      Object {
+        "maxWidth": "600px",
+        "width": "75%",
+      }
+    }
+    modal={false}
+    onRequestClose={[Function]}
+    repositionOnUpdate={true}
+    title="Enter a feed URL and select an associated category"
+  >
+    <div
+      className="url-input"
+    >
+      <TextField
+        disabled={false}
+        floatingLabelFixed={false}
+        fullWidth={true}
+        hintText="http://coolnews.rss"
+        multiLine={false}
+        rows={1}
+        type="text"
+        underlineShow={true}
+      />
+    </div>
+    <div
+      className="radio-buttons"
+    >
+      <RadioButtonGroup
+        defaultSelected="other"
+        name="categories"
+        style={Object {}}
+      >
+        <RadioButton
+          checked={false}
+          disabled={false}
+          label="World News"
+          labelPosition="right"
+          style={
+            Object {
+              "marginBottom": 16,
+            }
+          }
+          value="wordNews"
+        />
+        <RadioButton
+          checked={false}
+          disabled={false}
+          label="Technology"
+          labelPosition="right"
+          style={
+            Object {
+              "marginBottom": 16,
+            }
+          }
+          value="technology"
+        />
+        <RadioButton
+          checked={false}
+          disabled={false}
+          label="Politics"
+          labelPosition="right"
+          style={
+            Object {
+              "marginBottom": 16,
+            }
+          }
+          value="politics"
+        />
+        <RadioButton
+          checked={false}
+          disabled={false}
+          label="Business"
+          labelPosition="right"
+          style={
+            Object {
+              "marginBottom": 16,
+            }
+          }
+          value="business"
+        />
+        <RadioButton
+          checked={false}
+          disabled={false}
+          label="Money"
+          labelPosition="right"
+          style={
+            Object {
+              "marginBottom": 16,
+            }
+          }
+          value="money"
+        />
+        <RadioButton
+          checked={false}
+          disabled={false}
+          label="Sports"
+          labelPosition="right"
+          style={
+            Object {
+              "marginBottom": 16,
+            }
+          }
+          value="sports"
+        />
+        <RadioButton
+          checked={false}
+          disabled={false}
+          label="Entertainment"
+          labelPosition="right"
+          style={
+            Object {
+              "marginBottom": 16,
+            }
+          }
+          value="entertainment"
+        />
+        <RadioButton
+          checked={false}
+          disabled={false}
+          label="Music"
+          labelPosition="right"
+          style={
+            Object {
+              "marginBottom": 16,
+            }
+          }
+          value="music"
+        />
+        <RadioButton
+          checked={false}
+          disabled={false}
+          label="Games"
+          labelPosition="right"
+          style={
+            Object {
+              "marginBottom": 16,
+            }
+          }
+          value="games"
+        />
+        <RadioButton
+          checked={false}
+          disabled={false}
+          label="Food"
+          labelPosition="right"
+          style={
+            Object {
+              "marginBottom": 16,
+            }
+          }
+          value="food"
+        />
+        <RadioButton
+          checked={false}
+          disabled={false}
+          label="Travel"
+          labelPosition="right"
+          style={
+            Object {
+              "marginBottom": 16,
+            }
+          }
+          value="travel"
+        />
+        <RadioButton
+          checked={false}
+          disabled={false}
+          label="Other"
+          labelPosition="right"
+          style={
+            Object {
+              "marginBottom": 16,
+            }
+          }
+          value="other"
+        />
+      </RadioButtonGroup>
+    </div>
+  </Dialog>
+</div>
+`;
