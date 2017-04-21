@@ -16,7 +16,6 @@ class ReaderList extends React.Component {
     let articlesFound = [];
     if(!Array.isArray(this.props.articles)) {
       if(this.props.currentFeed !== "") {
-        console.log(`this.props.articles ---> ${JSON.stringify(this.props.articles)}`)
         articlesFound = this.props.articles[this.props.currentFeed];
       } else {
         for(var key in this.props.articles) {
