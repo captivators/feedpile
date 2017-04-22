@@ -6,9 +6,8 @@ import {Unwrapped as UnwrappedAddFeed} from './AddFeed'
 import { shallow} from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
 
-test('Header take a snapshot', () => {
-  const component = shallow(<UnwrappedAddFeed />);
+test('AddFeed take a snapshot', () => {
+  const component = shallow(<UnwrappedAddFeed categories={[]}/>);
   const tree = shallowToJson(component);
   expect(tree).toMatchSnapshot();
 });
-

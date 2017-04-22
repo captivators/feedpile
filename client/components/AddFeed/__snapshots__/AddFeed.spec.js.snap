@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header take a snapshot 1`] = `
+exports[`AddFeed take a snapshot 1`] = `
 <div>
   <Dialog
     actions={
@@ -51,6 +51,7 @@ exports[`Header take a snapshot 1`] = `
         fullWidth={true}
         hintText="http://coolnews.rss"
         multiLine={false}
+        onChange={[Function]}
         rows={1}
         type="text"
         underlineShow={true}
@@ -63,152 +64,7 @@ exports[`Header take a snapshot 1`] = `
         defaultSelected="other"
         name="categories"
         style={Object {}}
-      >
-        <RadioButton
-          checked={false}
-          disabled={false}
-          label="World News"
-          labelPosition="right"
-          style={
-            Object {
-              "marginBottom": 16,
-            }
-          }
-          value="wordNews"
-        />
-        <RadioButton
-          checked={false}
-          disabled={false}
-          label="Technology"
-          labelPosition="right"
-          style={
-            Object {
-              "marginBottom": 16,
-            }
-          }
-          value="technology"
-        />
-        <RadioButton
-          checked={false}
-          disabled={false}
-          label="Politics"
-          labelPosition="right"
-          style={
-            Object {
-              "marginBottom": 16,
-            }
-          }
-          value="politics"
-        />
-        <RadioButton
-          checked={false}
-          disabled={false}
-          label="Business"
-          labelPosition="right"
-          style={
-            Object {
-              "marginBottom": 16,
-            }
-          }
-          value="business"
-        />
-        <RadioButton
-          checked={false}
-          disabled={false}
-          label="Money"
-          labelPosition="right"
-          style={
-            Object {
-              "marginBottom": 16,
-            }
-          }
-          value="money"
-        />
-        <RadioButton
-          checked={false}
-          disabled={false}
-          label="Sports"
-          labelPosition="right"
-          style={
-            Object {
-              "marginBottom": 16,
-            }
-          }
-          value="sports"
-        />
-        <RadioButton
-          checked={false}
-          disabled={false}
-          label="Entertainment"
-          labelPosition="right"
-          style={
-            Object {
-              "marginBottom": 16,
-            }
-          }
-          value="entertainment"
-        />
-        <RadioButton
-          checked={false}
-          disabled={false}
-          label="Music"
-          labelPosition="right"
-          style={
-            Object {
-              "marginBottom": 16,
-            }
-          }
-          value="music"
-        />
-        <RadioButton
-          checked={false}
-          disabled={false}
-          label="Games"
-          labelPosition="right"
-          style={
-            Object {
-              "marginBottom": 16,
-            }
-          }
-          value="games"
-        />
-        <RadioButton
-          checked={false}
-          disabled={false}
-          label="Food"
-          labelPosition="right"
-          style={
-            Object {
-              "marginBottom": 16,
-            }
-          }
-          value="food"
-        />
-        <RadioButton
-          checked={false}
-          disabled={false}
-          label="Travel"
-          labelPosition="right"
-          style={
-            Object {
-              "marginBottom": 16,
-            }
-          }
-          value="travel"
-        />
-        <RadioButton
-          checked={false}
-          disabled={false}
-          label="Other"
-          labelPosition="right"
-          style={
-            Object {
-              "marginBottom": 16,
-            }
-          }
-          value="other"
-        />
-      </RadioButtonGroup>
+      />
     </div>
   </Dialog>
 </div>
