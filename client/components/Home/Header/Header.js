@@ -40,7 +40,6 @@ const Header = React.createClass({
   render() {
     return (
         <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
-
           <AppBar style={style.root}
                   title="Feedpile"
                   iconElementRight={<FlatButton onClick={()=> this.lock.show()} label="Sign in / Sign up"/>}

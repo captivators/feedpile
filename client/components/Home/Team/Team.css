@@ -4,11 +4,9 @@
   width: '100%';
   text-align: 'center';
   background-color: '#eee';
-
 }
 .team {
   display: 'flex';
   flex-wrap: 'wrap';
   justify-content: 'space-around';
 }
-

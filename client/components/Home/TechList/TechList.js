@@ -80,6 +80,11 @@ const techList = [
     image: "https://s4.postimg.org/l4sfu2sql/docker.png"
   },
   {
+    name: "AWS",
+    link: "https://aws.amazon.com/codedeploy/",
+    image: "https://s15.postimg.org/c0rtqswi3/Amazon_Webservices_Logo.svg.png",
+  },
+  {
     name: "Jest",
     link: '',
     image: "https://s24.postimg.org/rgds3co7p/jest.9ec4c2ad.png"
