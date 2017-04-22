@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
-import {setUser,loginSuccess, getArticlesForAllFeeds } from './actions';
+import {setUser,loginSuccess, getArticlesForAllFeeds, addFeed} from './actions';
 
 const createUserObj = (userObj, categoryList, feedList) => {
   const result = {};
@@ -66,7 +66,21 @@ export function* getArticlesForAllFeedsFromdb() {
   }
 }
 
+export function* addFeedToDb(action) {
+  try {
+    console.log('ROOT SAGA ADD FEED url: ', action.url);
+    console.log('ROOT SAGA ADD FEED userId: ', action.userId);
+    console.log('ROOT SAGA ADD FEED categoryId: ', action.categoryId);
+    const response = yield call(axios.post, '/api/feeds', {url: action.url, userId: action.userId, categoryId: action.categoryId});
+    console.log('addFeedToDb response: ', response);
+    // yield put();
+  } catch (e) {
+    console.log('Error: ', e);
+  }
+}
+
 export default function *rootSaga() {
   yield takeEvery('FIND_OR_CREATE_USER', findCreateUser);
   yield takeEvery('FETCH_ARTICLES_FOR_FEEDS', getArticlesForAllFeedsFromdb);
+  yield takeEvery('ADD_FEED', addFeedToDb);
 }

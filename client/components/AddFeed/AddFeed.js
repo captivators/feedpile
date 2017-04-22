@@ -3,7 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import {toggleModal} from '../../actions';
+import {toggleModal, addFeed, setAddFeedCategoryId, setAddFeedUrl} from '../../actions';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 import {connect} from 'react-redux';
 import './AddFeed.css';
@@ -21,6 +21,9 @@ const styles = {
  * Dialogs can be nested. This example opens a Date Picker from within a Dialog.
  */
 const AddFeed = (props) => {
+  var userId = JSON.parse(localStorage.getItem('profile')).identities[0].user_id;
+
+  console.log('user: ', props.user);
   const actions = [
     <FlatButton
       label="Cancel"
@@ -33,8 +36,8 @@ const AddFeed = (props) => {
       label="Submit"
       primary={true}
       onTouchTap={() => {
-      // Placeholder for addFeed call to the database
-      props.toggleModal(false);
+        props.addFeed(props.urlInput, userId, props.selectedCategory)
+        props.toggleModal(false);
       }}
     />
   ];
@@ -56,70 +59,24 @@ const AddFeed = (props) => {
           <TextField
             hintText="http://coolnews.rss"
             fullWidth={true}
+            onChange={(e) => {
+              props.setAddFeedUrl(e.target.value)
+            }}
           />
         </div>
         <div className="radio-buttons">
           <RadioButtonGroup name="categories" defaultSelected="other">
-            <RadioButton
-              value="wordNews"
-              label="World News"
-              style={styles.radioButton}
-            />
-            <RadioButton
-              value="technology"
-              label="Technology"
-              style={styles.radioButton}
-            />
-            <RadioButton
-              value="politics"
-              label="Politics"
-              style={styles.radioButton}
-            />
-            <RadioButton
-              value="business"
-              label="Business"
-              style={styles.radioButton}
-            />
-            <RadioButton
-              value="money"
-              label="Money"
-              style={styles.radioButton}
-            />
-            <RadioButton
-              value="sports"
-              label="Sports"
-              style={styles.radioButton}
-            />
-            <RadioButton
-              value="entertainment"
-              label="Entertainment"
-              style={styles.radioButton}
-            />
-            <RadioButton
-              value="music"
-              label="Music"
-              style={styles.radioButton}
-            />
-            <RadioButton
-              value="games"
-              label="Games"
-              style={styles.radioButton}
-            />
-            <RadioButton
-              value="food"
-              label="Food"
-              style={styles.radioButton}
-            />
-            <RadioButton
-              value="travel"
-              label="Travel"
-              style={styles.radioButton}
-            />
-            <RadioButton
-              value="other"
-              label="Other"
-              style={styles.radioButton}
-            />
+            {props.categories.map((category, i) => {
+              return (<RadioButton
+                  key={i}
+                  value={props.categories[i].name}
+                  label={props.categories[i].name}
+                  onTouchTap={() => {
+                    props.setAddFeedCategoryId(props.categories[i]._id)
+                  }}
+                  style={styles.radioButton}
+              />)
+            })}
           </RadioButtonGroup>
         </div>
       </Dialog>
@@ -129,8 +86,12 @@ const AddFeed = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    modalOpen: state.modalOpen
+    modalOpen: state.modalOpen,
+    categories: state.categories,
+    urlInput: state.addFeedUrl,
+    selectedCategory: state.addFeedCategoryId
   }
 }
+
 export const Unwrapped = AddFeed;
-export default connect(mapStateToProps, {toggleModal})(AddFeed);
+export default connect(mapStateToProps, {toggleModal, addFeed, setAddFeedCategoryId, setAddFeedUrl})(AddFeed);

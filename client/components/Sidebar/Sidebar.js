@@ -70,7 +70,6 @@ function wrapState(ComposedComponent) {
 }
 
 SelectableList = wrapState(SelectableList);
-
 class Sidebar extends React.Component {
   constructor(props) {
     super(props);

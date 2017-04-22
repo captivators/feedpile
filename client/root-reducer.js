@@ -26,7 +26,9 @@ const initialState = {
   user: {},
   categories: [],
   feeds: [],
-  currentFeed: ""
+  currentFeed: '',
+  addFeedUrl: '',
+  addFeedCategoryId: ''
 };
 
 const updateArticles = (state, action) => {
@@ -63,6 +65,18 @@ const setSidebarFeed = (state, action) => {
   return { ...state, currentFeed: action.currentFeed}
 };
 
+const setAddFeedUrl = (state, action) => {
+  console.log('Inside root reducer for setAddFeedUrl')
+  console.log('url: ', action.url);
+  return { ...state, addFeedUrl: action.url}
+}
+
+const setAddFeedCategoryId = (state, action) => {
+  console.log('Inside root reducer for setAddFeedCategoryId')
+  console.log('categoryId: ', action.categoryId);
+  return { ...state, addFeedCategoryId: action.categoryId}
+}
+
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case 'SET_CURRENT_ARTICLE':
@@ -81,6 +95,13 @@ function rootReducer(state = initialState, action) {
       return getArticlesForAllFeeds(state, action);
     case 'SET_SIDEBAR_FEED':
       return setSidebarFeed(state, action);
+    case 'ADD_FEED':
+      console.log('Feed successfully added');
+      return state;
+    case 'SET_ADD_FEED_URL':
+      return setAddFeedUrl(state, action);
+      case 'SET_ADD_FEED_CATEGORY_ID':
+        return setAddFeedCategoryId(state, action);
     default:
       return state
   }
