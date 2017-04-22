@@ -7,4 +7,5 @@ app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}!`);
 });
 
-cronJob.start();
+cronJob.job.start();
+cronJob.job2.start();
