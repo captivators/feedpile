@@ -18,3 +18,5 @@ var UserSchema = new Schema({
 });
 
 module.exports = mongoose.model('User', UserSchema);
+
+//https://www.youtube.com/watch?v=ZgdS0EUmn70
