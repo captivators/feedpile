@@ -15,6 +15,8 @@ describe('FEED API ROUTES: ', function() {
       }
     }
     request(userData, (error, response, body) => {
+      blob.user_id = body._id;
+
       const feedData = {
         method: 'POST',
         uri: 'http://127.0.0.1:8080/api/feeds',
@@ -67,10 +69,49 @@ describe('FEED API ROUTES: ', function() {
 
  it('should get all feeds', function(done) {
    request('http://127.0.0.1:8080/api/feeds', function(error, response, body) {
-     expect(response.statusCode).to.equal(200);
-     done();
+      expect(response.statusCode).to.equal(200);
+      done();
    });
  });
+})
+
+describe('USER API ROUTES: ', () => {
+
+  it('should create a new user', (done) => {
+    request('http://127.0.0.1:8080/api/users/', (error, response, body) => {
+      var users = JSON.parse(body);
+
+      var addedUser = users.find((user) => {
+        return user.userId === blob.userId;
+      }).userId;
+      expect(addedUser).to.equal('12345');
+      done();
+    })
+  })
+
+  it('should fetch one user', (done) => {
+    request('http://127.0.0.1:8080/api/users/' + blob.userId, (error, response, body) => {
+      var user = JSON.parse(body)
+      console.log(user);
+      expect(user._id).to.equal(blob.user_id);
+      done();
+    })
+  })
+
+  it('should delete a user', (done) => {
+    const requestParams = {
+      method: 'DELETE',
+      uri: 'http://127.0.0.1:8080/api/users/' + blob.user_id,
+    }
+
+    request(requestParams, (error, response, body) => {
+      var body = JSON.parse(body)
+      var deleteMessage = body.message;
+      expect(deleteMessage).to.equal('User deleted!')
+      done();
+    })
+  })
+
 
  it('should send back parsable stringified JSON', function(done) {
    request('http://127.0.0.1:8080/api/feeds', function(error, response, body) {
@@ -100,6 +141,7 @@ describe('FEED API ROUTES: ', function() {
     };
 
    request(requestParams, function(error, response, body) {
+    console.log('response.statusCode', response.statusCode)
      expect(response.statusCode).to.equal(200);
      done();
    });
