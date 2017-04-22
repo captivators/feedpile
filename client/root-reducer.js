@@ -77,6 +77,11 @@ const setAddFeedCategoryId = (state, action) => {
   return { ...state, addFeedCategoryId: action.categoryId}
 }
 
+const addFeedToCategory = (state, action) => {
+
+  return { }
+}
+
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case 'SET_CURRENT_ARTICLE':
@@ -102,6 +107,8 @@ function rootReducer(state = initialState, action) {
       return setAddFeedUrl(state, action);
       case 'SET_ADD_FEED_CATEGORY_ID':
         return setAddFeedCategoryId(state, action);
+      case 'ADD_FEED_TO_CATEGORY':
+        return addFeedToCategory(state, action);
     default:
       return state
   }

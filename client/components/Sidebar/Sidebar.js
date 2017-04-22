@@ -101,7 +101,7 @@ class Sidebar extends React.Component {
                                         key={i}
                                         primaryText={feed.name}
                                         onClick={() => this.props.setSidebarFeed(feed.feedId)}
-                                        leftIcon={<PanoramaFishEye />}
+                                        leftIcon={<PanoramaFishEye/>}
                                     />)
                                   })}
                         />)

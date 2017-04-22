@@ -39,9 +39,6 @@ export const setSidebarFeed = (currentFeed) => {
 };
 
 export const addFeed = (url, userId, categoryId) => {
-  console.log('ACTION addFeed url: ', url);
-  console.log('ACTION addFeed userId: ', userId);
-  console.log('ACTION addFeed categoryId: ', categoryId);
   return {type: 'ADD_FEED', url, userId, categoryId}
 };
 
@@ -51,4 +48,8 @@ export const setAddFeedUrl = (url) => {
 
 export const setAddFeedCategoryId = (categoryId) => {
   return {type: 'SET_ADD_FEED_CATEGORY_ID', categoryId}
+}
+
+export const addFeedToCategory = (feedId, categoryId) => {
+  return {type: 'ADD_FEED_TO_CATEGORY', feedId, categoryId}
 }

@@ -68,12 +68,11 @@ export function* getArticlesForAllFeedsFromdb() {
 
 export function* addFeedToDb(action) {
   try {
-    console.log('ROOT SAGA ADD FEED url: ', action.url);
-    console.log('ROOT SAGA ADD FEED userId: ', action.userId);
-    console.log('ROOT SAGA ADD FEED categoryId: ', action.categoryId);
     const response = yield call(axios.post, '/api/feeds', {url: action.url, userId: action.userId, categoryId: action.categoryId});
-    console.log('addFeedToDb response: ', response);
-    // yield put();
+    console.log(`response.data.id: ${response.data.id}`);
+    // const feedResponse = yield call(axios.get, '/api/feeds/' + response.data.id);
+    // console.log('feedResponse: ', JSON.stringify(feedResponse.data));
+    yield put();
   } catch (e) {
     console.log('Error: ', e);
   }
