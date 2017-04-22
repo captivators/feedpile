@@ -37,11 +37,12 @@ const tempData = {
 }
 
 test('ReaderList take a snapshot', () => {
-  const component = shallow(<UnwrappedReaderList articles={data}/>);
+  const component = shallow(<UnwrappedReaderList fetchArticlesForFeedsFromDb={()=>{}} articles={data}/>);
   const tree = shallowToJson(component);
   expect(tree).toMatchSnapshot();
 });
 test('ReaderList should render a ReaderListItem for each article', () => {
-  const component = render(<Provider store={store}><UnwrappedReaderList articles={tempData} currentFeed={""}/></Provider>);
+
+  const component = render(<Provider store={store}><UnwrappedReaderList fetchArticlesForFeedsFromDb={()=>{}} articles={tempData} currentFeed={""}/></Provider>);
   expect(component.find('.list-item-container').length).toEqual(tempData["58f7a4b09f861f7da0e08542"].length);
 });
