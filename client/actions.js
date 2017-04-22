@@ -1,21 +1,8 @@
-export const toggleListItem = (item) => {
-  return {type: "TOGGLE_NESTED_ITEM", item}
-};
-
-export const getArticlesFromDb = () => {
-  return {type: "GET_ARTICLES_FROM_DB"}
-};
-
-export const updateArticles = (articles) => {
-  return {type: "UPDATE_ARTICLES", articles}
-};
-
 export const setCurrentArticle = (article) => {
   return {type: "SET_CURRENT_ARTICLE", article}
 };
 
 export const toggleModal = (openStatus) => {
-  console.log('Inside toggleModal action, openStatus: ', openStatus);
   return {type: "TOGGLE_MODAL", openStatus}
 };
 
