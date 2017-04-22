@@ -13,9 +13,6 @@ var counter = 0;
 const job = new CronJob({
   cronTime: '0-59/30 * * * * *',
   onTick: function() {
-    /*
-     * Runs every 5 seconds.
-     */
 
     console.log(++counter);
 
@@ -127,7 +124,8 @@ const job = new CronJob({
 
         //get all articles
         var getArticles = new Promise(function (resolve, reject) {
-          Article.find(function(err, articles) {
+          Article.find({}, {}, {lean: true}, function(err, articles) {
+            //console.log(JSON.stringify(articles));
             resolve(articles);
           });
         });
@@ -145,6 +143,66 @@ const job = new CronJob({
 
                 return null;
               };
+
+              var checkUrl = function (url) {
+                 var arr = [ "jpeg", "jpg", "gif", "png" ];
+                 var ext = url.substring(url.lastIndexOf(".") + 1);
+
+                if(arr.indexOf(ext) > -1){
+                  return true;
+                }
+
+                return false;
+              };
+
+              var getImageUrl = function (text) {
+                var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+                var url_regex = new RegExp(expression);
+
+                var post_clone = text;
+                var urls = post_clone.match(url_regex);
+
+                var result = [];
+
+                urls.forEach(function(item, index){
+                  if (checkUrl(item)) {
+                    result.push(item);
+                  }
+                });
+
+                return result.length === 0 ? null : result[0];
+              };
+
+              function cloneSO(obj) {
+                // Handle the 3 simple types, and null or undefined
+                if (null == obj || "object" != typeof obj) return obj;
+
+                // Handle Date
+                if (obj instanceof Date) {
+                  var copy = new Date();
+                  copy.setTime(obj.getTime());
+                  return copy;
+                }
+
+                // Handle Array
+                if (obj instanceof Array) {
+                  var copy = [];
+                  for (var i = 0, len = obj.length; i < len; i++) {
+                    copy[i] = cloneSO(obj[i]);
+                  }
+                  return copy;
+                }
+
+                // Handle Object
+                if (obj instanceof Object) {
+                  var copy = {};
+                  for (var attr in obj) {
+                    if (obj.hasOwnProperty(attr)) copy[attr] = cloneSO(obj[attr]);
+                  }
+                  return copy;
+                }
+                throw new Error("Unable to copy obj! Its type isn't supported.");
+              }
 
               var compareMD5 = function (oldValue, newValue) {
                 return oldValue === newValue;
@@ -165,11 +223,14 @@ const job = new CronJob({
 
                     if (currentArticleDB) {
                       //check if values match if not update
-                      // console.log('title: ' + currentArticleDB.title + ' \nfeedId: ' + currentArticleDB.feedId + ' \nid: ' + currentArticleDB._id);
 
-                      var updatedArticle = {};
+                      var updatedArticle = cloneSO(currentArticleDB);
 
-                      Object.assign(updatedArticle, currentArticleDB);
+                      //Object.assign(updatedArticle, currentArticleDB);
+
+                      // if (!updatedArticle.imageSrc) {
+                      //   console.log('j: ' + j + '\ntitle: ' + updatedArticle.title + ' \nfeedId: ' + updatedArticle.feedId + ' \nid: ' + currentArticleDB._id + '\nimageSrc ' + updatedArticle.imageSrc);
+                      // }
 
                       var updatedFlag = false;
 
@@ -187,25 +248,64 @@ const job = new CronJob({
                       //   console.log('1111 ' + updatedArticle.title);
                       // }
 
-                      //if (feedResults[i].articles[j].image && feedResults[i].articles[j].image.url && feedResults[i].articles[j].image.url != updatedArticle.imageSrc) {
-                      if (feedResults[i].articles[j].image && feedResults[i].articles[j].image.url && updatedArticle.imageSrc && !compareMD5(md5(feedResults[i].articles[j].image.url), md5(updatedArticle.imageSrc))) {
-                        updatedArticle.imageSrc = feedResults[i].articles[j].image.url;
-                        updatedFlag = true;
-                        // console.log('222');
+
+
+
+                      if (updatedArticle.imageSrc) {
+                        if (feedResults[i].articles[j].image && feedResults[i].articles[j].image.url) {
+                          if (!compareMD5(md5(updatedArticle.imageSrc), md5(feedResults[i].articles[j].image.url))) {
+                            updatedArticle.imageSrc = feedResults[i].articles[j].image.url;
+                            updatedFlag = true;
+                            console.log('222');
+                          }
+                        } else if (feedResults[i].articles[j].enclosures[0] && feedResults[i].articles[j].enclosures[0].url && (feedResults[i].articles[j].enclosures[0].type).indexOf('image') > -1) {
+                            if (!compareMD5(md5(updatedArticle.imageSrc), md5(feedResults[i].articles[j].enclosures[0].url))) {
+                              updatedArticle.imageSrc = feedResults[i].articles[j].enclosures[0].url;
+                              updatedFlag = true;
+                              console.log('2222');
+                            }
+                        }
+                      } else if (!updatedArticle.imageSrc) {
+                        var imageUrl = getImageUrl(feedResults[i].articles[j].description);
+                        if (imageUrl != null && typeof imageUrl === 'string') {
+                        // console.log('article with id ' + currentArticleDB._id + ' has no image property and feed id ' + localFeeds[i].name)
+
+                          updatedArticle.imageSrc = imageUrl;
+                          updatedFlag = true;
+                          console.log('22222');
+                        }
                       }
-                      // else if (feedResults[i].articles[j].image && feedResults[i].articles[j].image.url && !updatedArticle.imageSrc) {
+
+
+
+                      // if (feedResults[i].articles[j].image && feedResults[i].articles[j].image.url && updatedArticle.imageSrc && !compareMD5(md5(feedResults[i].articles[j].image.url), md5(updatedArticle.imageSrc))) {
+                      //   console.log('j: ' + j + '\ntitle: ' + updatedArticle.title + ' \nfeedId: ' + updatedArticle.feedId + ' \nid: ' + currentArticleDB._id + '\nimageSrc ' + updatedArticle.imageSrc);
                       //   updatedArticle.imageSrc = feedResults[i].articles[j].image.url;
+                      //   updatedFlag = true;
+                      //   console.log('222');
+                      // }
+
+
+                      // //else if no image then use enclosures.url
+                      // if (feedResults[i].articles[j].enclosures[0] && feedResults[i].articles[j].enclosures[0].url && (feedResults[i].articles[j].enclosures[0].type).indexOf('image') > -1 && updatedArticle.imageSrc && !compareMD5(md5(feedResults[i].articles[j].enclosures[0].url), md5(updatedArticle.imageSrc))) {
+                      //   console.log('j: ' + j + '\ntitle: ' + updatedArticle.title + ' \nfeedId: ' + updatedArticle.feedId + ' \nid: ' + currentArticleDB._id + '\nimageSrc ' + updatedArticle.imageSrc);
+                      //   updatedArticle.imageSrc = feedResults[i].articles[j].enclosures[0].url;
                       //   updatedFlag = true;
                       //   console.log('2222');
                       // }
 
-                      //else if no image then use enclosures.url
-                      if (feedResults[i].articles[j].enclosures[0] && feedResults[i].articles[j].enclosures[0].url && (feedResults[i].articles[j].enclosures[0].type).indexOf('image') > -1 && updatedArticle.imageSrc && !compareMD5(md5(feedResults[i].articles[j].enclosures[0].url), md5(updatedArticle.imageSrc))) {
-                        updatedArticle.imageSrc = feedResults[i].articles[j].enclosures[0].url;
-                        updatedFlag = true;
-                        // console.log('222');
-                        console.log('here 1');
-                      }
+                      // if (!updatedArticle.imageSrc) {
+                      //   // console.log('1 ' + updatedArticle['imageSrc'])
+                      //   //add image
+                      //   var imageUrl = getImageUrl(feedResults[i].articles[j].description);
+                      //   if (imageUrl != null && typeof imageUrl === 'string') {
+                      //   console.log('article with id ' + currentArticleDB._id + ' has no image property and feed id ' + localFeeds[i].name)
+
+                      //     updatedArticle.imageSrc = imageUrl;
+                      //     updatedFlag = true;
+                      //     console.log('22222');
+                      //   }
+                      // }
 
                       //if (feedResults[i].articles[j].date && feedResults[i].articles[j].date != updatedArticle.date) {
                       if (feedResults[i].articles[j].date && updatedArticle.date && !compareMD5(md5(feedResults[i].articles[j].date), md5(updatedArticle.date))) {
@@ -303,6 +403,7 @@ const job = new CronJob({
                       // });
 
                       var searchFeedId = function (feedUrl) {
+                        // console.log(feedUrl)
                         for (var k = 0; k < localFeeds.length; k++) {
                           if (compareMD5(md5(localFeeds[k].url), md5(feedUrl))) {
                           //if (localFeeds[k].name === feedTitle) {
@@ -323,13 +424,25 @@ const job = new CronJob({
                         newArticle.url = feedResults[i].articles[j].link;
                       }
 
-                      if (feedResults[i].articles[j].image && feedResults[i].articles[j].image.url) {
-                        newArticle.imageSrc = feedResults[i].articles[j].image.url;
-                      }
+                      // if (feedResults[i].articles[j].image && feedResults[i].articles[j].image.url) {
+                      //   newArticle.imageSrc = feedResults[i].articles[j].image.url;
+                      // }
 
-                      if (feedResults[i].articles[j].enclosures[0] && feedResults[i].articles[j].enclosures[0].url && (feedResults[i].articles[j].enclosures[0].type).indexOf('image') > -1) {
+                      // if (feedResults[i].articles[j].enclosures[0] && feedResults[i].articles[j].enclosures[0].url && (feedResults[i].articles[j].enclosures[0].type).indexOf('image') > -1) {
+                      //   newArticle.imageSrc = feedResults[i].articles[j].enclosures[0].url;
+                      //   // console.log('here 2')
+                      // }
+
+                      if (feedResults[i].articles[j].image) {
+                        newArticle.imageSrc = feedResults[i].articles[j].image.url;
+                      } else if (feedResults[i].articles[j].enclosures[0] && feedResults[i].articles[j].enclosures[0].url && (feedResults[i].articles[j].enclosures[0].type).indexOf('image') > -1) {
                         newArticle.imageSrc = feedResults[i].articles[j].enclosures[0].url;
-                        console.log('here 2')
+                      } else {
+                        var imageUrl = getImageUrl(feedResults[i].articles[j].description);
+                        if (imageUrl != null && typeof imageUrl === 'string') {
+                          updatedArticle.imageSrc = imageUrl;
+                          updatedFlag = true;
+                        }
                       }
 
                       if (feedResults[i].articles[j].date) {
@@ -362,7 +475,7 @@ const job = new CronJob({
                         newArticle.summary = summaryText;
                       }
 
-                      if (feedResults[i].articles[j].description[j]) {
+                      if (feedResults[i].articles[j].description) {
                         newArticle.description = feedResults[i].articles[j].description;
                       }
 
@@ -473,4 +586,32 @@ const job = new CronJob({
   timeZone: 'America/Los_Angeles'
 });
 
-module.exports = job;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var job2 = new CronJob({
+  cronTime: '59 * * * * *',
+  onTick: function() {
+    console.log('delete job just ran')
+  },
+  start: false,
+  timeZone: 'America/Los_Angeles'
+});
+
+module.exports = {
+  job: job,
+  job2: job2
+};
