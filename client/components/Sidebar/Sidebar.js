@@ -19,7 +19,7 @@ import Lens from 'material-ui-icons/Lens';
 import feedPileImg from '../../images/feedpile.png'
 
 import './Sidebar.css';
-import { fetchArticlesForFeedsFromDb, toggleListItem, toggleModal,
+import { fetchArticlesForFeedsFromDb, toggleModal,
 findCreateUser, setSidebarFeed } from '../../actions';
 import { connect } from 'react-redux';
 
@@ -143,6 +143,6 @@ const mapStateToProps = (state) => {
 export const Unwrapped = Sidebar;
 
 export default connect(mapStateToProps, {
-  dispatchToggle : toggleListItem, fetchArticlesForFeedsFromDb, toggleModal,
+  fetchArticlesForFeedsFromDb, toggleModal,
   findCreateUser, setSidebarFeed
 })(Sidebar);

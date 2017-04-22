@@ -30,13 +30,17 @@ const Header = React.createClass({
         localStorage.setItem('id_token', authResult.idToken);
         localStorage.setItem('profile', JSON.stringify(profile));
         this.props.findCreateUser(profile.identities[0].user_id);
-        this.props.history.push(`/app`);
       }.bind(this));
     }.bind(this));
+  },
+
+  componentWillReceiveProps() {
+      this.props.history.push(`/app`);
   },
   render() {
     return (
         <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
+
           <AppBar style={style.root}
                   title="Feedpile"
                   iconElementRight={<FlatButton onClick={()=> this.lock.show()} label="Sign in / Sign up"/>}
@@ -46,6 +50,11 @@ const Header = React.createClass({
   }
 });
 
+const mapStateToProps = (state) => {
+  return {
+    redirect: state.redirect
+  }
+}
 
 export const Unwrapped = Header;
-export default connect(null, {findCreateUser, loginError})(Header);
+export default connect(mapStateToProps, {findCreateUser, loginError})(Header);

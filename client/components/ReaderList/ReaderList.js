@@ -9,7 +9,7 @@ class ReaderList extends React.Component {
   constructor (props){
     super(props);
   }
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchArticlesForFeedsFromDb();
   }
   render() {

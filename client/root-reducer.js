@@ -18,19 +18,15 @@ const initialState = {
   articles: [],
   open: false,
   modalOpen: false,
-  toggleListItem: '',
   currentArticle: '',
   isAuthenticated: checkTokenExpiry(),
+  redirect: false,
   profile: JSON.parse(localStorage.getItem('profile')),
   error: '',
   user: {},
   categories: [],
   feeds: [],
   currentFeed: ""
-};
-
-const toggleListItem = (state, action) => {
-  return {...state, toggleListItem : action.item.props.primaryText}
 };
 
 const updateArticles = (state, action) => {
@@ -46,10 +42,11 @@ const toggleModal = (state, action) => {
 };
 
 const loginSuccess = (state, action) => {
-  return { ...state, isAuthenticated: true, profile: action.profile, error: '' }
+  return { ...state, isAuthenticated: true, profile: action.profile, error: '', redirect: true }
 };
+
 const logoutSuccess = (state, action) => {
-  return { ...state, isAuthenticated: false, profile: null}
+  return { ...state, isAuthenticated: false, profile: null, redirect: false}
 };
 const loginError = (state, action) => {
   return { ...state, isAuthenticated: false, profile: null, error: action.error }
@@ -68,10 +65,6 @@ const setSidebarFeed = (state, action) => {
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
-    case 'TOGGLE_NESTED_ITEM':
-      return toggleListItem(state, action);
-    case 'UPDATE_ARTICLES':
-      return updateArticles(state, action);
     case 'SET_CURRENT_ARTICLE':
       return setCurrentArticle(state, action);
     case 'TOGGLE_MODAL':

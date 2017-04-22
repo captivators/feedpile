@@ -41,7 +41,6 @@ const featureList = [
 ]
 
 const FeatureList = (props) => {
-  console.log(props)
   return (
     <div className="features">
       <ul className="features-list">
