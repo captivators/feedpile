@@ -1,10 +1,10 @@
 var request = require('request');
 var expect = require('chai').expect;
-var blob = {userId: '12345', url: "http://www.reddit.com/.rss"};
+var user = {userId: '12345', url: "http://www.reddit.com/.rss", categoryName: 'some news outlet'};
 
 // make a user and a category variable to use throughout
 
-describe('FEED API ROUTES: ', function() {
+describe('API REQUESTS: ', function() {
 
   before((done) => {
     const userData = {
@@ -15,248 +15,183 @@ describe('FEED API ROUTES: ', function() {
       }
     }
     request(userData, (error, response, body) => {
-      blob.user_id = body._id;
+      request('http://127.0.0.1:8080/api/users/' + user.userId, (error, response, body) => {
+        user._id = JSON.parse(body)._id
+        const feedData = {
+          method: 'POST',
+          uri: 'http://127.0.0.1:8080/api/feeds',
+          json: {
+            url: "http://www.reddit.com/.rss",
+            userId: "12345",
+            categoryId: "58fa4fde51f58c9b7dc8b146",
+          },
+        }
+        request(feedData, (error, response, body) => {
+          user.feedId = body.message.slice(14, 38).trim();
+          done();
+        })
+      })
+    })
+  })
 
-      const feedData = {
-        method: 'POST',
-        uri: 'http://127.0.0.1:8080/api/feeds',
-        json: {
-          url: "http://www.reddit.com/.rss",
-          userId: "12345",
-          categoryId: "58fa4fde51f58c9b7dc8b146",
-        },
+  describe('FEED API ROUTES', () => {
+
+    it ('should get one specific feed', (done) => {
+      request('http://127.0.0.1:8080/api/feeds/' + user.feedId, (error, response, body) => {
+        var feed = JSON.parse(body);
+        expect(feed.url).to.equal("http://www.reddit.com/.rss")
+        done();
+      })
+    })
+    it('should delete a feed', (done) => {
+      var requestParams = {
+        method: 'DELETE',
+          uri: 'http://127.0.0.1:8080/api/feeds/' + user.feedId,
+          json: {
+            url: "http://www.reddit.com/.rss",
+            userId: "12345",
+            categoryId: "58fa4fde51f58c9b7dc8b146",
+          },
       }
-      request(feedData, (error, response, body) => {
-        if (error) {console.log('Err', error)}
-        blob.feedId = body.message.slice(14, 38).trim();
-        done();
-
-
+      request(requestParams, (error, response, body) => {
+        request('http://127.0.0.1:8080/api/feeds/', (error, response, body) => {
+          var feeds = JSON.parse(body);
+          var found = feeds.find((feed) => {
+            return feed._id === user.feedId;
+          });
+          console.log(found)
+          expect(found).to.equal(undefined);
+          done();
+        })
       })
     })
-  })
 
-  it ('should get one specific feed', (done) => {
-    request('http://127.0.0.1:8080/api/feeds/' + blob.feedId, (error, response, body) => {
-      var feed = JSON.parse(body);
-      console.log('feed', feed)
-      expect(feed.url).to.equal("http://www.reddit.com/.rss")
-      done();
-    })
-  })
-
-  it('should delete a feed', (done) => {
-    var requestParams = {
-      method: 'DELETE',
-        uri: 'http://127.0.0.1:8080/api/feeds/' + blob.feedId,
-        json: {
-          url: "http://www.reddit.com/.rss",
-          userId: "12345",
-          categoryId: "58fa4fde51f58c9b7dc8b146",
-        },
-    }
-    request(requestParams, (error, response, body) => {
-      request('http://127.0.0.1:8080/api/feeds/', (error, response, body) => {
-        var feeds = JSON.parse(body);
-        var found = feeds.find((feed) => {
-          return feed._id === blob.feedId;
-        });
-        expect(found).to.equal(undefined);
-        done();
-      })
-    })
-  })
-
- it('should get all feeds', function(done) {
-   request('http://127.0.0.1:8080/api/feeds', function(error, response, body) {
-      expect(response.statusCode).to.equal(200);
-      done();
-   });
- });
-})
-
-describe('USER API ROUTES: ', () => {
-
-  it('should create a new user', (done) => {
-    request('http://127.0.0.1:8080/api/users/', (error, response, body) => {
-      var users = JSON.parse(body);
-
-      var addedUser = users.find((user) => {
-        return user.userId === blob.userId;
-      }).userId;
-      expect(addedUser).to.equal('12345');
-      done();
-    })
-  })
-
-  it('should fetch one user', (done) => {
-    request('http://127.0.0.1:8080/api/users/' + blob.userId, (error, response, body) => {
-      var user = JSON.parse(body)
-      console.log(user);
-      expect(user._id).to.equal(blob.user_id);
-      done();
-    })
-  })
-
-  it('should delete a user', (done) => {
-    const requestParams = {
-      method: 'DELETE',
-      uri: 'http://127.0.0.1:8080/api/users/' + blob.user_id,
-    }
-
-    request(requestParams, (error, response, body) => {
-      var body = JSON.parse(body)
-      var deleteMessage = body.message;
-      expect(deleteMessage).to.equal('User deleted!')
-      done();
-    })
-  })
-
-
- it('should send back parsable stringified JSON', function(done) {
-   request('http://127.0.0.1:8080/api/feeds', function(error, response, body) {
-     expect(JSON.parse.bind(this, body)).to.not.throw();
-     done();
-   });
- });
-
- it('should send back an array', function(done) {
-   request('http://127.0.0.1:8080/api/feeds', function(error, response, body) {
-    console.log()
-     var parsedBody = JSON.parse(body);
-     expect(parsedBody).to.be.instanceof(Array);
-     done();
-   });
- });
-
- it('should create a new feed', function(done) {
-    var requestParams = {
-      method: 'POST',
-      uri: 'http://127.0.0.1:8080/api/feeds',
-      json: {
-        url: 'http://feeds.bbci.co.uk/news/rss.xml',
-        userId: '12345',
-        categoryId: '58fa4fde51f58c9b7dc8b146',
-      },
-    };
-
-   request(requestParams, function(error, response, body) {
-    console.log('response.statusCode', response.statusCode)
-     expect(response.statusCode).to.equal(200);
-     done();
-   });
- });
-
- it('should respond with feeds that were previously posted', function(done) {
+   it('should get all feeds', function(done) {
      request('http://127.0.0.1:8080/api/feeds', function(error, response, body) {
-       var feeds = JSON.parse(body);
-       expect(feeds[1].name).to.equal('BBC News - Home');
-       done();
+        expect(response.statusCode).to.equal(200);
+        done();
      });
    });
- });
+  });
 
-  // it('should get one feed', function(done) {
-  //   var requestParams = {
-  //     method: 'POST',
-  //     uri: 'http://127.0.0.1:8080/api/feeds',
-  //     json: {
-  //       url: 'http://feeds.bbci.co.uk/news/rss.xml',
-  //       userId: '102628075068490902360',
-  //       categoryId: '58fa4fde51f58c9b7dc8b146',
-  //     },
-  //   };
+  describe('USER API ROUTES: ', () => {
 
-  //   request(requestParams, function(error, response, body) {
-  //     console.log(response)
-  //     request('/api/feeds/:58fa4db24bdb4215e798b94b', function(error, response, body) {
-  //       console.log(body);
-  //       expect(body).to.equal('BBC News - Home');
+
+  //   it('should fetch one user', (done) => {
+  //     request('http://127.0.0.1:8080/api/users/' + user.userId, (error, response, body) => {
+  //       var u = JSON.parse(body)
+  //       console.log('line 96', user._id + ' vs ' + u._id);
+  //       expect(u._id).to.equal(user._id);
   //       done();
   //     })
   //   })
   // })
+// });
+    it('should create a new user', (done) => {
+      request('http://127.0.0.1:8080/api/users/', (error, response, body) => {
+        var users = JSON.parse(body);
 
-  // it('should delete one feed', function(done) {
-  //    var requestParams = {
-  //     method: 'POST',
-  //     uri: 'http://127.0.0.1:8080/api/feeds',
-  //     json: {
-  //       url: 'http://feeds.bbci.co.uk/news/rss.xml',
-  //       userId: '102628075068490902360',
-  //       categoryId: '58fa4fde51f58c9b7dc8b146',
-  //     },
-  //   };
-  //   request(requestParams, function(error, response, body) {
-  //     request('/api/feeds', )
-  //   })
+        var addedUser = users.find((u) => {
+          return u.userId === user.userId;
+        }).userId;
 
-  //   var requestParams = {
-  //     method: 'DELETE',
-  //     uri: 'http://127.0.0.1:8080/api/58f28e984bdb4215e798a1ca',
-  //   };
+        expect(addedUser).to.equal('12345');
+        done();
+      })
+    })
 
-  //   request(requestParams, function(error, response, body) {
-  //     request('/api/feeds/', function(error, response, body) {
-  //       var feeds = JSON.parse(body);
-  //       var result = feeds.find(function(feed) {
-  //         return feed._id === '58f28e984bdb4215e798a1ca';
-  //       });
-  //       expect(result).to.equal(false);
-  //       done();
-  //     })
-  //   })
-  // })
+    it('should delete a user', (done) => {
+      const requestParams = {
+        method: 'DELETE',
+        uri: 'http://127.0.0.1:8080/api/users/' + user._id,
+      }
 
-  // it('should add a new user', function(done) {
-  //   var requestParams = {
-  //     method: 'POST',
-  //     uri: 'http://127.0.0.1:8080/api/users',
-  //     json: {
-  //       username: 'Albert_the_Lion',
-  //       password: 'rawr123456',
-  //     },
-  //   };
-  //     request(requestParams, function(error, response, body) {
-  //       var userId = body.user._id;
-  //       request('/api/users/:' + JSON.stringify(userId)), function(error, response, body) {
-  //         var userName = JSON.parse(body);
-  //         expect(userName).to.equal('Albert_the_Lion');
-  //         done();
-  //       }
-  //     })
-  //   });
+      request(requestParams, (error, response, body) => {
+        var body = JSON.parse(body)
+        var deleteMessage = body.message;
+        expect(deleteMessage).to.equal('User deleted!')
+        done();
+      })
+    })
+  })
 
-//   it('should create a new category', function(done) {
-//     var categoryName = JSON.stringify(Math.floor(Math.random() * 800));
-//     var requestParams = {
-//       method: 'POST',
-//       uri: 'http://127.0.0.1:8080/api/categories',
-//       json: {
-//         name: categoryName,
-//       }
-//     }
-//     request(requestParams, function(error, response, body) {
-//       request('http://127.0.0.1:8080/api/categories', function(error, response, body) {
-//         var parsedBody = JSON.parse(body);
-//         var result = false;
-//         parsedBody.forEach(function(category) {
-//           if (category.name === categoryName) result = true;
-//         })
-//         expect(result).to.equal(true);
-//         done();
-//       })
 
-//       })
-//     })
+//  it('should send back parsable stringified JSON', function(done) {
+//    request('http://127.0.0.1:8080/api/feeds', function(error, response, body) {
+//      expect(JSON.parse.bind(this, body)).to.not.throw();
+//      done();
+//    });
+//  });
 
-//   it('should send back an array', function(done) {
-//    request('http://127.0.0.1:8080/api/categories', function(error, response, body) {
+//  it('should send back an array', function(done) {
+//    request('http://127.0.0.1:8080/api/feeds', function(error, response, body) {
+//     console.log('sauce')
 //      var parsedBody = JSON.parse(body);
-//      console.log(parsedBody);
 //      expect(parsedBody).to.be.instanceof(Array);
 //      done();
 //    });
-//   });
-// })
-// })
+//  });
+
+//  it('should create a new feed', function(done) {
+//     var requestParams = {
+//       method: 'POST',
+//       uri: 'http://127.0.0.1:8080/api/feeds',
+//       json: {
+//         url: 'http://feeds.bbci.co.uk/news/rss.xml',
+//         userId: '12345',
+//         categoryId: '58fa4fde51f58c9b7dc8b146',
+//       },
+//     };
+
+//    request(requestParams, function(error, response, body) {
+//     console.log('response.statusCode', response.statusCode)
+//      expect(response.statusCode).to.equal(200);
+//      done();
+//    });
+//  });
+
+//  it('should respond with feeds that were previously posted', function(done) {
+//      request('http://127.0.0.1:8080/api/feeds', function(error, response, body) {
+//        var feeds = JSON.parse(body);
+//        expect(feeds[1].name).to.equal('BBC News - Home');
+//        done();
+//      });
+//    });
+//  });
+
+  describe('CATEGORY API ROUTES', () => {
+
+    it('should create a new category', function(done) {
+      var requestParams = {
+        method: 'POST',
+        uri: 'http://127.0.0.1:8080/api/categories',
+        json: {
+          name: user.categoryName,
+        }
+      }
+      request(requestParams, function(error, response, body) {
+        request('http://127.0.0.1:8080/api/categories', function(error, response, body) {
+          var parsedBody = JSON.parse(body);
+          var result = false;
+          parsedBody.forEach(function(category) {
+            if (category.name === user.categoryName) { result = true; }
+          })
+          expect(result).to.equal(true);
+          done();
+        })
+      })
+    })
+
+
+    it('should send back an array of categories', function(done) {
+     request('http://127.0.0.1:8080/api/categories', function(error, response, body) {
+       var parsedBody = JSON.parse(body);
+       console.log(parsedBody);
+       expect(parsedBody).to.be.instanceof(Array);
+       done();
+     });
+    });
+  })
+})
+
+// // after, delete the username, feed, and category
