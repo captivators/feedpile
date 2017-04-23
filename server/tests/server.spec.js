@@ -186,12 +186,10 @@ describe('API REQUESTS: ', function() {
     it('should send back an array of categories', function(done) {
      request('http://127.0.0.1:8080/api/categories', function(error, response, body) {
        var parsedBody = JSON.parse(body);
-       console.log(parsedBody);
        expect(parsedBody).to.be.instanceof(Array);
        done();
      });
     });
   })
-})
-
+});
 // // after, delete the username, feed, and category
