@@ -1,4 +1,5 @@
 var request = require('request');
+require('mocha');
 var expect = require('chai').expect;
 var user = {userId: '12345', url: "http://www.reddit.com/.rss", categoryName: 'some news outlet'};
 
