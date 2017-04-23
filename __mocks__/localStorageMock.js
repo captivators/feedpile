@@ -1,6 +1,6 @@
 const localStorageMock = (() => {
   let store = {
-    "profile": '{"name":"faiz"}',
+    "profile": '{"name":"test","identities":[{"user_id":123}]}',
     id_token: ""
   };
   return {
