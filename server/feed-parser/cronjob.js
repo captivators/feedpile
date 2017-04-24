@@ -136,7 +136,7 @@ const job = new CronJob({
             return new Promise(function (resolve, reject) {
               var findArticleByUrl = function (urlToFind) {
                 for (var i = 0; i < articles.length; i++) {
-                  if (articles[i].url === urlToFind) {
+                  if (articles[i].url == urlToFind) {
                     return articles[i];
                   }
                 }
@@ -145,10 +145,10 @@ const job = new CronJob({
               };
 
               var checkUrl = function (url) {
-                 var arr = [ "jpeg", "jpg", "gif", "png" ];
-                 var ext = url.substring(url.lastIndexOf(".") + 1);
+                 var arr = [ 'jpeg', 'jpg', 'gif', 'png' ];
+                 var ext = url.substring(url.lastIndexOf('.') + 1);
 
-                if(arr.indexOf(ext) > -1){
+                if (arr.indexOf(ext) > -1) {
                   return true;
                 }
 
@@ -164,7 +164,7 @@ const job = new CronJob({
 
                 var result = [];
 
-                urls.forEach(function(item, index){
+                urls.forEach(function(item, index) {
                   if (checkUrl(item)) {
                     result.push(item);
                   }
@@ -173,9 +173,9 @@ const job = new CronJob({
                 return result.length === 0 ? null : result[0];
               };
 
-              function cloneSO(obj) {
+              var cloneSO = function (obj) {
                 // Handle the 3 simple types, and null or undefined
-                if (null == obj || "object" != typeof obj) return obj;
+                if (null == obj || 'object' != typeof obj) return obj;
 
                 // Handle Date
                 if (obj instanceof Date) {
@@ -201,8 +201,8 @@ const job = new CronJob({
                   }
                   return copy;
                 }
-                throw new Error("Unable to copy obj! Its type isn't supported.");
-              }
+                throw new Error('Unable to copy obj! Its type isn\'t supported.');
+              };
 
               var compareMD5 = function (oldValue, newValue) {
                 return oldValue === newValue;
@@ -498,7 +498,7 @@ const job = new CronJob({
                 } //feedResults[i].articles for loop
 
                 if (i === iCounterMax && j === jCounterMax) {
-                  resolve("this");
+                  resolve('this');
                 }
               } //feedResults for loop
             }); //promise
@@ -508,7 +508,7 @@ const job = new CronJob({
 
             //fetch all users
             var users = new Promise(function (resolve, reject) {
-              User.find(function(err, users) {
+              User.find({}, {}, {lean: true}, function(err, users) {
                 if (err) {
                   console.log('error getting users');
                 }
@@ -518,47 +518,50 @@ const job = new CronJob({
 
             users
               .then(function (users) {
-                console.log('in users')
+                console.log('in users');
 
-                var saveUser = function (indexA, indexB, newArr) {
-                  var u = users[indexA];
-                  u.feeds[indexB].articles = newArr;
+//                 var saveUser = function (indexA, indexB, newArr) {
+//                   var u = users[indexA];
+//                   u.feeds[indexB].articles = newArr;
 
-                  u.save(function (err, o) {
-                    if (err) {
-                      console.log(err)
-                    }
-                    console.log('Successfully added articles to user');
-                  });
-                };
+// console.log(u);
+//                   u.save(function (err, o) {
+//                     if (err) {
+//                       console.log(err);
+//                     }
+//                     console.log('Successfully added articles to user');
+//                   });
+//                 };
 
-                var articlesUpdateForuser = function (f, a, indexA, indexB) {
-                  var searchObj = function (arr, id) {
-                    for (var c = 0; c < arr.length; c++) {
-                      if (arr[c].articleId == id) {
-                        return true;
-                      }
-                    }
+                // var articlesUpdateForuser = function (f, a, indexA, indexB) {
+                //   var searchObj = function (arr, id) {
+                //     for (var c = 0; c < arr.length; c++) {
+                //       if (arr[c].articleId == id) {
+                //         return true;
+                //       }
+                //     }
 
-                    return false;
-                  };
+                //     return false;
+                //   };
 
-                  Article.find({feedId: f}, function(err, articles) {
-                    if (err) {
-                      console.log('error getting articles by feedId');
-                    }
+                //   Article.find({feedId: f}, function(err, articles) {
+                //     if (err) {
+                //       console.log('error getting articles by feedId');
+                //     }
 
-                    for (var k = 0; k < articles.length; k++) {
-                      //console.log(articles[k]._id);
-                      if (!searchObj(a, articles[k]._id)) {
-                        //push to array to add for user
-                        a.push({articleId: articles[k]._id, readFlag: false});
-                      }
-                    }
+                //     for (var k = 0; k < articles.length; k++) {
+                //       //console.log(articles[k]._id);
+                //       if (!searchObj(a, articles[k]._id)) {
+                //         //push to array to add for user
+                //         a.push({articleId: articles[k]._id, readFlag: false});
+                //       }
+                //     }
 
-                    saveUser(indexA, indexB, a);
-                  });
-                };
+                //     users[indexA].feeds[indexB].articles = a;
+
+                //     //saveUser(indexA, indexB, a);
+                //   });
+                // };
 
                 for (var i = 0; i < users.length; i++) {
                   var user = users[i];
@@ -568,7 +571,56 @@ const job = new CronJob({
                     var articlesToAddForUser = user.feeds[j].articles;
 
                     //fetch all articles for a particular feedId
-                    articlesUpdateForuser(feedId, articlesToAddForUser, i, j);
+                    // articlesUpdateForuser(feedId, articlesToAddForUser, i, j);
+                    (function (u, pos, arrArticles, f) {
+                      Article.find({feedId: f}).exec()
+                      .then(function(result) {
+                        return new Promise(function (resolve, reject) {
+                          var updated = false;
+                          var searchObj = function (arr, id) {
+                            for (var c = 0; c < arr.length; c++) {
+                              if (arr[c].articleId == id) {
+                                return true;
+                              }
+                            }
+
+                            return false;
+                          };
+
+                          for (var k = 0; k < result.length; k++) {
+                            if (!searchObj(arrArticles, result[k]._id)) {
+                              //push to array to add for user
+                              arrArticles.push({articleId: result[k]._id, readFlag: false});
+                              updated = true;
+                            }
+                          }
+
+                          u.feeds[pos].articles = arrArticles;
+                          resolve({u: u, pos: pos, updated: updated});
+                        });
+                      })
+                      .then(function (us) {
+                        if (us.updated) {
+                          User.findOne({_id: us.u._id}, function (err, u) {
+                            if (err) console.log(err);
+
+                            if (u.__v) delete u.__v;
+
+                            for (var cc = 0; cc < u.feeds.length; cc++) {
+                              if (u.feeds[cc].feedId == us.u.feeds[pos].feedId) {
+
+                                u.feeds[cc].articles = us.u.feeds[pos].articles;
+                                u.save(function (err, updated) {
+                                  if (err) return console.log(err);
+                                  console.log(updated);
+                                });
+                                break;
+                              }
+                            }
+                          });
+                        }
+                      });
+                    })(user, j, articlesToAddForUser, feedId);
                   } //for j users.feeds.length
                 } //for i users.length
               }); //users .then
