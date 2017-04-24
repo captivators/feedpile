@@ -26,7 +26,9 @@ const initialState = {
   user: {},
   categories: [],
   feeds: [],
-  currentFeed: ""
+  currentFeed: '',
+  addFeedUrl: '',
+  addFeedCategoryId: ''
 };
 
 const updateArticles = (state, action) => {
@@ -44,7 +46,6 @@ const toggleModal = (state, action) => {
 const loginSuccess = (state, action) => {
   return { ...state, isAuthenticated: true, profile: action.profile, error: '', redirect: true }
 };
-
 const logoutSuccess = (state, action) => {
   return { ...state, isAuthenticated: false, profile: null, redirect: false}
 };
@@ -61,6 +62,46 @@ const getArticlesForAllFeeds = (state, action) => {
 
 const setSidebarFeed = (state, action) => {
   return { ...state, currentFeed: action.currentFeed}
+};
+
+const setAddFeedUrl = (state, action) => {
+  console.log('Inside root reducer for setAddFeedUrl')
+  console.log('url: ', action.url);
+  return { ...state, addFeedUrl: action.url}
+}
+
+const setAddFeedCategoryId = (state, action) => {
+  console.log('Inside root reducer for setAddFeedCategoryId');
+  console.log('categoryId: ', action.categoryId);
+  return { ...state, addFeedCategoryId: action.categoryId}
+}
+
+const addFeedToCategory = (state, action) => {
+  if(!state.user[action.categoryId]) {
+    let categoryName;
+    for(let i=0; i<state.categories.length; i++) {
+      if(state.categories[i]._id === action.categoryId) {
+        categoryName = state.categories[i].name;
+      }
+    }
+    return {
+      ...state,
+      user: {
+        ...state.user,
+        [action.categoryId]: {categoryName, feeds: [].concat({name: action.feedName, feedId: action.feedId})}
+      }
+    }
+  } else {
+    return {
+      ...state, user: {
+        ...state.user,
+        [action.categoryId]: {
+          ...state.user[action.categoryId],
+          feeds: state.user[action.categoryId].feeds.concat({name: action.feedName, feedId: action.feedId})
+        }
+      }
+    }
+  }
 };
 
 function rootReducer(state = initialState, action) {
@@ -81,6 +122,15 @@ function rootReducer(state = initialState, action) {
       return getArticlesForAllFeeds(state, action);
     case 'SET_SIDEBAR_FEED':
       return setSidebarFeed(state, action);
+    case 'ADD_FEED':
+      console.log('Feed successfully added');
+      return state;
+    case 'SET_ADD_FEED_URL':
+      return setAddFeedUrl(state, action);
+      case 'SET_ADD_FEED_CATEGORY_ID':
+        return setAddFeedCategoryId(state, action);
+      case 'ADD_FEED_TO_CATEGORY':
+        return addFeedToCategory(state, action);
     default:
       return state
   }
