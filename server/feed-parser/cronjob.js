@@ -604,6 +604,8 @@ const job = new CronJob({
                           User.findOne({_id: us.u._id}, function (err, u) {
                             if (err) console.log(err);
 
+                            if (u.__v) delete u.__v;
+
                             for (var cc = 0; cc < u.feeds.length; cc++) {
                               if (u.feeds[cc].feedId == us.u.feeds[pos].feedId) {
 
