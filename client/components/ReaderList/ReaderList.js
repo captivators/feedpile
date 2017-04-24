@@ -15,7 +15,7 @@ class ReaderList extends React.Component {
   render() {
     let articlesFound = [];
     if(!Array.isArray(this.props.articles)) {
-      if(this.props.currentFeed !== "") {
+      if(this.props.currentFeed !== "" && this.props.articles[this.props.currentFeed]) {
         articlesFound = this.props.articles[this.props.currentFeed];
       } else {
         for(var key in this.props.articles) {
