@@ -5,7 +5,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar'
 import FlatButton from 'material-ui/FlatButton'
 import { connect } from 'react-redux';
-import { findCreateUser, loginError} from '../../../actions'
+import { findCreateUser, loginError, setDisplayProgress} from '../../../actions'
 import Auth0Lock from 'auth0-lock';
 
 const style = {
@@ -22,6 +22,7 @@ const Header = React.createClass({
   componentDidMount() {
     this.lock = new Auth0Lock('V22h9G3v-_1RucHOwP71LqZpQJCSiL6n', 'faizone.auth0.com');
     this.lock.on("authenticated", function(authResult) {
+      this.props.setDisplayProgress(true);
       this.lock.getUserInfo(authResult.accessToken, function(error, profile) {
         if (error) {
           this.props.loginError();
@@ -56,4 +57,4 @@ const mapStateToProps = (state) => {
 }
 
 export const Unwrapped = Header;
-export default connect(mapStateToProps, {findCreateUser, loginError})(Header);
+export default connect(mapStateToProps, {findCreateUser, loginError, setDisplayProgress})(Header);

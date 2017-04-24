@@ -8,7 +8,7 @@ const ReaderListItem = (props) => {
 
   return(
       <div onClick={() => {
-        props.history.push(`/read/${props.articleIndex}`)
+        props.history.push(`/read/${props.article._id}`)
         props.renderReadView(props.article)
       }}>
       <div className='list-item-container'>

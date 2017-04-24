@@ -20,7 +20,7 @@ import feedPileImg from '../../images/feedpile.png'
 
 import './Sidebar.css';
 import { fetchArticlesForFeedsFromDb, toggleModal,
-findCreateUser, setSidebarFeed } from '../../actions';
+findCreateUser, setSidebarFeed, setDisplayProgress } from '../../actions';
 import { connect } from 'react-redux';
 
 const styles = {
@@ -110,7 +110,11 @@ class Sidebar extends React.Component {
           </SelectableList>
 
           <span className="refresh-icon">
-        <IconButton onClick={this.props.fetchArticlesForFeedsFromDb} className="refresh-icon" iconStyle={styles.smallIcon}
+        <IconButton onClick={()=>{
+          this.props.fetchArticlesForFeedsFromDb()
+          this.props.setDisplayProgress(true)
+        }
+        } className="refresh-icon" iconStyle={styles.smallIcon}
                     style={styles.small}>
           <Refresh />
         </IconButton>
@@ -144,5 +148,5 @@ export const Unwrapped = Sidebar;
 
 export default connect(mapStateToProps, {
   fetchArticlesForFeedsFromDb, toggleModal,
-  findCreateUser, setSidebarFeed
+  findCreateUser, setSidebarFeed, setDisplayProgress
 })(Sidebar);
