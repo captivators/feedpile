@@ -102,7 +102,7 @@ exports.createFeed = (req, res) => {
     Feed.findOne({url: req.body.url }).exec()
       .then(function (feed) {
         var result = [];
-        return User.findOne({userId: req.body.userId}).exec()
+        return User.findOne({userId: req.body.userId}, {}, {lean: true}).exec()
           .then(function (user) {
             return [feed, user];
           });
@@ -111,26 +111,46 @@ exports.createFeed = (req, res) => {
         var feed = result[0];
         var user = result[1];
 
-        // console.log(JSON.stringify(feed))
-        // console.log(JSON.stringify(user))
-        //TODO: FIX ISSUE: DO NOT PERMIT TO ADD SAME FEED FOR USER
-        if (feed === null) {
-          var newFeed = new Feed();
-          newFeed.url = req.body.url;
-
-          newFeed.save()
-            .then(function (f) {
-              console.log(f);
-              User.findOneAndUpdate({userId: req.body.userId}, {$push: {feeds: {feedId: f._id, categoryId: req.body.categoryId}}}, {new: true}).exec()
-                .then(function (u) {
-                  res.json({status: 201, message: 'successfully created', newObj: u});
-                });
-            })
+        if (user === null) {
+          res.json({status: 404, message: req.body.userId + ' user not found'});
         } else {
-          User.findOneAndUpdate({userId: req.body.userId}, {$push: {feeds: {feedId: feed._id, categoryId: req.body.categoryId}}}, {new: true}).exec()
-                .then(function (u) {
-                  res.json({status: 201, message: 'successfully created', newObj: u});
-                });
+          // console.log(JSON.stringify(feed))
+          // console.log(JSON.stringify(user))
+          //TODO: FIX ISSUE: DO NOT PERMIT TO ADD SAME FEED FOR USER
+          if (feed === null) {
+            var newFeed = new Feed();
+            newFeed.url = req.body.url;
+
+            newFeed.save()
+              .then(function (f) {
+                console.log(f);
+                User.findOneAndUpdate({userId: req.body.userId}, {$push: {feeds: {feedId: f._id, categoryId: req.body.categoryId}}}, {new: true}).exec()
+                  .then(function (u) {
+                    res.json({status: 201, message: 'new feed successfully created and added to user', newObj: u});
+                  });
+              });
+          } else {
+            console.log(feed._id);
+
+            var searchFeedIdInUserFeeds = function (feedId, u) {
+              for (var i = 0; i < u.feeds.length; i++) {
+                if (u.feeds[i].feedId == feedId) {
+                  return true;
+                }
+              }
+
+              return false;
+            };
+
+            if (searchFeedIdInUserFeeds(feed._id, user)) {
+              res.json({status: 409, message: 'feed already exists for user'});
+            } else {
+              User.findOneAndUpdate({userId: req.body.userId}, {$push: {feeds: {feedId: feed._id, categoryId: req.body.categoryId}}}, {new: true}).exec()
+                  .then(function (u) {
+                    res.json({status: 201, message: 'existing feed added successfully to user', newObj: u});
+                  });
+            }
+          }
         }
       });
   }
