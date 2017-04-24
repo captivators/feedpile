@@ -2,6 +2,7 @@ const Feed = require('./models/feed');
 const User = require('./models/user');
 const Article = require('./models/article');
 const Category = require('./models/category');
+const ArticlesFetcher = require('./feed-parser/articles-fetcher');
 
 
 const parse = require('./feed-parser/parser');
@@ -112,7 +113,7 @@ exports.createFeed = (req, res) => {
 
         // console.log(JSON.stringify(feed))
         // console.log(JSON.stringify(user))
-
+        //TODO: FIX ISSUE: DO NOT PERMIT TO ADD SAME FEED FOR USER
         if (feed === null) {
           var newFeed = new Feed();
           newFeed.url = req.body.url;
@@ -263,13 +264,13 @@ exports.createUser = (req, res) => {
           var newUser = new User();
           newUser.userId = req.body.userId;
 
-          newUser.save().then(function (user) {
-            res.json({ status: 201, message: 'User created!', newUser: user });
+          newUser.save().then(function (nuser) {
+            res.json({ status: 201, message: 'User created!', user: nuser });
           });
         } else {
-          res.json({ status: 409, message: 'userId already exists!' });
+          res.json({ status: 409, message: 'userId already exists!', user: user });
         }
-      })
+      });
   } else {
     res.json({ status: 400, message: 'UserId missing!' });
   }
