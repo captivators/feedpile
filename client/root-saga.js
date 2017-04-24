@@ -47,7 +47,7 @@ export function* findCreateUser(userId) {
     const categoryList = yield call(axios.get, '/api/categories');
     const feedList = yield call(axios.get, '/api/feeds/');
     // localStorage.setItem('feedList', JSON.stringify(feedList.data));
-    const result = createUserObj(userObj.data, categoryList.data, feedList.data);
+    const result = createUserObj(userObj.data.user, categoryList.data, feedList.data);
     yield put(setUser(result, categoryList.data, feedList.data));
     yield put(loginSuccess(JSON.parse(localStorage.getItem('profile'))));
   } catch (e) {
