@@ -50,6 +50,7 @@ export const setAddFeedCategoryId = (categoryId) => {
   return {type: 'SET_ADD_FEED_CATEGORY_ID', categoryId}
 }
 
-export const addFeedToCategory = (feedId, categoryId) => {
-  return {type: 'ADD_FEED_TO_CATEGORY', feedId, categoryId}
+export const addFeedToCategory = (feedName, feedId, categoryId) => {
+
+  return {type: 'ADD_FEED_TO_CATEGORY', feedName, feedId, categoryId}
 }
