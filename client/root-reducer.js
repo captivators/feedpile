@@ -46,7 +46,6 @@ const toggleModal = (state, action) => {
 const loginSuccess = (state, action) => {
   return { ...state, isAuthenticated: true, profile: action.profile, error: '', redirect: true }
 };
-
 const logoutSuccess = (state, action) => {
   return { ...state, isAuthenticated: false, profile: null, redirect: false}
 };
@@ -72,15 +71,38 @@ const setAddFeedUrl = (state, action) => {
 }
 
 const setAddFeedCategoryId = (state, action) => {
-  console.log('Inside root reducer for setAddFeedCategoryId')
+  console.log('Inside root reducer for setAddFeedCategoryId');
   console.log('categoryId: ', action.categoryId);
   return { ...state, addFeedCategoryId: action.categoryId}
 }
 
 const addFeedToCategory = (state, action) => {
-
-  return { }
-}
+  if(!state.user[action.categoryId]) {
+    let categoryName;
+    for(let i=0; i<state.categories.length; i++) {
+      if(state.categories[i]._id === action.categoryId) {
+        categoryName = state.categories[i].name;
+      }
+    }
+    return {
+      ...state,
+      user: {
+        ...state.user,
+        [action.categoryId]: {categoryName, feeds: [].concat({name: action.feedName, feedId: action.feedId})}
+      }
+    }
+  } else {
+    return {
+      ...state, user: {
+        ...state.user,
+        [action.categoryId]: {
+          ...state.user[action.categoryId],
+          feeds: state.user[action.categoryId].feeds.concat({name: action.feedName, feedId: action.feedId})
+        }
+      }
+    }
+  }
+};
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
