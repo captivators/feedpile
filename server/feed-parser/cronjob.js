@@ -136,7 +136,7 @@ const job = new CronJob({
             return new Promise(function (resolve, reject) {
               var findArticleByUrl = function (urlToFind) {
                 for (var i = 0; i < articles.length; i++) {
-                  if (articles[i].url === urlToFind) {
+                  if (articles[i].url == urlToFind) {
                     return articles[i];
                   }
                 }
