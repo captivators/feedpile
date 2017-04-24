@@ -2,9 +2,8 @@ var request = require('request');
 var expect = require('chai').expect;
 var user = {
   userId: '12345',
-  url: "http://rss.cnn.com/rss/cnn_world.rss",
-  categoryName: 'some news outlet',
-  feedId: '58fb76c741ac481628efaf3a'
+  url: "http://feeds.bbci.co.uk/news/rss.xml",
+  categoryName: 'some news outlet'
 };
 
 // make a user and a category variable to use throughout
@@ -27,15 +26,14 @@ describe('API REQUESTS: ', function() {
           method: 'POST',
           uri: 'http://127.0.0.1:8080/api/feeds',
           json: {
-            url: "http://rss.cnn.com/rss/cnn_top.rss",
+            url: "http://feeds.bbci.co.uk/news/rss.xml",
             userId: "12345",
             categoryId: "58fa4fde51f58c9b7dc8b146",
           },
         }
         request(feedData, (error, response, body) => {
-          console.log('35')
           // user.feedId = body.newObj.feeds[0].feedId;
-          console.log('35', user.feedId)
+          console.log('35', response.body)
           const articlesData = {
             method: 'POST',
             uri: 'http://127.0.0.1:8080/api/articles',
@@ -47,6 +45,7 @@ describe('API REQUESTS: ', function() {
           request(articlesData, (error, response, body) => {
             console.log('47', body[0])
             user.articleId = body[0]._id; // []
+            console.log('articleId', user.articleId)
           })
         })
       })
@@ -61,33 +60,34 @@ describe('API REQUESTS: ', function() {
         const feed = JSON.parse(body);
     console.log('57', feed)
 
-        expect(feed.url).to.equal("http://rss.cnn.com/rss/cnn_world.rss")
+        expect(feed.url).to.equal("http://feeds.bbci.co.uk/news/rss.xml")
         done();
       })
     })
 
-    // it('should delete a feed', (done) => {
-    //   const requestParams = {
-    //     method: 'DELETE',
-    //       uri: 'http://127.0.0.1:8080/api/feeds/' + user.feedId,
-    //       json: {
-    //         url: "http://rss.cnn.com/rss/cnn_world.rss",
-    //         userId: "12345",
-    //         categoryId: "58fa4fde51f58c9b7dc8b146",
-    //       },
-    //   }
-    //   request(requestParams, (error, response, body) => {
-    //     request('http://127.0.0.1:8080/api/feeds/', (error, response, body) => {
-    //       const feeds = JSON.parse(body);
-    //       const found = feeds.find((feed) => {
-    //         return feed._id === user.feedId;
-    //       });
-    //       console.log(found)
-    //       expect(found).to.equal(undefined);
-    //       done();
-    //     })
-    //   })
-    // })
+    it('should delete a feed', (done) => {
+      const requestParams = {
+        method: 'DELETE',
+          uri: 'http://127.0.0.1:8080/api/feeds/' + user.feedId,
+          json: {
+            url: "http://rss.cnn.com/rss/cnn_world.rss",
+            userId: "12345",
+            categoryId: "58fa4fde51f58c9b7dc8b146",
+          },
+      }
+      request(requestParams, (error, response, body) => {
+        console.log('80', response.body)
+        request('http://127.0.0.1:8080/api/feeds/', (error, response, body) => {
+          const feeds = JSON.parse(body);
+          const found = feeds.find((feed) => {
+            return feed._id === user.feedId;
+          });
+          console.log(found)
+          expect(found).to.equal(undefined);
+          done();
+        })
+      })
+    })
 
    it('should get all feeds', function(done) {
      request('http://127.0.0.1:8080/api/feeds', function(error, response, body) {
@@ -182,31 +182,32 @@ describe('API REQUESTS: ', function() {
       request(requestParams, (error, response, body) => {
         var articles = body;
         // console.log('181', articles)
-        expect(articles.length).to.eql(1);
+        console.log('articles.length ------>', articles.length)
+        expect(articles.length).to.be.above(0);
         done();
       })
     })
 
-    // it('should get one article', (done) => {
-    //   console.log('186', user.articleId)
-    //   request('http://127.0.0.1:8080/api/articles/' + user.articleId, (error, response, body) => {
-    //     console.log('187', JSON.parse(body));
-    //     const article = JSON.parse(body);
-    //     expect(article).to.have.key("title");
-    //     done();
-    //   })
-    // })
+    it('should get one article', (done) => {
+      console.log('186', user.articleId)
+      request('http://127.0.0.1:8080/api/articles/' + user.articleId, (error, response, body) => {
+        console.log('187', JSON.parse(body));
+        const article = JSON.parse(body);
+        expect(article).to.contain.any.keys("title");
+        done();
+      })
+    })
 
-  // it('should delete one article', (done) => {
-  //   const requestParams = {
-  //     method: 'DELETE',
-  //     uri: 'http://127.0.0.1:8080/api/articles/' + user.articleId,
-  //   }
-  //   request(requestParams, (error, response, body) => {
-  //     console.log('197', body);
-  //     done();
-  //   })
-  // })
+  it('should delete one article', (done) => {
+    const requestParams = {
+      method: 'DELETE',
+      uri: 'http://127.0.0.1:8080/api/articles/' + user.articleId,
+    }
+    request(requestParams, (error, response, body) => {
+      console.log('197', body);
+      done();
+    })
+  })
   })
 // after, delete the username, feed, and category
 });
