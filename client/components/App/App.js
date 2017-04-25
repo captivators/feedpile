@@ -6,6 +6,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { grey700 } from 'material-ui/styles/colors';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import Progress from '../Progress/Progress'
+import { connect } from 'react-redux'
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
@@ -28,6 +30,9 @@ class App extends React.Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
           <div className='app-container'>
+            {
+              this.props.displayProgress ? <Progress /> : null
+            }
             <Navbar history={history}/>
             <Sidebar />
             <ReaderList history={history}/>
@@ -36,5 +41,12 @@ class App extends React.Component {
     );
   }
 }
+const MapStateToProps = (state) => {
+  return {
+    displayProgress : state.displayProgress
+  }
+};
 
-export default App;
+export const Unwrapped = App;
+export default connect(MapStateToProps)(App);
+

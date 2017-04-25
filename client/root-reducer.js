@@ -28,7 +28,8 @@ const initialState = {
   feeds: [],
   currentFeed: '',
   addFeedUrl: '',
-  addFeedCategoryId: ''
+  addFeedCategoryId: '',
+  displayProgress: false
 };
 
 const updateArticles = (state, action) => {
@@ -46,7 +47,6 @@ const toggleModal = (state, action) => {
 const loginSuccess = (state, action) => {
   return { ...state, isAuthenticated: true, profile: action.profile, error: '', redirect: true }
 };
-
 const logoutSuccess = (state, action) => {
   return { ...state, isAuthenticated: false, profile: null, redirect: false}
 };
@@ -72,15 +72,42 @@ const setAddFeedUrl = (state, action) => {
 }
 
 const setAddFeedCategoryId = (state, action) => {
-  console.log('Inside root reducer for setAddFeedCategoryId')
+  console.log('Inside root reducer for setAddFeedCategoryId');
   console.log('categoryId: ', action.categoryId);
   return { ...state, addFeedCategoryId: action.categoryId}
 }
 
 const addFeedToCategory = (state, action) => {
+  if(!state.user[action.categoryId]) {
+    let categoryName;
+    for(let i=0; i<state.categories.length; i++) {
+      if(state.categories[i]._id === action.categoryId) {
+        categoryName = state.categories[i].name;
+      }
+    }
+    return {
+      ...state,
+      user: {
+        ...state.user,
+        [action.categoryId]: {categoryName, feeds: [].concat({name: action.feedName, feedId: action.feedId})}
+      }
+    }
+  } else {
+    return {
+      ...state, user: {
+        ...state.user,
+        [action.categoryId]: {
+          ...state.user[action.categoryId],
+          feeds: state.user[action.categoryId].feeds.concat({name: action.feedName, feedId: action.feedId})
+        }
+      }
+    }
+  }
+};
 
-  return { }
-}
+const setDisplayProgress = (state, action) => {
+  return {...state, displayProgress: action.value}
+};
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -109,6 +136,8 @@ function rootReducer(state = initialState, action) {
         return setAddFeedCategoryId(state, action);
       case 'ADD_FEED_TO_CATEGORY':
         return addFeedToCategory(state, action);
+    case 'SET_DISPLAY_PROGRESS':
+        return setDisplayProgress(state, action);
     default:
       return state
   }

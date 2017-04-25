@@ -3,7 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import {toggleModal, addFeed, setAddFeedCategoryId, setAddFeedUrl} from '../../actions';
+import {toggleModal, addFeed, setAddFeedCategoryId, setAddFeedUrl, setDisplayProgress} from '../../actions';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 import {connect} from 'react-redux';
 import './AddFeed.css';
@@ -37,6 +37,7 @@ const AddFeed = (props) => {
       primary={true}
       onTouchTap={() => {
         props.addFeed(props.urlInput, userId, props.selectedCategory)
+        props.setDisplayProgress(true)
         props.toggleModal(false);
       }}
     />
@@ -94,4 +95,5 @@ const mapStateToProps = (state) => {
 }
 
 export const Unwrapped = AddFeed;
-export default connect(mapStateToProps, {toggleModal, addFeed, setAddFeedCategoryId, setAddFeedUrl})(AddFeed);
+export default connect(mapStateToProps, {toggleModal, addFeed,
+setAddFeedCategoryId, setAddFeedUrl, setDisplayProgress})(AddFeed);

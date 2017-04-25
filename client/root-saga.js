@@ -1,9 +1,11 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
+import { delay } from 'redux-saga'
 import axios from 'axios';
-import {setUser,loginSuccess, getArticlesForAllFeeds, addFeed} from './actions';
+import {setUser,loginSuccess, getArticlesForAllFeeds, addFeed, addFeedToCategory, setDisplayProgress} from './actions';
 
 const createUserObj = (userObj, categoryList, feedList) => {
   const result = {};
+  if(userObj.feeds) {
   userObj.feeds.forEach(function(feed) {
     if(!result[feed.categoryId]) {
       result[feed.categoryId] = {"categoryName": "", "feeds": []};
@@ -35,6 +37,8 @@ const createUserObj = (userObj, categoryList, feedList) => {
       }
     }
 });
+
+  }
   return result;
 };
 
@@ -43,8 +47,7 @@ export function* findCreateUser(userId) {
     const userObj = yield call(axios.post, '/api/users/', userId);
     const categoryList = yield call(axios.get, '/api/categories');
     const feedList = yield call(axios.get, '/api/feeds/');
-    localStorage.setItem('feedList', JSON.stringify(feedList.data));
-    const result = createUserObj(userObj.data, categoryList.data, feedList.data);
+    const result = createUserObj(userObj.data.user, categoryList.data, feedList.data);
     yield put(setUser(result, categoryList.data, feedList.data));
     yield put(loginSuccess(JSON.parse(localStorage.getItem('profile'))));
   } catch (e) {
@@ -54,13 +57,20 @@ export function* findCreateUser(userId) {
 
 export function* getArticlesForAllFeedsFromdb() {
   try {
-    const feedObj = JSON.parse(localStorage.getItem('feedList'));
-    const responses  = yield feedObj.map(feed => call(axios.post, '/api/articles', {feedId: feed._id}));
+    const userId = JSON.parse(localStorage.getItem('profile')).identities[0].user_id;
+
+    const userObj = yield call(axios.post, '/api/users/', {userId: userId});
+
+    const responses  = yield userObj.data.user.feeds.map(feed => call(axios.post, '/api/articles', {feedId: feed.feedId}));
+
     const result = {};
     for(let i=0; i< responses.length; i++) {
-      result[feedObj[i]._id] = responses[i].data;
+      result[userObj.data.user.feeds[i].feedId] = responses[i].data;
     }
     yield put(getArticlesForAllFeeds(result));
+    yield call(delay, 1000);
+    yield put(setDisplayProgress(false));
+
   } catch (e) {
 
   }
@@ -68,11 +78,12 @@ export function* getArticlesForAllFeedsFromdb() {
 
 export function* addFeedToDb(action) {
   try {
+    const categoryId = action.categoryId;
     const response = yield call(axios.post, '/api/feeds', {url: action.url, userId: action.userId, categoryId: action.categoryId});
-    console.log(`response.data.id: ${response.data.id}`);
+    yield call(getArticlesForAllFeedsFromdb);
     // const feedResponse = yield call(axios.get, '/api/feeds/' + response.data.id);
     // console.log('feedResponse: ', JSON.stringify(feedResponse.data));
-    yield put();
+    yield put(addFeedToCategory("Hello", response.data.id, categoryId));
   } catch (e) {
     console.log('Error: ', e);
   }
