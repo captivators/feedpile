@@ -18,7 +18,7 @@ import Lens from 'material-ui-icons/Lens';
 import FlatButton from 'material-ui/FlatButton';
 import DeleteFeed from '../DeleteFeed/DeleteFeed'
 
-import feedPileImg from '../../images/feedpile.png'
+import feedPileImg from '../../images/feedpile.png';
 
 import './Sidebar.css';
 import { fetchArticlesForFeedsFromDb, toggleModal, toggleDeleteModal,

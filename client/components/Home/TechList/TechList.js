@@ -1,7 +1,5 @@
 import React from 'react';
 import TechItem from '../TechItem/TechItem';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Paper from 'material-ui/Paper';
 
 const style = {
   logoList: {
@@ -10,21 +8,9 @@ const style = {
     justifyContent: 'center',
     boxSizing: 'border-box',
     flexWrap: 'wrap',
-    backgroundColor: '#888',
-  },
-  first: {
-    paddingTop: '20px',
-    paddingBottom: '20px',
-    width: '100%',
-    textAlign: 'center',
-    backgroundColor: '#888',
-    h1: {
-      color: '#fff',
-      marginTop: 0,
-      fontSize: '48px',
-    },
-  },
-
+    backgroundColor: '#78909C',
+    padding: '40px',
+  }
 }
 
 
@@ -75,11 +61,6 @@ const techList = [
     image: "https://s23.postimg.org/n1i0g8re3/Travis_CI-_Mascot-1-20feeadb48fc2492ba741d89cb5a5c.png"
   },
   {
-    name: "Docker",
-    link: "https://www.docker.com",
-    image: "https://s4.postimg.org/l4sfu2sql/docker.png"
-  },
-  {
     name: "AWS",
     link: "https://aws.amazon.com/codedeploy/",
     image: "https://s15.postimg.org/c0rtqswi3/Amazon_Webservices_Logo.svg.png",
@@ -113,15 +94,11 @@ const techList = [
 
 const TechList = (props) => {
   return (
-    <MuiThemeProvider>
-    <Paper zDepth={5} style={style.first}>
-      <div className="stack" style={style.logoList}>
-        {techList.map((tech, index) => (
-          <TechItem tech= { tech } key={ index } />
-        ))}
-      </div>
-    </Paper>
-    </MuiThemeProvider>
+    <div className="stack" style={style.logoList}>
+      {techList.map((tech, index) => (
+        <TechItem tech= { tech } key={ index } />
+      ))}
+    </div>
   )
 }
 

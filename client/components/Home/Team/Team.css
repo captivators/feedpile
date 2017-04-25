@@ -1,9 +1,9 @@
 .team-container {
-  padding-top: '45px';
-  padding-bottom: '45px';
+  padding-top: '80px';
+  padding-bottom: '80px';
   width: '100%';
   text-align: 'center';
-  background-color: '#eee';
+  background-color: #ECEFF1;
 }
 .team {
   display: 'flex';
