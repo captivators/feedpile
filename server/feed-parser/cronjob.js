@@ -9,12 +9,12 @@ const Article = require('../models/article');
 const User = require('../models/user');
 
 var counter = 0;
+var jobRunning = false;
 
-const job = new CronJob({
-  cronTime: '0-59/30 * * * * *',
-  onTick: function() {
-
-    console.log(++counter);
+var processFeeds = function () {
+  console.log(++counter);
+    jobRunning = true;
+    console.log('jobRunning start -> ' + jobRunning);
 
     var promise = new Promise(function (resolve, reject) {
       Feed.find(function(err, feeds) {
@@ -164,11 +164,13 @@ const job = new CronJob({
 
                 var result = [];
 
-                urls.forEach(function(item, index) {
-                  if (checkUrl(item)) {
-                    result.push(item);
-                  }
-                });
+                if (urls !== null) {
+                  urls.forEach(function(item, index) {
+                    if (checkUrl(item)) {
+                      result.push(item);
+                    }
+                  });
+                }
 
                 return result.length === 0 ? null : result[0];
               };
@@ -519,111 +521,88 @@ const job = new CronJob({
             users
               .then(function (users) {
                 console.log('in users');
+                return new Promise (function (resolve, reject) {
+                  for (var i = 0; i < users.length; i++) {
+                    var user = users[i];
 
-//                 var saveUser = function (indexA, indexB, newArr) {
-//                   var u = users[indexA];
-//                   u.feeds[indexB].articles = newArr;
+                    for (var j = 0; j < user.feeds.length; j++) {
+                      var feedId = user.feeds[j].feedId;
+                      var articlesToAddForUser = user.feeds[j].articles;
 
-// console.log(u);
-//                   u.save(function (err, o) {
-//                     if (err) {
-//                       console.log(err);
-//                     }
-//                     console.log('Successfully added articles to user');
-//                   });
-//                 };
+                      //fetch all articles for a particular feedId
+                      // articlesUpdateForuser(feedId, articlesToAddForUser, i, j);
+                      (function (u, aox, pos, arrArticles, f, rez, lastI, lastJ) {
+                        Article.find({feedId: f}).exec()
+                        .then(function(result) {
+                          return new Promise(function (resolve, reject) {
+                            var updated = false;
+                            var searchObj = function (arr, id) {
+                              for (var c = 0; c < arr.length; c++) {
+                                if (arr[c].articleId == id) {
+                                  return true;
+                                }
+                              }
 
-                // var articlesUpdateForuser = function (f, a, indexA, indexB) {
-                //   var searchObj = function (arr, id) {
-                //     for (var c = 0; c < arr.length; c++) {
-                //       if (arr[c].articleId == id) {
-                //         return true;
-                //       }
-                //     }
+                              return false;
+                            };
 
-                //     return false;
-                //   };
-
-                //   Article.find({feedId: f}, function(err, articles) {
-                //     if (err) {
-                //       console.log('error getting articles by feedId');
-                //     }
-
-                //     for (var k = 0; k < articles.length; k++) {
-                //       //console.log(articles[k]._id);
-                //       if (!searchObj(a, articles[k]._id)) {
-                //         //push to array to add for user
-                //         a.push({articleId: articles[k]._id, readFlag: false});
-                //       }
-                //     }
-
-                //     users[indexA].feeds[indexB].articles = a;
-
-                //     //saveUser(indexA, indexB, a);
-                //   });
-                // };
-
-                for (var i = 0; i < users.length; i++) {
-                  var user = users[i];
-
-                  for (var j = 0; j < user.feeds.length; j++) {
-                    var feedId = user.feeds[j].feedId;
-                    var articlesToAddForUser = user.feeds[j].articles;
-
-                    //fetch all articles for a particular feedId
-                    // articlesUpdateForuser(feedId, articlesToAddForUser, i, j);
-                    (function (u, pos, arrArticles, f) {
-                      Article.find({feedId: f}).exec()
-                      .then(function(result) {
-                        return new Promise(function (resolve, reject) {
-                          var updated = false;
-                          var searchObj = function (arr, id) {
-                            for (var c = 0; c < arr.length; c++) {
-                              if (arr[c].articleId == id) {
-                                return true;
+                            for (var k = 0; k < result.length; k++) {
+                              if (!searchObj(arrArticles, result[k]._id)) {
+                                //push to array to add for user
+                                arrArticles.push({articleId: result[k]._id, readFlag: false});
+                                updated = true;
                               }
                             }
 
-                            return false;
-                          };
+                            u.feeds[pos].articles = arrArticles;
+                            resolve({u: u, pos: pos, updated: updated});
+                          });
+                        })
+                        .then(function (us) {
+                          if (us.updated) {
+                            User.findOne({_id: us.u._id}, function (err, u) {
+                              if (err) console.log(err);
 
-                          for (var k = 0; k < result.length; k++) {
-                            if (!searchObj(arrArticles, result[k]._id)) {
-                              //push to array to add for user
-                              arrArticles.push({articleId: result[k]._id, readFlag: false});
-                              updated = true;
+                              if (u.__v) delete u.__v;
+
+                              for (var cc = 0; cc < u.feeds.length; cc++) {
+                                if (u.feeds[cc].feedId == us.u.feeds[pos].feedId) {
+
+                                  u.feeds[cc].articles = us.u.feeds[pos].articles;
+                                  u.save(function (err, updated) {
+                                    if (err) return console.log(err);
+                                    console.log(updated);
+
+                                    if (aox === lastI && pos === lastJ) {
+                                      rez(' -> done'); //resolve promise
+                                    }
+                                  });
+                                  break;
+                                }
+                              }
+                            });
+                          } else {
+                            if (aox === lastI && pos === lastJ) {
+                              rez(' -> done'); //resolve promise
                             }
                           }
-
-                          u.feeds[pos].articles = arrArticles;
-                          resolve({u: u, pos: pos, updated: updated});
                         });
-                      })
-                      .then(function (us) {
-                        if (us.updated) {
-                          User.findOne({_id: us.u._id}, function (err, u) {
-                            if (err) console.log(err);
+                      })(user, i, j, articlesToAddForUser, feedId, resolve, users.length - 1, users[users.length - 1].feeds.length - 1);
+                    } //for j users.feeds.length
+                  } //for i users.length
+                }); //promise
 
-                            if (u.__v) delete u.__v;
+              })  //users .then
+              .then(function (ans) {
+                return new Promise(function (resolve, reject) {
+                  console.log('last ' + ans);
 
-                            for (var cc = 0; cc < u.feeds.length; cc++) {
-                              if (u.feeds[cc].feedId == us.u.feeds[pos].feedId) {
+                  jobRunning = false;
+                  console.log('jobRunning end -> ' + jobRunning);
 
-                                u.feeds[cc].articles = us.u.feeds[pos].articles;
-                                u.save(function (err, updated) {
-                                  if (err) return console.log(err);
-                                  console.log(updated);
-                                });
-                                break;
-                              }
-                            }
-                          });
-                        }
-                      });
-                    })(user, j, articlesToAddForUser, feedId);
-                  } //for j users.feeds.length
-                } //for i users.length
-              }); //users .then
+                  resolve('done');
+                });
+              });
           })
           .catch(function (error) {
             console.log('Failed 1: ' + error);
@@ -632,22 +611,20 @@ const job = new CronJob({
       .catch(function (error) {
         console.log('Failed 2: ' + error);
       });
+};
+
+
+const job = new CronJob({
+  cronTime: '0,30 * * * * *',
+  onTick: function() {
+
+    //console.log(new Date().getSeconds());
+    processFeeds();
 
   },
   start: false,
   timeZone: 'America/Los_Angeles'
 });
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -657,7 +634,7 @@ const job = new CronJob({
 var job2 = new CronJob({
   cronTime: '59 * * * * *',
   onTick: function() {
-    console.log('delete job just ran')
+    console.log('delete job just ran');
   },
   start: false,
   timeZone: 'America/Los_Angeles'
@@ -665,5 +642,7 @@ var job2 = new CronJob({
 
 module.exports = {
   job: job,
-  job2: job2
+  job2: job2,
+  processFeeds: processFeeds,
+  jobRunning: jobRunning
 };
