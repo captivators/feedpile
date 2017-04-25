@@ -21,10 +21,6 @@ mongoose.connect('mongodb://localhost/feedpilelocal', function (err) {
   console.log('Connected to Database');
 });
 
-// mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/feedpilelocal', function () {
-//   console.log('Connected to Database');
-// });
-
 // Setup logger
 app.use(morgan('dev'));
 

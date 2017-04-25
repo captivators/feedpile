@@ -3,9 +3,9 @@ import CircularProgress from 'material-ui/CircularProgress';
 import "./Progress.css"
 
 const Progress = () => (
-    <div>
+    <div className="progress">
       {/*<CircularProgress />*/}
-      <CircularProgress color="orange" className="progress" size={60} thickness={7} />
+      <CircularProgress size={60} thickness={7} />
       {/*<CircularProgress size={80} thickness={5} />*/}
     </div>
 );
