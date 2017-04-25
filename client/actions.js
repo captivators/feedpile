@@ -10,8 +10,8 @@ export const toggleDeleteModal = (openStatus) => {
   return {type: "TOGGLE_DELETE_MODAL", openStatus}
 };
 
-export const deleteFeedsFromDb = (feeds) => {
-  return {type: "DELETE_FEEDS_FROM_DB", feeds}
+export const deleteFeedsFromDb = (feeds, userId) => {
+  return {type: "DELETE_FEEDS_FROM_DB", feeds: feeds, userId: userId}
 }
 
 export const deleteFeedsFromStore = (feeds) => {
@@ -66,3 +66,7 @@ export const addFeedToCategory = (feedName, feedId, categoryId) => {
 
   return {type: 'ADD_FEED_TO_CATEGORY', feedName, feedId, categoryId}
 }
+
+export const setDisplayProgress = (value) => {
+  return {type: 'SET_DISPLAY_PROGRESS', value}
+};

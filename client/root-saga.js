@@ -1,6 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
+import { delay } from 'redux-saga'
 import axios from 'axios';
-import {setUser,loginSuccess, getArticlesForAllFeeds, addFeed, addFeedToCategory} from './actions';
+import {setUser,loginSuccess, getArticlesForAllFeeds, addFeed, addFeedToCategory, setDisplayProgress} from './actions';
 
 const createUserObj = (userObj, categoryList, feedList) => {
   const result = {};
@@ -47,7 +48,6 @@ export function* findCreateUser(userId) {
     const userObj = yield call(axios.post, '/api/users/', userId);
     const categoryList = yield call(axios.get, '/api/categories');
     const feedList = yield call(axios.get, '/api/feeds/');
-    // localStorage.setItem('feedList', JSON.stringify(feedList.data));
     const result = createUserObj(userObj.data.user, categoryList.data, feedList.data);
     yield put(setUser(result, categoryList.data, feedList.data));
     yield put(loginSuccess(JSON.parse(localStorage.getItem('profile'))));
@@ -58,16 +58,20 @@ export function* findCreateUser(userId) {
 
 export function* getArticlesForAllFeedsFromdb() {
   try {
+    const userId = JSON.parse(localStorage.getItem('profile')).identities[0].user_id;
 
-    const feedList = yield call(axios.get, '/api/feeds/');
-    console.log(`feedList in ------> feedList ${JSON.stringify(feedList.data)}`);
-    const responses  = yield feedList.data.map(feed => call(axios.post, '/api/articles', {feedId: feed._id}));
-    console.log(`responses in getArticlesForAllFeedsFromdb ${JSON.stringify(responses.data)}`);
+    const userObj = yield call(axios.post, '/api/users/', {userId: userId});
+
+    const responses  = yield userObj.data.user.feeds.map(feed => call(axios.post, '/api/articles', {feedId: feed.feedId}));
+
     const result = {};
     for(let i=0; i< responses.length; i++) {
-      result[feedList.data[i]._id] = responses[i].data;
+      result[userObj.data.user.feeds[i].feedId] = responses[i].data;
     }
     yield put(getArticlesForAllFeeds(result));
+    yield call(delay, 1000);
+    yield put(setDisplayProgress(false));
+
   } catch (e) {
 
   }
@@ -86,11 +90,10 @@ export function* addFeedToDb(action) {
   }
 }
 
-export function* deleteFeedsFromDb({ feeds, userId }) {
+export function* deleteFeedsFromDb(actions) {
   try {
-    const responses = yield feeds.map((feed) => call(axios.delete, `/api/feeds/${feed}`));
-    yield call(findCreateUser, userId);
-    // yield put(deleteFeedsFromStore(feeds));
+    const responses = yield actions.feeds.map((feed) => call(axios.delete, `/api/feeds/${feed}`));
+    yield call(findCreateUser, {userId: actions.userId});
  } catch (e) {
 
  }
@@ -100,5 +103,5 @@ export default function *rootSaga() {
   yield takeEvery('FIND_OR_CREATE_USER', findCreateUser);
   yield takeEvery('FETCH_ARTICLES_FOR_FEEDS', getArticlesForAllFeedsFromdb);
   yield takeEvery('ADD_FEED', addFeedToDb);
-  yield takeEvery('DELETE_FEEDS_FROM_DB')
+  yield takeEvery('DELETE_FEEDS_FROM_DB', deleteFeedsFromDb)
 }

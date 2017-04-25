@@ -2,7 +2,11 @@ const Feed = require('./models/feed');
 const User = require('./models/user');
 const Article = require('./models/article');
 const Category = require('./models/category');
-const ArticlesFetcher = require('./feed-parser/articles-fetcher');
+
+const cronJob = require('./feed-parser/cronjob');
+
+
+//const ArticlesFetcher = require('./feed-parser/articles-fetcher');
 
 
 const parse = require('./feed-parser/parser');
@@ -96,6 +100,12 @@ exports.getAllFeeds = (req, res) => {
 };
 
 exports.createFeed = (req, res) => {
+  var promiseTimeout = function (time, p) {
+    return new Promise(function(resolve, reject) {
+      setTimeout(function() { resolve(p); }, time);
+    });
+  };
+
   if (!req.body.url || !req.body.userId || !req.body.categoryId) {
     res.json({status: 400, message: 'Missing either url, userId, or categoryId.'});
   } else {
@@ -116,7 +126,6 @@ exports.createFeed = (req, res) => {
         } else {
           // console.log(JSON.stringify(feed))
           // console.log(JSON.stringify(user))
-          //TODO: FIX ISSUE: DO NOT PERMIT TO ADD SAME FEED FOR USER
           if (feed === null) {
             var newFeed = new Feed();
             newFeed.url = req.body.url;
@@ -126,7 +135,19 @@ exports.createFeed = (req, res) => {
                 console.log(f);
                 User.findOneAndUpdate({userId: req.body.userId}, {$push: {feeds: {feedId: f._id, categoryId: req.body.categoryId}}}, {new: true}).exec()
                   .then(function (u) {
-                    res.json({status: 201, message: 'new feed successfully created and added to user', newObj: u});
+                    cronJob.processFeeds();
+
+                    return promiseTimeout(7000, u);
+                  })
+                  .then(function (u) {
+                    //console.log('------- ' + f._id)
+                    Feed.findById(f._id).exec()
+                      .then(function (updatedFeed) {
+                        Article.find({feedId: updatedFeed._id}).exec()
+                          .then(function (updatedArticles) {
+                            res.json({status: 201, message: 'new feed successfully created and added to user', feedName: updatedFeed.name, feedArticles: updatedArticles});
+                          });
+                      });
                   });
               });
           } else {
@@ -147,7 +168,19 @@ exports.createFeed = (req, res) => {
             } else {
               User.findOneAndUpdate({userId: req.body.userId}, {$push: {feeds: {feedId: feed._id, categoryId: req.body.categoryId}}}, {new: true}).exec()
                   .then(function (u) {
-                    res.json({status: 201, message: 'existing feed added successfully to user', newObj: u});
+                    cronJob.processFeeds();
+
+                    return promiseTimeout(7000, u);
+                  })
+                  .then(function (u) {
+                    //console.log('------- ' + feed._id)
+                    Feed.findById(feed._id).exec()
+                      .then(function (updatedFeed) {
+                        Article.find({feedId: updatedFeed._id}).exec()
+                          .then(function (updatedArticles) {
+                            res.json({status: 201, message: 'existing feed added successfully to user', feedName: updatedFeed.name, feedArticles: updatedArticles});
+                          });
+                      });
                   });
             }
           }

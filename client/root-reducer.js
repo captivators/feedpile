@@ -29,7 +29,8 @@ const initialState = {
   feeds: [],
   currentFeed: '',
   addFeedUrl: '',
-  addFeedCategoryId: ''
+  addFeedCategoryId: '',
+  displayProgress: false
 };
 
 const updateArticles = (state, action) => {
@@ -109,6 +110,10 @@ const addFeedToCategory = (state, action) => {
   }
 };
 
+const setDisplayProgress = (state, action) => {
+  return {...state, displayProgress: action.value}
+};
+
 const deleteFeedsFromStore = (state, action) => {
  // TO DO: remove deleted feeds, articles associated with each feed, feeds in each user obj
 }
@@ -140,6 +145,8 @@ function rootReducer(state = initialState, action) {
         return setAddFeedCategoryId(state, action);
       case 'ADD_FEED_TO_CATEGORY':
         return addFeedToCategory(state, action);
+    case 'SET_DISPLAY_PROGRESS':
+        return setDisplayProgress(state, action);
       case 'TOGGLE_DELETE_MODAL':
         return toggleDeleteModal(state, action);
       case 'DELETE_FEEDS_FROM_STORE':

@@ -16,12 +16,13 @@ import Description from 'material-ui-icons/Description';
 import PanoramaFishEye from 'material-ui-icons/PanoramaFishEye';
 import Lens from 'material-ui-icons/Lens';
 import FlatButton from 'material-ui/FlatButton';
+import DeleteFeed from '../DeleteFeed/DeleteFeed'
 
 import feedPileImg from '../../images/feedpile.png'
 
 import './Sidebar.css';
-import { fetchArticlesForFeedsFromDb, toggleModal,
-findCreateUser, setSidebarFeed } from '../../actions';
+import { fetchArticlesForFeedsFromDb, toggleModal, toggleDeleteModal,
+findCreateUser, setSidebarFeed, setDisplayProgress } from '../../actions';
 import { connect } from 'react-redux';
 
 const styles = {
@@ -112,7 +113,11 @@ class Sidebar extends React.Component {
           </SelectableList>
 
           <span className="refresh-icon">
-        <IconButton onClick={this.props.fetchArticlesForFeedsFromDb} className="refresh-icon" iconStyle={styles.smallIcon}
+        <IconButton onClick={()=>{
+          this.props.fetchArticlesForFeedsFromDb()
+          this.props.setDisplayProgress(true)
+        }
+        } className="refresh-icon" iconStyle={styles.smallIcon}
                     style={styles.small}>
           <Refresh />
         </IconButton>
@@ -125,16 +130,14 @@ class Sidebar extends React.Component {
         </IconButton>
       </span>
           <span className="archive-icon">
-        <IconButton iconStyle={styles.smallIcon} className="archive-icon" style={styles.small}>
+        <IconButton onClick={() => {
+            this.props.toggleDeleteModal(true)
+        }}iconStyle={styles.smallIcon} className="archive-icon" style={styles.small}>
           <Archive />
         </IconButton>
       </span>
           <AddFeed />
-          <IconButton onClick={() => {
-          this.props.toggleModal(true)
-        }} iconStyle={styles.smallIcon} className="add-icon" style={styles.small}>
-          <AddCircle />
-        </IconButton>
+          <DeleteFeed />
         </div>
     )
   }
@@ -151,5 +154,6 @@ export const Unwrapped = Sidebar;
 
 export default connect(mapStateToProps, {
   fetchArticlesForFeedsFromDb, toggleModal,
-  findCreateUser, setSidebarFeed
+  findCreateUser, setSidebarFeed, setDisplayProgress,
+    toggleDeleteModal
 })(Sidebar);

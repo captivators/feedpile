@@ -9,6 +9,8 @@ import Team from '../Team/Team'
 import TechList from '../TechList/TechList'
 import Header from '../Header/Header'
 import Main from '../Main/Main'
+import Progress from '../../Progress/Progress'
+import { connect } from 'react-redux';
 
 const Home = (props) => {
 
@@ -18,6 +20,10 @@ const Home = (props) => {
       <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
 
         <div style={{backgroundColor: "#00BCD4"}}>
+
+          {
+            props.displayProgress ? <Progress /> : null
+          }
 
           <Header history={props.history}/>
 
@@ -35,5 +41,11 @@ const Home = (props) => {
     );
   }
 
-export default Home;
+const MapStateToProps = (state) => {
+  return {
+    displayProgress : state.displayProgress
+  }
+};
+export const Unwrapped = Home;
+export default connect(MapStateToProps)(Home);
 

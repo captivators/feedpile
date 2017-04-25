@@ -1,6 +1,6 @@
 import '../../../../__mocks__/localStorageMock'
 import React from 'react';
-import Home from './Home'
+import Home, {Unwrapped as UnwrappedHome} from './Home'
 import {Provider} from 'react-redux';
 import store from '../../../store'
 import { shallow, render } from 'enzyme';
@@ -9,7 +9,7 @@ import { shallowToJson } from 'enzyme-to-json';
 test('Landingpage: snapshot test', () => {
 
   const component = shallow(
-    <Home />
+    <UnwrappedHome />
     );
   const tree = shallowToJson(component);
   expect(tree).toMatchSnapshot();

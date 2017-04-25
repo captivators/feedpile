@@ -4,7 +4,7 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import Checkbox from 'material-ui/Checkbox';
 import {connect} from 'react-redux';
-import {toggleDeleteModal} from '../../actions';
+import {toggleDeleteModal, deleteFeedsFromDb} from '../../actions';
 
 class DeleteFeed extends React.Component {
   constructor(props) {
@@ -12,68 +12,66 @@ class DeleteFeed extends React.Component {
     this.state = {
       feedsToDelete: []
     }
+    this.handleCheck = this.handleCheck.bind(this)
   }
 
   handleCheck(isInputChecked, feedId) {
     if (isInputChecked) {
-    this.setState({
-      feedsToDelete: this.state.feedsToDelete.filter(x => x !== feedId)
-    })
-  } else {
-    this.setState({
-      feedsToDelete: [ ...this.state.feedsToDelete, feedId ]
-    })
-  }
+      this.state.feedsToDelete.push(feedId);
+    } else if(!isInputChecked) {
+      let remainingFeeds = this.state.feedsToDelete.filter(x => x !== feedId);
+      this.state.feedsToDelete = remainingFeeds;
+    }
   }
 
-  render () {
-     const actions = [
+  render() {
+    const actions = [
       <FlatButton
-        label="Cancel"
-        primary={true}
-        onTouchTap={() => {
-          this.props.toggleDeleteModal(false);
-        }}
+          label="Cancel"
+          primary={true}
+          onTouchTap={() => {
+            this.props.toggleDeleteModal(false);
+          }}
       />,
       <RaisedButton
-        label="Submit"
-        primary={true}
-        onTouchTap={() => {
-          this.props.deleteFeedsFromDb(this.state.feedsToDelete)
-          this.props.toggleDeleteModal(false);
-        }}
+          label="Submit"
+          primary={true}
+          onTouchTap={() => {
+            this.props.deleteFeedsFromDb(this.state.feedsToDelete,
+                JSON.parse(localStorage.getItem('profile')).identities[0].user_id
+            )
+            this.props.toggleDeleteModal(false);
+          }}
       />
     ];
 
     return (
-      <div>
-        {/* <RaisedButton label="Dialog With Date Picker" onTouchTap={this.handleOpen} /> */}
-        <Dialog
-          title="Choose the feeds you would like to delete."
-          actions={actions}
-          modal={false}
-          open={this.props.openDeleteFeedModal}
-          contentStyle={{width: '75%', maxWidth: '600px'}}
-          onRequestClose={() => {
-            this.props.toggleDeleteModal(false);
-          }}
-        >
-        <div className="radio-buttons">
-            <Checkbox name="feeds" defaultSelected="other"/>
+        <div>
+          {/* <RaisedButton label="Dialog With Date Picker" onTouchTap={this.handleOpen} /> */}
+          <Dialog
+              title="Choose the feeds you would like to delete."
+              actions={actions}
+              modal={false}
+              open={this.props.openDeleteFeedModal}
+              contentStyle={{width: '75%', maxWidth: '600px'}}
+              onRequestClose={() => {
+                this.props.toggleDeleteModal(false);
+              }}
+          >
+            <div className="radio-buttons">
               {this.props.feeds.map((feed, i) => {
                 return (<Checkbox
                     key={i}
                     value={feed._id}
                     label={feed.name}
                     onCheck={(event, isInputChecked) => {
-                      handleCheck(isInputChecked, feed._id);
+                      this.handleCheck(isInputChecked, feed._id);
                     }}
                 />)
               })}
-            </RadioButtonGroup>
-          </div>
-        </Dialog>
-      </div>
+            </div>
+          </Dialog>
+        </div>
     );
   }
 
@@ -86,4 +84,4 @@ const mapStateToProps = (state) => {
 }
 
 export const Unwrapped = DeleteFeed;
-export default connect(mapStateToProps  x`, {toggleDeleteModal: toggleDeleteModal})(DeleteFeed)
+export default connect(mapStateToProps, {toggleDeleteModal, deleteFeedsFromDb})(DeleteFeed)
