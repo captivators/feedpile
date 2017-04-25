@@ -18,6 +18,7 @@ const initialState = {
   articles: [],
   open: false,
   modalOpen: false,
+  openDeleteFeedModal: false,
   currentArticle: '',
   isAuthenticated: checkTokenExpiry(),
   redirect: false,
@@ -41,6 +42,10 @@ const setCurrentArticle = (state, action) => {
 
 const toggleModal = (state, action) => {
   return {...state, modalOpen: action.openStatus}
+};
+
+const toggleDeleteModal = (state, action) => {
+  return {...state, openDeleteFeedModal: action.openStatus}
 };
 
 const loginSuccess = (state, action) => {
@@ -104,6 +109,10 @@ const addFeedToCategory = (state, action) => {
   }
 };
 
+const deleteFeedsFromStore = (state, action) => {
+ // TO DO: remove deleted feeds, articles associated with each feed, feeds in each user obj
+}
+
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case 'SET_CURRENT_ARTICLE':
@@ -131,6 +140,10 @@ function rootReducer(state = initialState, action) {
         return setAddFeedCategoryId(state, action);
       case 'ADD_FEED_TO_CATEGORY':
         return addFeedToCategory(state, action);
+      case 'TOGGLE_DELETE_MODAL':
+        return toggleDeleteModal(state, action);
+      case 'DELETE_FEEDS_FROM_STORE':
+        return deleteFeedsFromStore(state, action);
     default:
       return state
   }

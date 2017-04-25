@@ -85,8 +85,18 @@ export function* addFeedToDb(action) {
   }
 }
 
+export function* deleteFeedsFromDb({ feeds, userId }) {
+  try {
+    const responses = yield feeds.map((feed) => call(axios.delete, `/api/feeds/${feed}`));
+    yield put(deleteFeedsFromStore(feeds));
+ } catch (e) {
+
+ }
+}
+
 export default function *rootSaga() {
   yield takeEvery('FIND_OR_CREATE_USER', findCreateUser);
   yield takeEvery('FETCH_ARTICLES_FOR_FEEDS', getArticlesForAllFeedsFromdb);
   yield takeEvery('ADD_FEED', addFeedToDb);
+  yield takeEvery('DELETE_FEEDS_FROM_DB')
 }

@@ -6,6 +6,18 @@ export const toggleModal = (openStatus) => {
   return {type: "TOGGLE_MODAL", openStatus}
 };
 
+export const toggleDeleteModal = (openStatus) => {
+  return {type: "TOGGLE_DELETE_MODAL", openStatus}
+};
+
+export const deleteFeedsFromDb = (feeds) => {
+  return {type: "DELETE_FEEDS_FROM_DB", feeds}
+}
+
+export const deleteFeedsFromStore = (feeds) => {
+  return {type: "DELETE_FEEDS_FROM_STORE", feeds}
+}
+
 export const findCreateUser = (userId) => {
   return {type: 'FIND_OR_CREATE_USER', userId}
 };

@@ -15,6 +15,7 @@ import IconButton from 'material-ui/IconButton';
 import Description from 'material-ui-icons/Description';
 import PanoramaFishEye from 'material-ui-icons/PanoramaFishEye';
 import Lens from 'material-ui-icons/Lens';
+import FlatButton from 'material-ui/FlatButton';
 
 import feedPileImg from '../../images/feedpile.png'
 
@@ -102,6 +103,7 @@ class Sidebar extends React.Component {
                                         primaryText={feed.name}
                                         onClick={() => this.props.setSidebarFeed(feed.feedId)}
                                         leftIcon={<PanoramaFishEye/>}
+                                        // {this.prop.deleteButton && rightIcon={<PanoramaFishEye/>}}
                                     />)
                                   })}
                         />)
@@ -128,6 +130,11 @@ class Sidebar extends React.Component {
         </IconButton>
       </span>
           <AddFeed />
+          <IconButton onClick={() => {
+          this.props.toggleModal(true)
+        }} iconStyle={styles.smallIcon} className="add-icon" style={styles.small}>
+          <AddCircle />
+        </IconButton>
         </div>
     )
   }

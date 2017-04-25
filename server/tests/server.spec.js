@@ -32,7 +32,7 @@ describe('API REQUESTS: ', function() {
           },
         }
         request(feedData, (error, response, body) => {
-          // user.feedId = body.newObj.feeds[0].feedId;
+          user.feedId = body.newObj.feeds[0].feedId;
           console.log('35', response.body)
           const articlesData = {
             method: 'POST',
