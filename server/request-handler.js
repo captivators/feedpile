@@ -5,10 +5,6 @@ const Category = require('./models/category');
 
 const cronJob = require('./feed-parser/cronjob');
 
-
-//const ArticlesFetcher = require('./feed-parser/articles-fetcher');
-
-
 const parse = require('./feed-parser/parser');
 
 //=======API TEST ROUTE=======
@@ -145,7 +141,7 @@ exports.createFeed = (req, res) => {
                       .then(function (updatedFeed) {
                         Article.find({feedId: updatedFeed._id}).exec()
                           .then(function (updatedArticles) {
-                            res.json({status: 201, message: 'new feed successfully created and added to user', feedName: updatedFeed.name, feedArticles: updatedArticles});
+                            res.json({status: 201, message: 'new feed successfully created and added to user', feedId: updatedFeed._id, feedUrl: updatedFeed.url, feedImageSrc: updatedFeed.imageSrc, feedName: updatedFeed.name, feedArticles: updatedArticles});
                           });
                       });
                   });
@@ -178,7 +174,7 @@ exports.createFeed = (req, res) => {
                       .then(function (updatedFeed) {
                         Article.find({feedId: updatedFeed._id}).exec()
                           .then(function (updatedArticles) {
-                            res.json({status: 201, message: 'existing feed added successfully to user', feedName: updatedFeed.name, feedArticles: updatedArticles});
+                            res.json({status: 201, message: 'existing feed added successfully to user', feedId: updatedFeed._id, feedUrl: updatedFeed.url, feedImageSrc: updatedFeed.imageSrc, feedName: updatedFeed.name, feedArticles: updatedArticles});
                           });
                       });
                   });
