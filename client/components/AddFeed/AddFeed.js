@@ -65,7 +65,7 @@ const AddFeed = (props) => {
           />
         </div>
         <div className="radio-buttons">
-          <RadioButtonGroup name="categories" defaultSelected="other">
+          <RadioButtonGroup name="categories" defaultSelected="Other">
             {props.categories.map((category, i) => {
               return (<RadioButton
                   key={i}
