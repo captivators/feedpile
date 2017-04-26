@@ -23,7 +23,6 @@ const styles = {
 const AddFeed = (props) => {
   var userId = JSON.parse(localStorage.getItem('profile')).identities[0].user_id;
 
-  console.log('user: ', props.user);
   const actions = [
     <FlatButton
       label="Cancel"

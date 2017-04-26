@@ -70,3 +70,7 @@ export const addFeedToCategory = (feedName, feedId, categoryId) => {
 export const setDisplayProgress = (value) => {
   return {type: 'SET_DISPLAY_PROGRESS', value}
 };
+
+export const updateFeedsArticlesInStore = (articles, feed) => {
+  return {type: 'UPDATE_FEEDS_AND_ARTICLES_IN_STORE', articles, feed}
+};

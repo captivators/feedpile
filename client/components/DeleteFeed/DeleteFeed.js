@@ -4,14 +4,15 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import Checkbox from 'material-ui/Checkbox';
 import {connect} from 'react-redux';
-import {toggleDeleteModal, deleteFeedsFromDb} from '../../actions';
+import userFeedsSelector from '../../selectors/user-feeds-selector';
+import {toggleDeleteModal, deleteFeedsFromDb, setDisplayProgress} from '../../actions';
 
 class DeleteFeed extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       feedsToDelete: []
-    }
+    };
     this.handleCheck = this.handleCheck.bind(this)
   }
 
@@ -37,6 +38,7 @@ class DeleteFeed extends React.Component {
           label="Submit"
           primary={true}
           onTouchTap={() => {
+            this.props.setDisplayProgress(true);
             this.props.deleteFeedsFromDb(this.state.feedsToDelete,
                 JSON.parse(localStorage.getItem('profile')).identities[0].user_id
             )
@@ -59,7 +61,8 @@ class DeleteFeed extends React.Component {
               }}
           >
             <div className="radio-buttons">
-              {this.props.feeds.map((feed, i) => {
+              {this.props.userFeeds.map((feed, i) => {
+
                 return (<Checkbox
                     key={i}
                     value={feed._id}
@@ -79,9 +82,9 @@ class DeleteFeed extends React.Component {
 const mapStateToProps = (state) => {
   return {
     openDeleteFeedModal: state.openDeleteFeedModal,
-    feeds: state.feeds
+    userFeeds: userFeedsSelector(state)
   }
-}
+};
 
 export const Unwrapped = DeleteFeed;
-export default connect(mapStateToProps, {toggleDeleteModal, deleteFeedsFromDb})(DeleteFeed)
+export default connect(mapStateToProps, {toggleDeleteModal, deleteFeedsFromDb, setDisplayProgress})(DeleteFeed)
