@@ -1,6 +1,7 @@
 import React from 'react';
 import ReaderListHeader from '../ReaderListHeader/ReaderListHeader'
 import ReaderListItem from '../ReaderListItem/ReaderListItem';
+import Welcome from '../Welcome/Welcome';
 import {connect} from 'react-redux';
 import './ReaderList.css';
 import { fetchArticlesForFeedsFromDb } from '../../actions'
@@ -25,7 +26,9 @@ class ReaderList extends React.Component {
     }
     return (
         <div className="reader-list-container">
-          <ReaderListHeader />
+          {
+            Object.keys(this.props.articles).length ? <ReaderListHeader /> : <Welcome />
+          }
           {articlesFound.map((article, index) => (
               <ReaderListItem history={this.props.history}
                               article={article}

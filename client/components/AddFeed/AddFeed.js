@@ -47,7 +47,7 @@ const AddFeed = (props) => {
     <div>
       {/* <RaisedButton label="Dialog With Date Picker" onTouchTap={this.handleOpen} /> */}
       <Dialog
-        title="Enter a feed URL and select an associated category"
+        title="Enter an RSS feed URL and associate a category"
         actions={actions}
         modal={false}
         open={props.modalOpen}

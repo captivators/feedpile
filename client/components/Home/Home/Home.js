@@ -19,7 +19,7 @@ const Home = (props) => {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
 
-        <div style={{backgroundColor: "#00BCD4"}}>
+        <div>
 
           {
             props.displayProgress ? <Progress /> : null
@@ -48,4 +48,3 @@ const MapStateToProps = (state) => {
 };
 export const Unwrapped = Home;
 export default connect(MapStateToProps)(Home);
-

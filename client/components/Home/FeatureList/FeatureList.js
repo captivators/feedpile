@@ -8,7 +8,7 @@ import Language from 'material-ui-icons/Language'
 const featureList = [
   {
     name: 'Syndication',
-    description: 'Keeping abreast of the news is demanding and visiting multiple sites frequently to find out if content has been updated is a waste of time. Feedpile uses aggregation technology to consolidate many news outlets into a one page application, saving you time and energy.',
+    description: 'Keeping on top of the news across various sites is a hassle. Feedpile uses aggregation technology to consolidate many news outlets into a one-page application, saving you time and energy.',
     icon: <RssFeed style={{
       width: "60px",
       height: "60px",
@@ -17,7 +17,7 @@ const featureList = [
   },
   {
     name: 'Responsive Design',
-    description: 'Our responsive design provides you not only with the sleakest desktop platform but also a clean RSS feed reader for any mobile device.',
+    description: 'FeedPile offers a responsive reading experience for all devices. The sleak desktop design scales down beautifully for mobile devices, so you can enjoy your favorite RSS feeds at home or on the go.',
     icon: <StayCurrentPortrait style={{
       width: "60px",
       height: "60px",
@@ -27,7 +27,7 @@ const featureList = [
   },
   {
     name: 'Customization',
-    description: 'Escape the monotonous echo chamber of mainstream media and curate your own personal newspaper easily by subscribing to content from you favorite sites. Store collections of feeds in categories to customize your content. Save articles with Evernote integration and share them over social media.',
+    description: 'Escape the monotonous echo chamber of mainstream media and curate your own personal newspaper easily by subscribing to content from your favorite sites. Store collections of feeds in categories to customize your content.',
     icon: <PersonPin style={{
       width: "60px",
       height: "60px",

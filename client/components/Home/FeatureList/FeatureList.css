@@ -1,19 +1,18 @@
-  .features {
-    display: flex;
-    padding-top: -245px;,
-    padding-bottom: 45px;,
-    margin: auto;
-    width: 100%;
-    text-align: center;
-    background-color: #00BCD4;
-    justify-content: space-between;
-  }
+.features {
+  display: flex;
+  margin: auto;
+  width: 100%;
+  text-align: center;
+  background-color: #B0BEC5;
+  justify-content: space-between;
+  padding-top: 80px;
+  color: #000;
+}
 
 .h3 {
   font-size: 3em;
   line-height: 1;
   display: block;
-  color: #fff;
   margin: .5em 0;
   }
 
@@ -34,7 +33,7 @@
   margin: auto;
   max-width: 90%;
   justify-content: space-between;
-  padding-bottom: 150px;
+  padding-bottom: 80px;
 }
 
 
@@ -49,7 +48,7 @@
 
 .info-a {
   order: 1;
-  max-width: 500px;
+  max-width: 600px;
   padding: 10px;
   width: auto;
 }
@@ -57,7 +56,7 @@
 
  .info-b {
   order: 0;
-  max-width: 500px;
+  max-width: 600px;
   min-width: 200px;
   padding: 10px;
   align-self: flex-reverse;

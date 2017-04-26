@@ -3,33 +3,40 @@
 exports[`Landingpage: Main section snapshot test 1`] = `
 <div
   className="main-container"
-  style={
-    Object {
-      "backgroundColor": "#00BCD4",
-    }
-  }
 >
+  <div
+    className="image-title-container"
+  >
+    <img
+      className="main-image"
+      src="test-file-stub"
+    />
+    <h1
+      className="title"
+    >
+      Feedpile
+    </h1>
+  </div>
   <div
     className="tagline-container"
   >
     <h1
       className="tagline"
     >
-      Simply a refreshing way to read the news
+      All your favorite news feeds, piled high
     </h1>
   </div>
   <div
-    className="main"
+    className="start-btn"
   >
-    <img
-      className="main-image"
-      src="https://s13.postimg.org/8y3id7gjr/book-logo-main.png"
+    <RaisedButton
+      disabled={false}
+      fullWidth={false}
+      label="Get Started"
+      labelPosition="after"
+      primary={true}
+      secondary={false}
     />
   </div>
-  <h1
-    className="main-h1"
-  >
-    Feedpile
-  </h1>
 </div>
 `;

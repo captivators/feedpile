@@ -5,10 +5,6 @@ const Category = require('./models/category');
 
 const cronJob = require('./feed-parser/cronjob');
 
-
-//const ArticlesFetcher = require('./feed-parser/articles-fetcher');
-
-
 const parse = require('./feed-parser/parser');
 
 //=======API TEST ROUTE=======
@@ -145,7 +141,7 @@ exports.createFeed = (req, res) => {
                       .then(function (updatedFeed) {
                         Article.find({feedId: updatedFeed._id}).exec()
                           .then(function (updatedArticles) {
-                            res.json({status: 201, message: 'new feed successfully created and added to user', feedName: updatedFeed.name, feedArticles: updatedArticles});
+                            res.json({status: 201, message: 'new feed successfully created and added to user', feedId: updatedFeed._id, feedUrl: updatedFeed.url, feedImageSrc: updatedFeed.imageSrc, feedName: updatedFeed.name, feedArticles: updatedArticles});
                           });
                       });
                   });
@@ -178,7 +174,7 @@ exports.createFeed = (req, res) => {
                       .then(function (updatedFeed) {
                         Article.find({feedId: updatedFeed._id}).exec()
                           .then(function (updatedArticles) {
-                            res.json({status: 201, message: 'existing feed added successfully to user', feedName: updatedFeed.name, feedArticles: updatedArticles});
+                            res.json({status: 201, message: 'existing feed added successfully to user', feedId: updatedFeed._id, feedUrl: updatedFeed.url, feedImageSrc: updatedFeed.imageSrc, feedName: updatedFeed.name, feedArticles: updatedArticles});
                           });
                       });
                   });
@@ -287,15 +283,52 @@ exports.getOneFeed = (req, res) => {
 };
 
 exports.deleteFeed = (req, res) => {
-  Feed.remove({
-    _id: req.params.feedId
-  }, function(err, feed) {
-    if (err) {
-      res.send(err);
-    }
+  if (req.body.userId) {
+    //remove articles for the user.feeds[i].feedId
+    User.findOne({userId: req.body.userId}).exec()
+      .then(function(user) {
+        if (req.params.feedId) {
+          if (user === null) {
+            res.json({status: 404, message: 'user not found'});
+          } else {
+            var feedFound = false;
 
-    res.json({ status: 200, message: 'Feed deleted!' });
-  });
+            for (var i = 0; i < user.feeds.length; i++) {
+              if (user.feeds[i].feedId == req.params.feedId) {
+                feedFound = true;
+                user.feeds.splice(i, 1);
+                break;
+              }
+            }
+
+            if (feedFound) {
+              console.log('feedFound - >' + feedFound);
+              user.save()
+                .then(function (user) {
+
+                  res.json({status: 200, message: 'feed deleted for user', updatedUser: user});
+                });
+            } else {
+              res.json({status: 404, message: 'feedId not found for user'});
+            }
+          }
+        } else {
+          res.json({status: 422, message: 'feedId missing'});
+        }
+      });
+      //remove
+      // Feed.remove({
+      //   _id: req.params.feedId
+      // }, function(err, feed) {
+      //   if (err) {
+      //     res.send(err);
+      //   }
+
+      //   res.json({ status: 200, message: 'Feed deleted!' });
+      // });
+  } else {
+    res.json({status: 422, message: 'userId missing'});
+  }
 };
 
 //=======USER API ROUTES=======

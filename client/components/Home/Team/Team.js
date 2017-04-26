@@ -1,20 +1,14 @@
 import React from 'react';
 import Teammate from '../Teammate/Teammate'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import Paper from 'material-ui/Paper';
 import './Team.css'
 
 const style = {
   first: {
-    paddingTop: '45px',
-    paddingBottom: '45px',
+    paddingTop: '60px',
+    paddingBottom: '60px',
     width: '100%',
     textAlign: 'center',
-    backgroundColor: '#eee',
     h1: {
-      color: '#fff',
       marginTop: 0,
       fontSize: '48px',
       fontFamily: 'Roboto, sans-serif',
@@ -52,15 +46,13 @@ const teamInfo = [
 
 const Team = (props) => {
   return (
-    <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
-    <Paper className="team-container" style={style.first} zDepth={5}>
+    <div className="team-container" style={style.first}>
       <div className="team" style={style.root}>
         {teamInfo.map((teamMate, index) => (
           <Teammate info={ teamMate } key={ index } />
         ))}
       </div>
-    </Paper>
-    </MuiThemeProvider>
+    </div>
     )
 }
 

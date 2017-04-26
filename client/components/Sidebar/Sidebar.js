@@ -15,11 +15,13 @@ import IconButton from 'material-ui/IconButton';
 import Description from 'material-ui-icons/Description';
 import PanoramaFishEye from 'material-ui-icons/PanoramaFishEye';
 import Lens from 'material-ui-icons/Lens';
+import FlatButton from 'material-ui/FlatButton';
+import DeleteFeed from '../DeleteFeed/DeleteFeed'
 
-import feedPileImg from '../../images/feedpile.png'
+import feedPileImg from '../../images/feedpile.png';
 
 import './Sidebar.css';
-import { fetchArticlesForFeedsFromDb, toggleModal,
+import { fetchArticlesForFeedsFromDb, toggleModal, toggleDeleteModal,
 findCreateUser, setSidebarFeed, setDisplayProgress } from '../../actions';
 import { connect } from 'react-redux';
 
@@ -89,7 +91,6 @@ class Sidebar extends React.Component {
             <ListItem value={1} primaryText="All Articles" leftIcon={<ListIcon />}
                       onClick={() => this.props.setSidebarFeed("")}
             />
-            <ListItem value={2} primaryText="Starred" leftIcon={<Star />}/>
             {categories.map((categoryId, index) => {
               return (<ListItem value={index+4} key={index+4} primaryText={this.props.user[categoryId].categoryName}
 
@@ -102,14 +103,14 @@ class Sidebar extends React.Component {
                                         primaryText={feed.name}
                                         onClick={() => this.props.setSidebarFeed(feed.feedId)}
                                         leftIcon={<PanoramaFishEye/>}
+                                        // {this.prop.deleteButton && rightIcon={<PanoramaFishEye/>}}
                                     />)
                                   })}
                         />)
             })}
-            <ListItem value={3} primaryText="Archived" leftIcon={<Archive />}/>
           </SelectableList>
 
-          <span className="refresh-icon">
+      <span className="refresh-icon">
         <IconButton onClick={()=>{
           this.props.fetchArticlesForFeedsFromDb()
           this.props.setDisplayProgress(true)
@@ -119,7 +120,7 @@ class Sidebar extends React.Component {
           <Refresh />
         </IconButton>
       </span>
-          <span className="archive-icon">
+      <span className="add-icon">
         <IconButton onClick={() => {
           this.props.toggleModal(true)
         }} iconStyle={styles.smallIcon} className="add-icon" style={styles.small}>
@@ -127,11 +128,14 @@ class Sidebar extends React.Component {
         </IconButton>
       </span>
           <span className="archive-icon">
-        <IconButton iconStyle={styles.smallIcon} className="archive-icon" style={styles.small}>
+        <IconButton onClick={() => {
+            this.props.toggleDeleteModal(true)
+        }}iconStyle={styles.smallIcon} className="archive-icon" style={styles.small}>
           <Archive />
         </IconButton>
       </span>
           <AddFeed />
+          <DeleteFeed />
         </div>
     )
   }
@@ -148,5 +152,6 @@ export const Unwrapped = Sidebar;
 
 export default connect(mapStateToProps, {
   fetchArticlesForFeedsFromDb, toggleModal,
-  findCreateUser, setSidebarFeed, setDisplayProgress
+  findCreateUser, setSidebarFeed, setDisplayProgress,
+    toggleDeleteModal
 })(Sidebar);

@@ -13,6 +13,7 @@ const app = express();
 // connect to our database
 
 // mongoose.connect('mongodb://localhost/feedpilelocal', function (err) {
+
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/feedpilelocal', function (err) {
   if (err) {
     console.log(err);
@@ -20,10 +21,6 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/feedpilel
 
   console.log('Connected to Database');
 });
-
-// mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/feedpilelocal', function () {
-//   console.log('Connected to Database');
-// });
 
 // Setup logger
 app.use(morgan('dev'));

@@ -38,48 +38,6 @@ exports[`Sidebar snapshot test 1`] = `
       secondaryTextLines={1}
       value={1}
     />
-    <ListItem
-      autoGenerateNestedIndicator={true}
-      disableKeyboardFocus={false}
-      disabled={false}
-      initiallyOpen={false}
-      insetChildren={false}
-      leftIcon={<pure(Star) />}
-      nestedItems={Array []}
-      nestedLevel={0}
-      onKeyboardFocus={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onNestedListToggle={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      open={null}
-      primaryText="Starred"
-      primaryTogglesNestedList={false}
-      secondaryTextLines={1}
-      value={2}
-    />
-    <ListItem
-      autoGenerateNestedIndicator={true}
-      disableKeyboardFocus={false}
-      disabled={false}
-      initiallyOpen={false}
-      insetChildren={false}
-      leftIcon={<pure(Archive) />}
-      nestedItems={Array []}
-      nestedLevel={0}
-      onKeyboardFocus={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onNestedListToggle={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      open={null}
-      primaryText="Archived"
-      primaryTogglesNestedList={false}
-      secondaryTextLines={1}
-      value={3}
-    />
   </SelectableList>
   <span
     className="refresh-icon"
@@ -109,7 +67,7 @@ exports[`Sidebar snapshot test 1`] = `
     </IconButton>
   </span>
   <span
-    className="archive-icon"
+    className="add-icon"
   >
     <IconButton
       className="add-icon"
@@ -148,6 +106,7 @@ exports[`Sidebar snapshot test 1`] = `
           "width": 36,
         }
       }
+      onClick={[Function]}
       style={
         Object {
           "height": 72,
@@ -162,5 +121,6 @@ exports[`Sidebar snapshot test 1`] = `
     </IconButton>
   </span>
   <Connect(AddFeed) />
+  <Connect(DeleteFeed) />
 </div>
 `;
