@@ -18,7 +18,7 @@ import Lens from 'material-ui-icons/Lens';
 import FlatButton from 'material-ui/FlatButton';
 import DeleteFeed from '../DeleteFeed/DeleteFeed'
 
-import feedPileImg from '../../images/feedpile.png'
+import feedPileImg from '../../images/feedpile.png';
 
 import './Sidebar.css';
 import { fetchArticlesForFeedsFromDb, toggleModal, toggleDeleteModal,
@@ -91,7 +91,6 @@ class Sidebar extends React.Component {
             <ListItem value={1} primaryText="All Articles" leftIcon={<ListIcon />}
                       onClick={() => this.props.setSidebarFeed("")}
             />
-            <ListItem value={2} primaryText="Starred" leftIcon={<Star />}/>
             {categories.map((categoryId, index) => {
               return (<ListItem value={index+4} key={index+4} primaryText={this.props.user[categoryId].categoryName}
 
@@ -109,10 +108,9 @@ class Sidebar extends React.Component {
                                   })}
                         />)
             })}
-            <ListItem value={3} primaryText="Archived" leftIcon={<Archive />}/>
           </SelectableList>
 
-          <span className="refresh-icon">
+      <span className="refresh-icon">
         <IconButton onClick={()=>{
           this.props.fetchArticlesForFeedsFromDb()
           this.props.setDisplayProgress(true)
@@ -122,7 +120,7 @@ class Sidebar extends React.Component {
           <Refresh />
         </IconButton>
       </span>
-          <span className="archive-icon">
+      <span className="add-icon">
         <IconButton onClick={() => {
           this.props.toggleModal(true)
         }} iconStyle={styles.smallIcon} className="add-icon" style={styles.small}>

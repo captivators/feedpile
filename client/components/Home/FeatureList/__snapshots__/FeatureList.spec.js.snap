@@ -43,7 +43,7 @@ exports[`Landingpage: Feature list snapshot test 1`] = `
             <li
               className="description"
             >
-              Keeping abreast of the news is demanding and visiting multiple sites frequently to find out if content has been updated is a waste of time. Feedpile uses aggregation technology to consolidate many news outlets into a one page application, saving you time and energy.
+              Keeping on top of the news across various sites is a hassle. Feedpile uses aggregation technology to consolidate many news outlets into a one-page application, saving you time and energy.
             </li>
           </ul>
         </div>
@@ -86,7 +86,7 @@ exports[`Landingpage: Feature list snapshot test 1`] = `
             <li
               className="description"
             >
-              Our responsive design provides you not only with the sleakest desktop platform but also a clean RSS feed reader for any mobile device.
+              FeedPile offers a responsive reading experience for all devices. The sleak desktop design scales down beautifully for mobile devices, so you can enjoy your favorite RSS feeds at home or on the go.
             </li>
           </ul>
         </div>
@@ -129,7 +129,7 @@ exports[`Landingpage: Feature list snapshot test 1`] = `
             <li
               className="description"
             >
-              Escape the monotonous echo chamber of mainstream media and curate your own personal newspaper easily by subscribing to content from you favorite sites. Store collections of feeds in categories to customize your content. Save articles with Evernote integration and share them over social media.
+              Escape the monotonous echo chamber of mainstream media and curate your own personal newspaper easily by subscribing to content from your favorite sites. Store collections of feeds in categories to customize your content.
             </li>
           </ul>
         </div>

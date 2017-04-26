@@ -1,21 +1,11 @@
 import React from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar'
 import FlatButton from 'material-ui/FlatButton'
 import { connect } from 'react-redux';
 import { findCreateUser, loginError, setDisplayProgress} from '../../../actions'
 import Auth0Lock from 'auth0-lock';
 
-const style = {
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    backgroundColor: '#888',
-  }
-};
+import './Header.css';
 
 const Header = React.createClass({
 
@@ -40,12 +30,13 @@ const Header = React.createClass({
   },
   render() {
     return (
-        <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
-          <AppBar style={style.root}
+        <div className="header">
+          <AppBar style={{backgroundColor: '#607D8B'}}
                   title="Feedpile"
+                  showMenuIconButton={false}
                   iconElementRight={<FlatButton onClick={()=> this.lock.show()} label="Sign in / Sign up"/>}
           />
-        </MuiThemeProvider>
+        </div>
     )
   }
 });
