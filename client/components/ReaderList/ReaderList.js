@@ -4,32 +4,25 @@ import ReaderListItem from '../ReaderListItem/ReaderListItem';
 import Welcome from '../Welcome/Welcome';
 import {connect} from 'react-redux';
 import './ReaderList.css';
-import { fetchArticlesForFeedsFromDb } from '../../actions'
+import articlesSelector  from '../../selectors/articles-selector';
+import {fetchArticlesForFeedsFromDb} from '../../actions'
 
 class ReaderList extends React.Component {
-  constructor (props){
+  constructor(props) {
     super(props);
   }
+
   componentWillMount() {
     this.props.fetchArticlesForFeedsFromDb();
   }
+
   render() {
-    let articlesFound = [];
-    if(!Array.isArray(this.props.articles)) {
-      if(this.props.currentFeed !== "" && this.props.articles[this.props.currentFeed]) {
-        articlesFound = this.props.articles[this.props.currentFeed];
-      } else {
-        for(var key in this.props.articles) {
-          articlesFound = articlesFound.concat(this.props.articles[key]);
-        }
-      }
-    }
     return (
         <div className="reader-list-container">
           {
             Object.keys(this.props.articles).length ? <ReaderListHeader /> : <Welcome />
           }
-          {articlesFound.map((article, index) => (
+          {this.props.articlesFound.map((article, index) => (
               <ReaderListItem history={this.props.history}
                               article={article}
                               key={index} articleIndex={index}
@@ -43,7 +36,7 @@ class ReaderList extends React.Component {
 const mapStateToProps = (state) => {
   return {
     articles: state.articles,
-    currentFeed: state.currentFeed
+    articlesFound: articlesSelector(state)
   }
 };
 

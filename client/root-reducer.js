@@ -15,7 +15,7 @@ const checkTokenExpiry = () => {
 };
 
 const initialState = {
-  articles: [],
+  articles: {},
   open: false,
   modalOpen: false,
   openDeleteFeedModal: false,
@@ -71,14 +71,10 @@ const setSidebarFeed = (state, action) => {
 };
 
 const setAddFeedUrl = (state, action) => {
-  console.log('Inside root reducer for setAddFeedUrl')
-  console.log('url: ', action.url);
   return { ...state, addFeedUrl: action.url}
 }
 
 const setAddFeedCategoryId = (state, action) => {
-  console.log('Inside root reducer for setAddFeedCategoryId');
-  console.log('categoryId: ', action.categoryId);
   return { ...state, addFeedCategoryId: action.categoryId}
 }
 
@@ -114,9 +110,29 @@ const setDisplayProgress = (state, action) => {
   return {...state, displayProgress: action.value}
 };
 
-const deleteFeedsFromStore = (state, action) => {
- // TO DO: remove deleted feeds, articles associated with each feed, feeds in each user obj
-}
+const updateFeedsArticlesInStore = (state, action) => {
+  let feedAlreadyInStore = false;
+  for(let i=0; i< state.feeds.length; i++) {
+    if( state.feeds[i]._id === action.feed._id) {
+      feedAlreadyInStore = true;
+      break;
+    }
+  }
+  if (!feedAlreadyInStore) {
+    return {...state, feeds: [
+        ...state.feeds,
+        action.feed
+    ], articles: {
+        ...state.articles, [action.feed._id]: action.articles
+    }
+    }
+  } else {
+    return {...state, articles: {
+      ...state.articles, [action.feed._id]: action.articles
+    }}
+  }
+};
+
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -136,9 +152,9 @@ function rootReducer(state = initialState, action) {
       return getArticlesForAllFeeds(state, action);
     case 'SET_SIDEBAR_FEED':
       return setSidebarFeed(state, action);
-    case 'ADD_FEED':
-      console.log('Feed successfully added');
-      return state;
+    // case 'ADD_FEED':
+    //   console.log('Feed successfully added');
+    //   return state;
     case 'SET_ADD_FEED_URL':
       return setAddFeedUrl(state, action);
       case 'SET_ADD_FEED_CATEGORY_ID':
@@ -151,6 +167,8 @@ function rootReducer(state = initialState, action) {
         return toggleDeleteModal(state, action);
       case 'DELETE_FEEDS_FROM_STORE':
         return deleteFeedsFromStore(state, action);
+    case 'UPDATE_FEEDS_AND_ARTICLES_IN_STORE':
+      return updateFeedsArticlesInStore(state, action);
     default:
       return state
   }
