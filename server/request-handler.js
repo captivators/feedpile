@@ -295,6 +295,7 @@ exports.deleteFeed = (req, res) => {
 
             for (var i = 0; i < user.feeds.length; i++) {
               if (user.feeds[i].feedId == req.params.feedId) {
+                console.log(`feedId of feed to be delete: ${req.params.feedId}`)
                 feedFound = true;
                 user.feeds.splice(i, 1);
                 break;
