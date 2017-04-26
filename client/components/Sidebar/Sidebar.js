@@ -106,7 +106,6 @@ class Sidebar extends React.Component {
   }
 
   render() {
-    console.log(`this.props.categories: ${JSON.stringify(this.props.categories)}`);
     const categories = Object.keys(this.props.user);
     return (
         <div className="sidebar-container">

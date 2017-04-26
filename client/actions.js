@@ -74,3 +74,7 @@ export const setDisplayProgress = (value) => {
 export const updateFeedsArticlesInStore = (articles, feed) => {
   return {type: 'UPDATE_FEEDS_AND_ARTICLES_IN_STORE', articles, feed}
 };
+
+export const showWelcome = (value) => {
+  return {type: 'SHOW_WELCOME', value}
+}
