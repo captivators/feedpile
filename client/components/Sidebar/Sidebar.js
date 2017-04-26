@@ -16,7 +16,7 @@ import Food from 'material-ui-icons/LocalDining';
 import Travel from 'material-ui-icons/FlightTakeoff';
 import Other from 'material-ui-icons/ChromeReaderMode';
 import Refresh from 'material-ui-icons/Refresh';
-import Archive from 'material-ui-icons/Archive';
+import Delete from 'material-ui-icons/Delete';
 import AddCircle from 'material-ui-icons/AddCircle';
 import IconButton from 'material-ui/IconButton';
 import Description from 'material-ui-icons/Description';
@@ -154,8 +154,8 @@ class Sidebar extends React.Component {
           <span className="archive-icon">
         <IconButton onClick={() => {
             this.props.toggleDeleteModal(true)
-        }}iconStyle={styles.smallIcon} className="archive-icon" style={styles.small}>
-          <Archive />
+        }}iconStyle={styles.smallIcon} className="delete-icon" style={styles.small}>
+          <Delete />
         </IconButton>
       </span>
           <AddFeed />
