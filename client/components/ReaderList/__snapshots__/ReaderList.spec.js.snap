@@ -5,5 +5,41 @@ exports[`ReaderList take a snapshot 1`] = `
   className="reader-list-container"
 >
   <Connect(ReaderListHeader) />
+  <Connect(ReaderListItem)
+    article={
+      Object {
+        "__v": 0,
+        "_id": "58f82c8410b7be21d128551c",
+        "date": "2017-04-20T03:10:41.000Z",
+        "datePublished": "2017-04-20T03:10:41.000Z",
+        "description": "Study of 250,000 UK commuters shows walking is good too but suggests two wheels are best.",
+        "feedId": "58f7a4b09f861f7da0e08542",
+        "imageSrc": "http://c.files.bbci.co.uk/16C69/production/_95698239_gettyimages-168396725.jpg",
+        "summary": "Study of 250,000 UK commuters shows walking is good too but suggests two wheels
+      are best.",
+        "title": "Cycling to work can cut cancer and heart disease, says study",
+        "url": "http://www.bbc.co.uk/news/health-39641122",
+      }
+    }
+    articleIndex={0}
+  />
+  <Connect(ReaderListItem)
+    article={
+      Object {
+        "__v": 0,
+        "_id": "58f82d39e3ad80221d881545",
+        "date": "2017-04-20T03:05:26.000Z",
+        "datePublished": "2017-04-20T03:05:26.000Z",
+        "description": "A drug for depression could stop all neurodegenerative diseases, including dementia, scientists hope.",
+        "feedId": "58f7a4b09f861f7da0e08542",
+        "imageSrc": "http://c.files.bbci.co.uk/85F1/production/_95698243_gettyimages-535164801.jpg",
+        "summary": "A drug for depression could stop all neurodegenerative diseases, including
+      dementia, scientists hope.",
+        "title": "Experts excited by brain 'wonder-drug'",
+        "url": "http://www.bbc.co.uk/news/health-39641123",
+      }
+    }
+    articleIndex={1}
+  />
 </div>
 `;
