@@ -30,7 +30,8 @@ const initialState = {
   currentFeed: '',
   addFeedUrl: '',
   addFeedCategoryId: '',
-  displayProgress: false
+  displayProgress: false,
+  showWelcome: false
 };
 
 const updateArticles = (state, action) => {
@@ -133,6 +134,10 @@ const updateFeedsArticlesInStore = (state, action) => {
   }
 };
 
+const showWelcome = (state, action) => {
+  return {...state, showWelcome: action.value}
+};
+
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -152,9 +157,8 @@ function rootReducer(state = initialState, action) {
       return getArticlesForAllFeeds(state, action);
     case 'SET_SIDEBAR_FEED':
       return setSidebarFeed(state, action);
-    // case 'ADD_FEED':
-    //   console.log('Feed successfully added');
-    //   return state;
+    case 'SHOW_WELCOME':
+      return showWelcome(state, action);
     case 'SET_ADD_FEED_URL':
       return setAddFeedUrl(state, action);
       case 'SET_ADD_FEED_CATEGORY_ID':
