@@ -61,7 +61,7 @@ exports[`AddFeed take a snapshot 1`] = `
       className="radio-buttons"
     >
       <RadioButtonGroup
-        defaultSelected="other"
+        defaultSelected="Other"
         name="categories"
         style={Object {}}
       />
