@@ -41,6 +41,7 @@ class App extends React.Component {
     );
   }
 }
+
 const MapStateToProps = (state) => {
   return {
     displayProgress : state.displayProgress
@@ -49,4 +50,3 @@ const MapStateToProps = (state) => {
 
 export const Unwrapped = App;
 export default connect(MapStateToProps)(App);
-

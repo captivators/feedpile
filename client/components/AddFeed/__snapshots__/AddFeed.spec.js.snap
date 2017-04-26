@@ -40,7 +40,7 @@ exports[`AddFeed take a snapshot 1`] = `
     modal={false}
     onRequestClose={[Function]}
     repositionOnUpdate={true}
-    title="Enter a feed URL and select an associated category"
+    title="Enter an RSS feed URL and associate a category"
   >
     <div
       className="url-input"
