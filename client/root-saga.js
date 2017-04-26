@@ -17,6 +17,7 @@ const createUserObj = (userObj, categoryList, feedList) => {
       }
       for (let i = 0; i < feedList.length; i++) {
         if (feedList[i]._id === feed.feedId) {
+          console.log('19 feedlist[i]', feedList[i])
           result[feed.categoryId].feeds.push({"name": feedList[i].name, "feedId": feed.feedId});
           break;
         }
@@ -89,8 +90,18 @@ export function* addFeedToDb(action) {
   }
 }
 
+export function* deleteFeedsFromDb(actions) {
+  try {
+    const responses = yield actions.feeds.map((feed) => call(axios.delete, `/api/feeds/${feed}`));
+    yield call(findCreateUser, {userId: actions.userId});
+ } catch (e) {
+
+ }
+}
+
 export default function *rootSaga() {
   yield takeEvery('FIND_OR_CREATE_USER', findCreateUser);
   yield takeEvery('FETCH_ARTICLES_FOR_FEEDS', getArticlesForAllFeedsFromdb);
   yield takeEvery('ADD_FEED', addFeedToDb);
+  yield takeEvery('DELETE_FEEDS_FROM_DB', deleteFeedsFromDb)
 }

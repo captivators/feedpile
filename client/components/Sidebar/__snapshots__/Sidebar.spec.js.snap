@@ -148,6 +148,7 @@ exports[`Sidebar snapshot test 1`] = `
           "width": 36,
         }
       }
+      onClick={[Function]}
       style={
         Object {
           "height": 72,
@@ -162,5 +163,6 @@ exports[`Sidebar snapshot test 1`] = `
     </IconButton>
   </span>
   <Connect(AddFeed) />
+  <Connect(DeleteFeed) />
 </div>
 `;

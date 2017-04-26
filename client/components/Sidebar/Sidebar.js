@@ -15,11 +15,13 @@ import IconButton from 'material-ui/IconButton';
 import Description from 'material-ui-icons/Description';
 import PanoramaFishEye from 'material-ui-icons/PanoramaFishEye';
 import Lens from 'material-ui-icons/Lens';
+import FlatButton from 'material-ui/FlatButton';
+import DeleteFeed from '../DeleteFeed/DeleteFeed'
 
 import feedPileImg from '../../images/feedpile.png'
 
 import './Sidebar.css';
-import { fetchArticlesForFeedsFromDb, toggleModal,
+import { fetchArticlesForFeedsFromDb, toggleModal, toggleDeleteModal,
 findCreateUser, setSidebarFeed, setDisplayProgress } from '../../actions';
 import { connect } from 'react-redux';
 
@@ -102,6 +104,7 @@ class Sidebar extends React.Component {
                                         primaryText={feed.name}
                                         onClick={() => this.props.setSidebarFeed(feed.feedId)}
                                         leftIcon={<PanoramaFishEye/>}
+                                        // {this.prop.deleteButton && rightIcon={<PanoramaFishEye/>}}
                                     />)
                                   })}
                         />)
@@ -127,11 +130,14 @@ class Sidebar extends React.Component {
         </IconButton>
       </span>
           <span className="archive-icon">
-        <IconButton iconStyle={styles.smallIcon} className="archive-icon" style={styles.small}>
+        <IconButton onClick={() => {
+            this.props.toggleDeleteModal(true)
+        }}iconStyle={styles.smallIcon} className="archive-icon" style={styles.small}>
           <Archive />
         </IconButton>
       </span>
           <AddFeed />
+          <DeleteFeed />
         </div>
     )
   }
@@ -148,5 +154,6 @@ export const Unwrapped = Sidebar;
 
 export default connect(mapStateToProps, {
   fetchArticlesForFeedsFromDb, toggleModal,
-  findCreateUser, setSidebarFeed, setDisplayProgress
+  findCreateUser, setSidebarFeed, setDisplayProgress,
+    toggleDeleteModal
 })(Sidebar);
