@@ -250,9 +250,6 @@ var processFeeds = function () {
                       //   console.log('1111 ' + updatedArticle.title);
                       // }
 
-
-
-
                       if (updatedArticle.imageSrc) {
                         if (feedResults[i].articles[j].image && feedResults[i].articles[j].image.url) {
                           if (!compareMD5(md5(updatedArticle.imageSrc), md5(feedResults[i].articles[j].image.url))) {
@@ -260,7 +257,7 @@ var processFeeds = function () {
                             updatedFlag = true;
                             console.log('222');
                           }
-                        } else if (feedResults[i].articles[j].enclosures[0] && feedResults[i].articles[j].enclosures[0].url && (feedResults[i].articles[j].enclosures[0].type).indexOf('image') > -1) {
+                        } else if (feedResults[i].articles[j].enclosures && feedResults[i].articles[j].enclosures[0] && feedResults[i].articles[j].enclosures[0].url && (feedResults[i].articles[j].enclosures[0].type).indexOf('image') > -1) {
                             if (!compareMD5(md5(updatedArticle.imageSrc), md5(feedResults[i].articles[j].enclosures[0].url))) {
                               updatedArticle.imageSrc = feedResults[i].articles[j].enclosures[0].url;
                               updatedFlag = true;
@@ -268,17 +265,21 @@ var processFeeds = function () {
                             }
                         }
                       } else if (!updatedArticle.imageSrc) {
-                        var imageUrl = getImageUrl(feedResults[i].articles[j].description);
-                        if (imageUrl != null && typeof imageUrl === 'string') {
-                        // console.log('article with id ' + currentArticleDB._id + ' has no image property and feed id ' + localFeeds[i].name)
-
-                          updatedArticle.imageSrc = imageUrl;
+                        if (feedResults[i].articles[j].enclosures && feedResults[i].articles[j].enclosures[0] && feedResults[i].articles[j].enclosures[0].url && (feedResults[i].articles[j].enclosures[0].type).indexOf('image') > -1) {
+                          updatedArticle.imageSrc = feedResults[i].articles[j].enclosures[0].url;
                           updatedFlag = true;
                           console.log('22222');
+                        } else {
+                          var imageUrl = getImageUrl(feedResults[i].articles[j].description);
+                          if (imageUrl != null && typeof imageUrl === 'string') {
+                          // console.log('article with id ' + currentArticleDB._id + ' has no image property and feed id ' + localFeeds[i].name)
+
+                            updatedArticle.imageSrc = imageUrl;
+                            updatedFlag = true;
+                            console.log('222222');
+                          }
                         }
                       }
-
-
 
                       // if (feedResults[i].articles[j].image && feedResults[i].articles[j].image.url && updatedArticle.imageSrc && !compareMD5(md5(feedResults[i].articles[j].image.url), md5(updatedArticle.imageSrc))) {
                       //   console.log('j: ' + j + '\ntitle: ' + updatedArticle.title + ' \nfeedId: ' + updatedArticle.feedId + ' \nid: ' + currentArticleDB._id + '\nimageSrc ' + updatedArticle.imageSrc);
@@ -437,7 +438,7 @@ var processFeeds = function () {
 
                       if (feedResults[i].articles[j].image) {
                         newArticle.imageSrc = feedResults[i].articles[j].image.url;
-                      } else if (feedResults[i].articles[j].enclosures[0] && feedResults[i].articles[j].enclosures[0].url && (feedResults[i].articles[j].enclosures[0].type).indexOf('image') > -1) {
+                      } else if (feedResults[i].articles[j].enclosures && feedResults[i].articles[j].enclosures[0] && feedResults[i].articles[j].enclosures[0].url && (feedResults[i].articles[j].enclosures[0].type).indexOf('image') > -1) {
                         newArticle.imageSrc = feedResults[i].articles[j].enclosures[0].url;
                       } else {
                         var imageUrl = getImageUrl(feedResults[i].articles[j].description);

@@ -10,12 +10,13 @@ const parse = require('./feed-parser/parser');
 //=======API TEST ROUTE=======
 exports.test = (req, res) => {
 
-  // const feedUrl1 = 'http://www.techradar.com/rss';
+  //const feedUrl1 = 'http://www.techradar.com/rss';
   // const feedUrl2 = 'https://www.cnet.com/rss/news';
   // const feedUrl3 = 'https://www.theregister.co.uk/headlines.atom';
   // const feedUrl4 = 'http://slashdot.org/developers.rdf';
   // const feedUrl5 = 'http://feeds.feedburner.com/TechCrunch';
-  const feedUrl6 = 'http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml';
+  // const feedUrl6 = 'http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml';
+  const feedUrl6 = 'https://api.foxsports.com/v1/rss?partnerKey=zBaFxRyGKCfxBagJG9b8pqLyndmvo7UU';
 
 
   // var p1 = new Promise((resolve, reject) => {
@@ -183,93 +184,6 @@ exports.createFeed = (req, res) => {
         }
       });
   }
-
-  // Feed.findOne({url: req.body.url}, function (err, feed) {
-  //   if (feed === null) {
-  //     var feed1 = new Feed();      // create a new instance of the Feed model
-  //     // feed.name = req.body.name;
-  //     feed1.url = req.body.url;
-
-  //     if (req.body.userId && req.body.categoryId) {
-  //       feed1.save(function(err, doc) {
-  //         if (err) {
-  //           res.send(err);
-  //         }
-
-  //         User.findOne({userId: req.body.userId}, function (err, user) {
-  //           if (err) {
-  //             res.send(err);
-  //           }
-
-  //           var newUser = user;
-  //           delete newUser._id;
-
-  //           var obj = {};
-
-  //           obj.feedId = doc._id;
-  //           obj.categoryId = req.body.categoryId;
-
-  //           newUser.feeds.push(obj);
-
-  //           User.update({ _id: user._id },
-  //           { $set: newUser }, function (err, result) {
-  //             if (err) {
-  //               res.send(err);
-  //             }
-
-  //             res.json({ status: 201, message: 'Feed created (' + doc._id +') and added to user _id (' + user._id +')/userId ' + user.userId});
-  //           });
-
-  //         });
-  //         // res.json({ status: 201, message: 'Feed created!' });
-  //       });
-  //     } else {
-  //       // save the feed and check for errors
-  //       feed1.save(function(err) {
-  //         if (err) {
-  //           res.send(err);
-  //         }
-
-  //         res.json({ status: 201, message: 'Feed created!' });
-  //       });
-  //     }
-  //   } else {  //feed does exist
-  //     if (req.body.userId && req.body.categoryId) {
-  //       feed.save(function(err, doc) {
-  //         if (err) {
-  //           res.send(err);
-  //         }
-
-  //         User.findOne({userId: req.body.userId}, function (err, user) {
-  //           if (err) {
-  //             res.send(err);
-  //           }
-
-  //           var newUser = user;
-  //           delete newUser._id;
-
-  //           var obj = {};
-
-  //           obj.feedId = doc._id;
-  //           obj.categoryId = req.body.categoryId;
-
-  //           newUser.feeds.push(obj);
-
-  //           User.update({ _id: user._id },
-  //           { $set: newUser }, function (err, result) {
-  //             if (err) {
-  //               res.send(err);
-  //             }
-
-  //             res.json({ status: 201, message: 'Feed created (' + doc._id +') and added to user _id (' + user._id +')/userId ' + user.userId});
-  //           });
-
-  //         });
-  //         // res.json({ status: 201, message: 'Feed created!' });
-  //       });
-  //     }
-  //   }
-  // });
 };
 
 exports.getOneFeed = (req, res) => {
@@ -295,6 +209,7 @@ exports.deleteFeed = (req, res) => {
 
             for (var i = 0; i < user.feeds.length; i++) {
               if (user.feeds[i].feedId == req.params.feedId) {
+                console.log(`feedId of feed to be delete: ${req.params.feedId}`)
                 feedFound = true;
                 user.feeds.splice(i, 1);
                 break;
@@ -316,16 +231,6 @@ exports.deleteFeed = (req, res) => {
           res.json({status: 422, message: 'feedId missing'});
         }
       });
-      //remove
-      // Feed.remove({
-      //   _id: req.params.feedId
-      // }, function(err, feed) {
-      //   if (err) {
-      //     res.send(err);
-      //   }
-
-      //   res.json({ status: 200, message: 'Feed deleted!' });
-      // });
   } else {
     res.json({status: 422, message: 'userId missing'});
   }
