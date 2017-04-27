@@ -633,9 +633,68 @@ const job = new CronJob({
 
 
 var job2 = new CronJob({
-  cronTime: '59 * * * * *',
+  cronTime: '15,45 * * * * *',
   onTick: function() {
+
     console.log('delete job just ran');
+
+    var now = new Date();
+    var weekMs = now.getTime() - 1000 * 60 * 60 * 24 * 7;
+
+    //var weekMs = now.getTime() - 1000 * 60 * 60;
+
+    Article.find({ date : { $lt : weekMs }}, '_id', {lean: true}).exec()
+      .then(function (articles) {
+        if (articles.length > 0) {
+          console.log('number of articles found to delete -> ' + articles.length);
+
+          var articlesArray = [];
+
+          for (var i = 0; i < articles.length; i++) {
+            articlesArray.push(articles[i]._id.toString());
+          }
+
+          console.log(articlesArray.length);  //articles to remove from articles collection
+
+          User.find({'feeds.articles.articleId': { $in: articlesArray }}).exec()
+            .then(function (users) {
+              //console.log(users.length);
+              //console.log(JSON.stringify(users));
+
+              for (var i = 0; i < users.length; i++) {
+                if (users[i].feeds.length > 0) {
+                  for (var j = 0; j < users[i].feeds.length; j++) {
+                    console.log('b-->' + users[i].feeds[j].articles.length)
+                    if (users[i].feeds[j].articles.length > 0) {
+                      for (var k = 0; k < users[i].feeds[j].articles.length; k++) {
+                        if (articlesArray.indexOf(users[i].feeds[j].articles[k].articleId) > -1) {
+                          users[i].feeds[j].articles.splice(k, 1);
+                        }
+                      }
+                    }
+                    console.log('a-->' + users[i].feeds[j].articles.length)
+                  }
+
+                  users[i].save(function(err, ok) {
+                    if (err) {
+                      console.log(err);
+                    }
+
+                    console.log(ok);
+                  });
+                }
+              } //for done
+
+              Article.remove({_id: { $in: articlesArray }}, function (err, ok) {
+                if (err) {
+                  console.log(err);
+                }
+
+                // console.log(ok)
+              });
+            });
+        }
+      });
   },
   start: false,
   timeZone: 'America/Los_Angeles'
