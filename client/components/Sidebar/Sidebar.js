@@ -3,26 +3,32 @@ import {List, ListItem, makeSelectable} from 'material-ui/List';
 import PropTypes from 'prop-types';
 import AddFeed from '../AddFeed/AddFeed'
 import ListIcon from 'material-ui-icons/List';
-import LaptopMac from 'material-ui-icons/LaptopMac';
-import Star from 'material-ui-icons/Star';
+import WorldNews from 'material-ui-icons/Public';
+import Technology from 'material-ui-icons/LaptopMac';
+import Politics from 'material-ui-icons/AccountBalance';
+import Business from 'material-ui-icons/Business';
+import Money from 'material-ui-icons/AttachMoney';
+import Sports from 'material-ui-icons/DirectionsBike';
+import Entertainment from 'material-ui-icons/Theaters';
+import Music from 'material-ui-icons/MusicNote';
 import Games from 'material-ui-icons/Games';
-import MusicNote from 'material-ui-icons/MusicNote';
-import Public from 'material-ui-icons/Public';
+import Food from 'material-ui-icons/LocalDining';
+import Travel from 'material-ui-icons/FlightTakeoff';
+import Other from 'material-ui-icons/ChromeReaderMode';
 import Refresh from 'material-ui-icons/Refresh';
-import Archive from 'material-ui-icons/Archive';
+import Delete from 'material-ui-icons/Delete';
 import AddCircle from 'material-ui-icons/AddCircle';
 import IconButton from 'material-ui/IconButton';
 import Description from 'material-ui-icons/Description';
 import PanoramaFishEye from 'material-ui-icons/PanoramaFishEye';
-import Lens from 'material-ui-icons/Lens';
 import FlatButton from 'material-ui/FlatButton';
-import DeleteFeed from '../DeleteFeed/DeleteFeed'
+import DeleteFeed from '../DeleteFeed/DeleteFeed';
 
 import feedPileImg from '../../images/feedpile.png';
 
 import './Sidebar.css';
 import { fetchArticlesForFeedsFromDb, toggleModal, toggleDeleteModal,
-findCreateUser, setSidebarFeed, setDisplayProgress } from '../../actions';
+findCreateUser, setSidebarFeed, setDisplayProgress, setCurrentFeedTitle } from '../../actions';
 import { connect } from 'react-redux';
 
 const styles = {
@@ -36,6 +42,23 @@ const styles = {
     padding: 16
   }
 };
+
+const icons = {
+  "World News": <WorldNews />,
+  "Technology": <Technology />,
+  "Politics": <Politics />,
+  "Business": <Business />,
+  "Money": <Money />,
+  "Sports": <Sports />,
+  "Entertainment": <Entertainment />,
+  "Music": <Music />,
+  "Games": <Games />,
+  "Food": <Food />,
+  "Travel": <Travel />,
+  "Other": <Other />
+}
+
+
 
 let SelectableList = makeSelectable(List);
 
@@ -81,6 +104,7 @@ class Sidebar extends React.Component {
       this.props.findCreateUser(JSON.parse(localStorage.getItem('profile')).identities[0].user_id);
     }
   }
+
   render() {
     const categories = Object.keys(this.props.user);
     return (
@@ -89,20 +113,25 @@ class Sidebar extends React.Component {
           <h2 className="logo-name">FeedPile</h2>
           <SelectableList defaultValue={1}>
             <ListItem value={1} primaryText="All Articles" leftIcon={<ListIcon />}
-                      onClick={() => this.props.setSidebarFeed("")}
+                      onClick={() => {
+                        this.props.setCurrentFeedTitle('All Articles');
+                        this.props.setSidebarFeed("");}
+                      }
             />
             {categories.map((categoryId, index) => {
               return (<ListItem value={index+4} key={index+4} primaryText={this.props.user[categoryId].categoryName}
-
-                        leftIcon={<ListIcon />} primaryTogglesNestedList={true} initiallyOpen={false}
+                        leftIcon={icons[this.props.user[categoryId].categoryName]} primaryTogglesNestedList={true} initiallyOpen={false}
                                 nestedItems=
                                   {this.props.user[categoryId].feeds.map((feed, i) => {
                                     return (<ListItem
                                         value={Math.random() * 20}
                                         key={i}
                                         primaryText={feed.name}
-                                        onClick={() => this.props.setSidebarFeed(feed.feedId)}
-                                        leftIcon={<PanoramaFishEye/>}
+                                        onClick={() => {
+                                          this.props.setCurrentFeedTitle(feed.name);
+                                          this.props.setSidebarFeed(feed.feedId);}
+                                        }
+                                        leftIcon={<Description/>}
                                         // {this.prop.deleteButton && rightIcon={<PanoramaFishEye/>}}
                                     />)
                                   })}
@@ -127,11 +156,11 @@ class Sidebar extends React.Component {
           <AddCircle />
         </IconButton>
       </span>
-          <span className="archive-icon">
+          <span className="delete-icon">
         <IconButton onClick={() => {
             this.props.toggleDeleteModal(true)
-        }}iconStyle={styles.smallIcon} className="archive-icon" style={styles.small}>
-          <Archive />
+        }}iconStyle={styles.smallIcon} className="delete-icon" style={styles.small}>
+          <Delete />
         </IconButton>
       </span>
           <AddFeed />
@@ -144,7 +173,8 @@ class Sidebar extends React.Component {
 const mapStateToProps = (state) => {
   return {
     open: state.open,
-    user: state.user
+    user: state.user,
+    categories: state.categories
   }
 };
 
@@ -153,5 +183,5 @@ export const Unwrapped = Sidebar;
 export default connect(mapStateToProps, {
   fetchArticlesForFeedsFromDb, toggleModal,
   findCreateUser, setSidebarFeed, setDisplayProgress,
-    toggleDeleteModal
+    toggleDeleteModal, setCurrentFeedTitle
 })(Sidebar);

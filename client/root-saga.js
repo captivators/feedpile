@@ -1,7 +1,8 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { delay } from 'redux-saga'
 import axios from 'axios';
-import {setUser,loginSuccess, getArticlesForAllFeeds, updateFeedsArticlesInStore, addFeedToCategory, setDisplayProgress} from './actions';
+import {setUser,loginSuccess, getArticlesForAllFeeds, updateFeedsArticlesInStore,
+addFeedToCategory, setDisplayProgress, showWelcome} from './actions';
 
 const createUserObj = (userObj, categoryList, feedList) => {
   const result = {};
@@ -45,6 +46,7 @@ const createUserObj = (userObj, categoryList, feedList) => {
 export function* findCreateUser(userId) {
   try {
     const userObj = yield call(axios.post, '/api/users/', userId);
+    if(userObj.data.user.feeds.length === 0) yield put(showWelcome(true));
     const categoryList = yield call(axios.get, '/api/categories');
     const feedList = yield call(axios.get, '/api/feeds/');
     const result = createUserObj(userObj.data.user, categoryList.data, feedList.data);
@@ -68,7 +70,6 @@ export function* getArticlesForAllFeedsFromdb() {
       result[userObj.data.user.feeds[i].feedId] = responses[i].data;
     }
     yield put(getArticlesForAllFeeds(result));
-    yield call(delay, 1000);
     yield put(setDisplayProgress(false));
 
   } catch (e) {
@@ -80,6 +81,7 @@ export function* addFeedToDb(action) {
   try {
     const categoryId = action.categoryId;
     const response = yield call(axios.post, '/api/feeds', {url: action.url, userId: action.userId, categoryId: action.categoryId});
+    yield put(showWelcome(false));
     const {feedId, feedUrl, feedName, feedImageSrc, feedArticles} = response.data;
     const newFeedObj = {
       _id: feedId,

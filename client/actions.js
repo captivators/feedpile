@@ -56,16 +56,16 @@ export const addFeed = (url, userId, categoryId) => {
 
 export const setAddFeedUrl = (url) => {
   return {type: 'SET_ADD_FEED_URL', url}
-}
+};
 
 export const setAddFeedCategoryId = (categoryId) => {
   return {type: 'SET_ADD_FEED_CATEGORY_ID', categoryId}
-}
+};
 
 export const addFeedToCategory = (feedName, feedId, categoryId) => {
 
   return {type: 'ADD_FEED_TO_CATEGORY', feedName, feedId, categoryId}
-}
+};
 
 export const setDisplayProgress = (value) => {
   return {type: 'SET_DISPLAY_PROGRESS', value}
@@ -73,4 +73,12 @@ export const setDisplayProgress = (value) => {
 
 export const updateFeedsArticlesInStore = (articles, feed) => {
   return {type: 'UPDATE_FEEDS_AND_ARTICLES_IN_STORE', articles, feed}
+};
+
+export const showWelcome = (value) => {
+  return {type: 'SHOW_WELCOME', value}
+};
+
+export const setCurrentFeedTitle = (feed) => {
+  return {type: 'SET_CURRENT_FEED_TITLE', feed}
 };

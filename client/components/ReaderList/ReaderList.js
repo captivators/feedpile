@@ -19,9 +19,7 @@ class ReaderList extends React.Component {
   render() {
     return (
         <div className="reader-list-container">
-          {
-            Object.keys(this.props.articles).length ? <ReaderListHeader /> : <Welcome />
-          }
+          {this.props.showWelcome ? (<Welcome />) : (<ReaderListHeader />)}
           {this.props.articlesFound.map((article, index) => (
               <ReaderListItem history={this.props.history}
                               article={article}
@@ -36,7 +34,8 @@ class ReaderList extends React.Component {
 const mapStateToProps = (state) => {
   return {
     articles: state.articles,
-    articlesFound: articlesSelector(state)
+    articlesFound: articlesSelector(state),
+    showWelcome: state.showWelcome
   }
 };
 

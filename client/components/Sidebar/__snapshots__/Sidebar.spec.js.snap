@@ -94,10 +94,10 @@ exports[`Sidebar snapshot test 1`] = `
     </IconButton>
   </span>
   <span
-    className="archive-icon"
+    className="delete-icon"
   >
     <IconButton
-      className="archive-icon"
+      className="delete-icon"
       disableTouchRipple={false}
       disabled={false}
       iconStyle={
@@ -117,7 +117,7 @@ exports[`Sidebar snapshot test 1`] = `
       tooltipPosition="bottom-center"
       touch={false}
     >
-      <pure(Archive) />
+      <pure(Delete) />
     </IconButton>
   </span>
   <Connect(AddFeed) />

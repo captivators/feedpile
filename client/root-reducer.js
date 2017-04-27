@@ -30,7 +30,9 @@ const initialState = {
   currentFeed: '',
   addFeedUrl: '',
   addFeedCategoryId: '',
-  displayProgress: false
+  displayProgress: false,
+  showWelcome: false,
+  currentFeedTitle: 'All Articles'
 };
 
 const updateArticles = (state, action) => {
@@ -76,6 +78,10 @@ const setAddFeedUrl = (state, action) => {
 
 const setAddFeedCategoryId = (state, action) => {
   return { ...state, addFeedCategoryId: action.categoryId}
+}
+
+const setCurrentFeedTitle = (state, action) => {
+  return { ...state, currentFeedTitle: action.feed}
 }
 
 const addFeedToCategory = (state, action) => {
@@ -133,6 +139,10 @@ const updateFeedsArticlesInStore = (state, action) => {
   }
 };
 
+const showWelcome = (state, action) => {
+  return {...state, showWelcome: action.value}
+};
+
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -152,9 +162,8 @@ function rootReducer(state = initialState, action) {
       return getArticlesForAllFeeds(state, action);
     case 'SET_SIDEBAR_FEED':
       return setSidebarFeed(state, action);
-    // case 'ADD_FEED':
-    //   console.log('Feed successfully added');
-    //   return state;
+    case 'SHOW_WELCOME':
+      return showWelcome(state, action);
     case 'SET_ADD_FEED_URL':
       return setAddFeedUrl(state, action);
       case 'SET_ADD_FEED_CATEGORY_ID':
@@ -169,6 +178,8 @@ function rootReducer(state = initialState, action) {
         return deleteFeedsFromStore(state, action);
     case 'UPDATE_FEEDS_AND_ARTICLES_IN_STORE':
       return updateFeedsArticlesInStore(state, action);
+    case 'SET_CURRENT_FEED_TITLE':
+      return setCurrentFeedTitle(state, action);
     default:
       return state
   }
