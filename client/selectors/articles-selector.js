@@ -12,6 +12,9 @@ const selectedFeeds = (allArticles, currentFeeds) => {
       for(let key in allArticles) {
         articlesFound = articlesFound.concat(allArticles[key]);
       }
+      articlesFound.sort(function(a,b){
+        return new Date(b.date) - new Date(a.date);
+      });
     }
   }
   return articlesFound;

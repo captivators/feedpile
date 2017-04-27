@@ -26,17 +26,5 @@ exports[`Landingpage: Main section snapshot test 1`] = `
       All your favorite news feeds, piled high
     </h1>
   </div>
-  <div
-    className="start-btn"
-  >
-    <RaisedButton
-      disabled={false}
-      fullWidth={false}
-      label="Get Started"
-      labelPosition="after"
-      primary={true}
-      secondary={false}
-    />
-  </div>
 </div>
 `;
