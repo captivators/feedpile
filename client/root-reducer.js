@@ -31,7 +31,8 @@ const initialState = {
   addFeedUrl: '',
   addFeedCategoryId: '',
   displayProgress: false,
-  showWelcome: false
+  showWelcome: false,
+  currentFeedTitle: 'All Articles'
 };
 
 const updateArticles = (state, action) => {
@@ -77,6 +78,10 @@ const setAddFeedUrl = (state, action) => {
 
 const setAddFeedCategoryId = (state, action) => {
   return { ...state, addFeedCategoryId: action.categoryId}
+}
+
+const setCurrentFeedTitle = (state, action) => {
+  return { ...state, currentFeedTitle: action.feed}
 }
 
 const addFeedToCategory = (state, action) => {
@@ -173,6 +178,8 @@ function rootReducer(state = initialState, action) {
         return deleteFeedsFromStore(state, action);
     case 'UPDATE_FEEDS_AND_ARTICLES_IN_STORE':
       return updateFeedsArticlesInStore(state, action);
+    case 'SET_CURRENT_FEED_TITLE':
+      return setCurrentFeedTitle(state, action);
     default:
       return state
   }

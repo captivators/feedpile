@@ -28,7 +28,7 @@ import feedPileImg from '../../images/feedpile.png';
 
 import './Sidebar.css';
 import { fetchArticlesForFeedsFromDb, toggleModal, toggleDeleteModal,
-findCreateUser, setSidebarFeed, setDisplayProgress } from '../../actions';
+findCreateUser, setSidebarFeed, setDisplayProgress, setCurrentFeedTitle } from '../../actions';
 import { connect } from 'react-redux';
 
 const styles = {
@@ -113,7 +113,10 @@ class Sidebar extends React.Component {
           <h2 className="logo-name">FeedPile</h2>
           <SelectableList defaultValue={1}>
             <ListItem value={1} primaryText="All Articles" leftIcon={<ListIcon />}
-                      onClick={() => this.props.setSidebarFeed("")}
+                      onClick={() => {
+                        this.props.setCurrentFeedTitle('All Articles');
+                        this.props.setSidebarFeed("");}
+                      }
             />
             {categories.map((categoryId, index) => {
               return (<ListItem value={index+4} key={index+4} primaryText={this.props.user[categoryId].categoryName}
@@ -124,7 +127,10 @@ class Sidebar extends React.Component {
                                         value={Math.random() * 20}
                                         key={i}
                                         primaryText={feed.name}
-                                        onClick={() => this.props.setSidebarFeed(feed.feedId)}
+                                        onClick={() => {
+                                          this.props.setCurrentFeedTitle(feed.name);
+                                          this.props.setSidebarFeed(feed.feedId);}
+                                        }
                                         leftIcon={<Description/>}
                                         // {this.prop.deleteButton && rightIcon={<PanoramaFishEye/>}}
                                     />)
@@ -150,7 +156,7 @@ class Sidebar extends React.Component {
           <AddCircle />
         </IconButton>
       </span>
-          <span className="archive-icon">
+          <span className="delete-icon">
         <IconButton onClick={() => {
             this.props.toggleDeleteModal(true)
         }}iconStyle={styles.smallIcon} className="delete-icon" style={styles.small}>
@@ -177,5 +183,5 @@ export const Unwrapped = Sidebar;
 export default connect(mapStateToProps, {
   fetchArticlesForFeedsFromDb, toggleModal,
   findCreateUser, setSidebarFeed, setDisplayProgress,
-    toggleDeleteModal
+    toggleDeleteModal, setCurrentFeedTitle
 })(Sidebar);
