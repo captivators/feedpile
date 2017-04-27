@@ -94,7 +94,7 @@ exports[`Sidebar snapshot test 1`] = `
     </IconButton>
   </span>
   <span
-    className="archive-icon"
+    className="delete-icon"
   >
     <IconButton
       className="delete-icon"
