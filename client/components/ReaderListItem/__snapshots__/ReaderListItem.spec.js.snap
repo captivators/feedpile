@@ -24,10 +24,11 @@ exports[`ReaderListItem snapshot test 1`] = `
         Trump Administration Hunts for Easter Eggs, and Senior Staff
       </h2>
       <p
-        className="article-publisher"
+        className="article-author"
       >
-        New York Times
+        a few seconds ago
       </p>
+      <p />
       <p
         className="article-summary"
       />
