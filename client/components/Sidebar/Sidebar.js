@@ -150,7 +150,7 @@ class Sidebar extends React.Component {
           <AddCircle />
         </IconButton>
       </span>
-          <span className="archive-icon">
+          <span className="delete-icon">
         <IconButton onClick={() => {
             this.props.toggleDeleteModal(true)
         }}iconStyle={styles.smallIcon} className="delete-icon" style={styles.small}>

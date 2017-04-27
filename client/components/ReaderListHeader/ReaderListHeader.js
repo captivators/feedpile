@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 const ReaderListHeader = (props) => {
   return (
     <div className="header-container">
-      <h1 className="header-title">All Articles</h1>
+      <h1 className="header-title">FeedPile News</h1>
     </div>
   )
 };
