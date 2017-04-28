@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Landingpage: Teammate take a snapshot 1`] = `
+<div
+  className="team-mate"
+  style={
+    Object {
+      "fontFamily": "Roboto",
+      "marginBottom": "24px",
+      "overflowY": "hidden",
+      "textAlign": "center",
+      "width": "25%",
+    }
+  }
+>
+  <img
+    className="teammate-image"
+    style={
+      Object {
+        "borderRadius": "100%",
+        "imageAlign": "center",
+        "margin": "15px auto",
+        "maxWidth": "150px",
+        "width": "75%",
+      }
+    }
+  />
+  <br />
+   
+  <br />
+   
+  <br />
+</div>
+`;

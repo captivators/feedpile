@@ -22,7 +22,7 @@ const style = {
 const Teammate = (props) => {
   return (
     <div className="team-mate" style={style.gridList}>
-      <img className="teammate-image" src={ props.info.image } style={style.porthole} alt=""/><br/>
+      <img className="teammate-image" src={ props.info.image } style={style.porthole} /><br/>
       { props.info.name } <br />
       { props.info.job } <br />
     </div>
