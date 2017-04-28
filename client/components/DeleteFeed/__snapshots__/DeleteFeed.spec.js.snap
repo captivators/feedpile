@@ -21,11 +21,11 @@ exports[`DeleteFeed take a snapshot 1`] = `
         <RaisedButton
           disabled={false}
           fullWidth={false}
-          label="Submit"
+          label="Delete"
           labelPosition="after"
           onTouchTap={[Function]}
-          primary={true}
-          secondary={false}
+          primary={false}
+          secondary={true}
       />,
       ]
     }

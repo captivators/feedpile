@@ -7,12 +7,10 @@ import AppBar from 'material-ui/AppBar'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { shallow, mount } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
-import getMuiTheme from '../../../../node_modules/material-ui/styles/getMuiTheme';
+import '../../../../__mocks__/process'
 
 test('Header take a snapshot', () => {
-  const muiTheme = getMuiTheme();
-  const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
-  const component = shallowWithContext(<UnwrappedHeader />);
+  const component = shallow(<UnwrappedHeader />);
   const tree = shallowToJson(component);
   expect(tree).toMatchSnapshot();
 });
@@ -21,7 +19,3 @@ test('Render Header component', () => {
   const component = mount(<MuiThemeProvider><Provider store={store}><UnwrappedHeader /></Provider></MuiThemeProvider>);
   expect(component.find(AppBar).length).toEqual(1);
 });
-
-
-
-
