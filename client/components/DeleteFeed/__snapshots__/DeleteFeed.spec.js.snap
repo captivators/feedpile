@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeleteFeed take a snapshot 1`] = `
+<div>
+  <Dialog
+    actions={
+      Array [
+        <FlatButton
+          disabled={false}
+          label="Cancel"
+          labelPosition="after"
+          labelStyle={Object {}}
+          onKeyboardFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onTouchStart={[Function]}
+          onTouchTap={[Function]}
+          primary={true}
+          secondary={false}
+      />,
+        <RaisedButton
+          disabled={false}
+          fullWidth={false}
+          label="Submit"
+          labelPosition="after"
+          onTouchTap={[Function]}
+          primary={true}
+          secondary={false}
+      />,
+      ]
+    }
+    autoDetectWindowHeight={true}
+    autoScrollBodyContent={false}
+    contentStyle={
+      Object {
+        "maxWidth": "600px",
+        "width": "75%",
+      }
+    }
+    modal={false}
+    onRequestClose={[Function]}
+    repositionOnUpdate={true}
+    title="Choose the feeds you would like to delete."
+  >
+    <div
+      className="checkboxes"
+    />
+  </Dialog>
+</div>
+`;

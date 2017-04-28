@@ -34,6 +34,8 @@
     },
     "collectCoverageFrom": [
       "client/**/*.{js,jsx}",
+      "!client/**/index.js",
+      "!client/**/routes.js",
       "!**/node_modules/**"
     ],
     "coverageThreshold": {

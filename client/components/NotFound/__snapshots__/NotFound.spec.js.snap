@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound take a snapshot 1`] = `
+<div>
+  <div>
+    <Link
+      replace={false}
+      to="/"
+    >
+      Home
+    </Link>
+  </div>
+  <div>
+    <Link
+      replace={false}
+      to="/about"
+    >
+      About
+    </Link>
+  </div>
+  <hr />
+  <h1>
+    404 
+    <small>
+      Not Found :(
+    </small>
+  </h1>
+</div>
+`;
