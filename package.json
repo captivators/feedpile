@@ -8,7 +8,8 @@
     "update-test": "npm run test -- -u",
     "test-coverage": "NODE_ENV=test jest --coverage",
     "build": "webpack",
-    "start": "node server/index.js",
+    "server": "node server/index.js",
+    "start": "npm run build && npm run server",
     "dev-client": "webpack-dev-server",
     "report-coverage": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "deploy": "npm run build && npm start"
