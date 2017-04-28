@@ -10,7 +10,7 @@ import './Header.css';
 const Header = React.createClass({
 
   componentDidMount() {
-    this.lock = new Auth0Lock('V22h9G3v-_1RucHOwP71LqZpQJCSiL6n', 'faizone.auth0.com');
+    this.lock = new Auth0Lock(process.env.authKey, process.env.domain);
     this.lock.on("authenticated", function(authResult) {
       this.props.setDisplayProgress(true);
       this.lock.getUserInfo(authResult.accessToken, function(error, profile) {
