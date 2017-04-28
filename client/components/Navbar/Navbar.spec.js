@@ -15,14 +15,14 @@ test('Navbar take a snapshot', () => {
   expect(tree).toMatchSnapshot();
 });
 
-test('Navbar renders a greeting and an Avatar', () => {
-
-
-  const component = render(<MuiThemeProvider><Navbar store={ store } /></MuiThemeProvider>)
-  expect(component.find('.greeting').length).toEqual(1)
-  const toggle = component.find('.logout');
-  expect(toggle.props().checked).toEqual(true);
-  expect(toggle.props().onChange()).toEqual(true);
+// test('Navbar renders a greeting and an Avatar', () => {
+//
+//
+//   const component = render(<MuiThemeProvider><Navbar store={ store } /></MuiThemeProvider>)
+//   expect(component.find('.greeting').length).toEqual(1)
+//   const toggle = component.find('.logout');
+//   expect(toggle.props().checked).toEqual(true);
+//   expect(toggle.props().onChange()).toEqual(true);
   //     mount(<MuiThemeProvider><Navbar store={ store } /></MuiThemeProvider>)
   // expect(userProfile.instance()).toEqual(true)
-})
+// })

@@ -1,27 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Landingpage: Teammate take a snapshot 1`] = `
-<div
-  style={
-    Object {
-      "margin": "auto",
-      "maxWidth": "150px",
-      "padding": "20px",
-      "width": "50%",
-    }
-  }
->
-  <a
-    className="tech-logo"
-    href="https://facebook.github.io/react/"
-  >
-    <img
-      src="https://s27.postimg.org/ud14uv8v7/logo-578x270.png"
-    />
-  </a>
-</div>
-`;
-
 exports[`Landingpage: TechItem take a snapshot 1`] = `
 <div
   style={

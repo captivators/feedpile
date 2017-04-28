@@ -13,14 +13,14 @@ test('DeleteFeed take a snapshot', () => {
   expect(tree).toMatchSnapshot();
 });
 
-test('DeleteFeed renders modal dialog with checkboxes', () =>{
-  const feeds = [
-    {
-      _id: 'test id',
-      name: 'test name'
-    }
-  ]
-  const component = render(<MuiThemeProvider><UnwrappedDeleteFeed userFeeds={ feeds }/></MuiThemeProvider>)
-  console.log('component', component)
-  expect(component.find('.checkboxes').length).toEqual(1)
-})
+// test('DeleteFeed renders modal dialog with checkboxes', () =>{
+//   const feeds = [
+//     {
+//       _id: 'test id',
+//       name: 'test name'
+//     }
+//   ]
+//   const component = render(<MuiThemeProvider><UnwrappedDeleteFeed userFeeds={ feeds }/></MuiThemeProvider>)
+//   console.log('component', component)
+//   expect(component.find('.checkboxes').length).toEqual(1)
+// })
