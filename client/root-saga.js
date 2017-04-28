@@ -2,7 +2,7 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import { delay } from 'redux-saga'
 import axios from 'axios';
 import {setUser,loginSuccess, getArticlesForAllFeeds, updateFeedsArticlesInStore,
-addFeedToCategory, setDisplayProgress, showWelcome} from './actions';
+addFeedToCategory, setDisplayProgress, showWelcome, setCurrentFeedTitle} from './actions';
 
 const createUserObj = (userObj, categoryList, feedList) => {
   const result = {};
@@ -106,6 +106,7 @@ export function* deleteFeedsFromDb(action) {
     yield call(findCreateUser, {userId: action.userId});
     yield call(getArticlesForAllFeedsFromdb);
     yield put(setDisplayProgress(false));
+    yield put(setCurrentFeedTitle('All Articles'));
  } catch (e) {
 
  }

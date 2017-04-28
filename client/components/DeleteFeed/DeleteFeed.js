@@ -35,8 +35,8 @@ class DeleteFeed extends React.Component {
           }}
       />,
       <RaisedButton
-          label="Submit"
-          primary={true}
+          label="Delete"
+          secondary={true}
           onTouchTap={() => {
             this.props.setDisplayProgress(true);
             this.props.deleteFeedsFromDb(this.state.feedsToDelete,

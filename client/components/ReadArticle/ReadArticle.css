@@ -26,8 +26,9 @@
 }
 
 .read-article-content img {
-  max-width: 680px;
+  max-width: 100%;
   height: auto;
+  width: auto;
   margin-bottom: 25px;
 }
 
