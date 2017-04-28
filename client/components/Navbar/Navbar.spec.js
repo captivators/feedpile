@@ -14,7 +14,7 @@ test('Navbar take a snapshot', () => {
   const component = shallow(<Navbar store={ store }/>);
   const tree = shallowToJson(component);
   expect(tree).toMatchSnapshot();
-});
+}); 
 
 // test('Navbar renders a greeting and an Avatar', () => {
 //   // const component = render(<MuiThemeProvider><Navbar store={ store }/></MuiThemeProvider>)
