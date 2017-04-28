@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const DotenvPlugin = require('webpack-dotenv-plugin');
 
 module.exports = {
   entry: './client/index.js',
@@ -35,7 +36,11 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin(),
+    new DotenvPlugin({
+      sample: './.env',
+      path: './.env'
+    })
   ],
   devServer: {
     hot: true,
