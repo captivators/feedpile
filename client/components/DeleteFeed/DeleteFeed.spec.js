@@ -6,16 +6,17 @@ import { shallowToJson } from 'enzyme-to-json';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import store from '../../store';
 import { Unwrapped as UnwrappedDeleteFeed } from './DeleteFeed'
+import getMuiTheme from '../../../node_modules/material-ui/styles/getMuiTheme';
+
+
 
 test('DeleteFeed take a snapshot', () => {
-  const component = shallow(<UnwrappedDeleteFeed userFeeds={[]}/>);
+  const muiTheme = getMuiTheme();
+  const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
+  const component = shallowWithContext(<UnwrappedDeleteFeed userFeeds={[]} store={ store }/>);
   const tree = shallowToJson(component);
   expect(tree).toMatchSnapshot();
 });
-
-test('DeleteFeed knows when a checkbox has been checked', () => {
-  
-})
 
 // test('DeleteFeed renders modal dialog with checkboxes', () =>{
 //   const feeds = [
@@ -24,7 +25,10 @@ test('DeleteFeed knows when a checkbox has been checked', () => {
 //       name: 'test name'
 //     }
 //   ]
-//   const component = render(<MuiThemeProvider><UnwrappedDeleteFeed userFeeds={ feeds }/></MuiThemeProvider>)
-//   console.log('component', component)
-//   expect(component.find('.checkboxes').length).toEqual(1)
+//
+//
+//   const component = render(<MuiThemeProvider><UnwrappedDeleteFeed open={true} store={ store }
+//                                                                    openDeleteFeedModal={false}
+//                                                                   userFeeds={feeds}/></MuiThemeProvider>);
+//   expect(component.find('Dialog').hasClass('.checkboxes')).toBe(true)
 // })
