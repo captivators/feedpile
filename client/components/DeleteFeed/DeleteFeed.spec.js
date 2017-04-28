@@ -13,6 +13,10 @@ test('DeleteFeed take a snapshot', () => {
   expect(tree).toMatchSnapshot();
 });
 
+test('DeleteFeed knows when a checkbox has been checked', () => {
+  
+})
+
 // test('DeleteFeed renders modal dialog with checkboxes', () =>{
 //   const feeds = [
 //     {
