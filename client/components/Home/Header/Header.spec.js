@@ -7,6 +7,7 @@ import AppBar from 'material-ui/AppBar'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { shallow, mount } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
+import '../../../../__mocks__/process'
 
 test('Header take a snapshot', () => {
   const component = shallow(<UnwrappedHeader />);
