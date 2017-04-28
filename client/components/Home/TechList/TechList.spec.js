@@ -18,5 +18,5 @@ test('Landingpage: Team section snapshot test', () => {
 test('Landingpage: TechList section should render 15 tech images', () => {
   const component = render(<Provider store={store}><TechList /></Provider>);
   expect(component.find('.stack').length).toEqual(1);
-  expect(component.find('.tech-logo').length).toEqual(15);
+  expect(component.find('.tech-logo').length).toEqual(16);
 })

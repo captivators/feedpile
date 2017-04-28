@@ -27,7 +27,7 @@ exports[`Landingpage: Team section snapshot test 1`] = `
   <TechItem
     tech={
       Object {
-        "image": "https://s11.postimg.org/9ewo3bnmr/react-router.png",
+        "image": "https://s18.postimg.org/7c5q3p115/react-router-logo-_AB5_BFB638_F-seeklogo.com.png",
         "link": "https://react-router.js.org",
         "name": "React Router",
       }
@@ -102,6 +102,15 @@ exports[`Landingpage: Team section snapshot test 1`] = `
         "image": "https://s15.postimg.org/c0rtqswi3/Amazon_Webservices_Logo.svg.png",
         "link": "https://aws.amazon.com/codedeploy/",
         "name": "AWS",
+      }
+    }
+  />
+  <TechItem
+    tech={
+      Object {
+        "image": "https://s23.postimg.org/iqwvdr6mz/docker.png",
+        "link": "https://www.docker.com/what-docker",
+        "name": "Docker",
       }
     }
   />
