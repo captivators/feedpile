@@ -16,8 +16,8 @@ const featureList = [
     }}/>,
   },
   {
-    name: 'Responsive Design',
-    description: 'FeedPile offers a responsive reading experience for all devices. The sleak desktop design scales down beautifully for mobile devices, so you can enjoy your favorite RSS feeds at home or on the go.',
+    name: 'Minimalist Design',
+    description: 'FeedPile offers a clean and uncluttered UI to make reading the news a breath of fresh air. Enjoy reading individual articles without a flurry of advertisements.',
     icon: <StayCurrentPortrait style={{
       width: "60px",
       height: "60px",
