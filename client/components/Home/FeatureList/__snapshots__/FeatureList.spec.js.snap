@@ -80,13 +80,13 @@ exports[`Landingpage: Feature list snapshot test 1`] = `
                 }
               }
             >
-              Responsive Design
+              Minimalist Design
             </li>
             <br />
             <li
               className="description"
             >
-              FeedPile offers a responsive reading experience for all devices. The sleak desktop design scales down beautifully for mobile devices, so you can enjoy your favorite RSS feeds at home or on the go.
+              FeedPile offers a clean and uncluttered UI to make reading the news a breath of fresh air. Enjoy reading individual articles without a flurry of advertisements.
             </li>
           </ul>
         </div>

@@ -31,7 +31,31 @@ exports[`Landingpage: Team section snapshot test 1`] = `
       info={
         Object {
           "image": "https://s15.postimg.org/mnsiyo6ob/19718788.png",
-          "job": "Software Engineer",
+          "job": <span>
+            <a
+                href="https://www.linkedin.com/in/faizulmohammed"
+                style={
+                    Object {
+                        "color": "#4682b4",
+                      }
+                }
+                target="_blank"
+            >
+                LinkedIn
+            </a>
+             | 
+            <a
+                href="https://www.github.com/faiz121"
+                style={
+                    Object {
+                        "color": "#4682b4",
+                      }
+                }
+                target="_blank"
+            >
+                Github
+            </a>
+        </span>,
           "name": "Faiz Mohammad",
         }
       }
@@ -40,7 +64,31 @@ exports[`Landingpage: Team section snapshot test 1`] = `
       info={
         Object {
           "image": "https://s21.postimg.org/l5w02gp7r/10905290.png",
-          "job": "Software Engineer",
+          "job": <span>
+            <a
+                href="https://www.linkedin.com/in/mohammadfarooqi"
+                style={
+                    Object {
+                        "color": "#4682b4",
+                      }
+                }
+                target="_blank"
+            >
+                LinkedIn
+            </a>
+             | 
+            <a
+                href="https://www.github.com/mohammadfarooqi"
+                style={
+                    Object {
+                        "color": "#4682b4",
+                      }
+                }
+                target="_blank"
+            >
+                Github
+            </a>
+        </span>,
           "name": "Mohammad Farooqi",
         }
       }
@@ -49,7 +97,31 @@ exports[`Landingpage: Team section snapshot test 1`] = `
       info={
         Object {
           "image": "https://s18.postimg.org/g99jey3nd/22188424.jpg",
-          "job": "Software Engineer",
+          "job": <span>
+            <a
+                href="https://www.linkedin.com/in/xanrosenthal"
+                style={
+                    Object {
+                        "color": "#4682b4",
+                      }
+                }
+                target="_blank"
+            >
+                LinkedIn
+            </a>
+             | 
+            <a
+                href="https://www.github.com/PantherHawk"
+                style={
+                    Object {
+                        "color": "#4682b4",
+                      }
+                }
+                target="_blank"
+            >
+                Github
+            </a>
+        </span>,
           "name": "Alex Rosenthal",
         }
       }
@@ -58,8 +130,31 @@ exports[`Landingpage: Team section snapshot test 1`] = `
       info={
         Object {
           "image": "https://s15.postimg.org/yl8x4qctn/14929585.jpg",
-          "job": "Product Owner,
-         Software Engineer",
+          "job": <span>
+            <a
+                href="https://www.linkedin.com/in/darinallen"
+                style={
+                    Object {
+                        "color": "#4682b4",
+                      }
+                }
+                target="_blank"
+            >
+                LinkedIn
+            </a>
+             | 
+            <a
+                href="https://www.github.com/darinallen"
+                style={
+                    Object {
+                        "color": "#4682b4",
+                      }
+                }
+                target="_blank"
+            >
+                Github
+            </a>
+        </span>,
           "name": "Darin Allen",
         }
       }
