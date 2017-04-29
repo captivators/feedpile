@@ -30,7 +30,7 @@ Too much time is spent scouring the web for headlines and jumping between scores
  Far too many of us consume news by social media, which is designed to provide only the stories that conform to a reader's biases. No single news outlet can cover all the news. And few light weight news aggregator platform are on the market today.
 
 ## Solution ##
-  Finally a news aggregator that gives you the control to find the truth.
+  Finally a news aggregator that gives you the control.
 
 ## Quote from You ##
   "With customizable feeds and categories, Feedpile automatically receives updates from news sources without inundating users."

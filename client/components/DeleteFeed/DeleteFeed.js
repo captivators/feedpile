@@ -60,7 +60,7 @@ class DeleteFeed extends React.Component {
                 this.props.toggleDeleteModal(false);
               }}
           >
-            <div className="radio-buttons">
+            <div className="checkboxes">
               {this.props.userFeeds.map((feed, i) => {
 
                 return (<Checkbox
