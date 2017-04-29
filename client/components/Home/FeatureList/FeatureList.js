@@ -35,64 +35,62 @@ const featureList = [
       marginTop: '50px'
     }}/>,
   },
-  {
-
-  }
+  {}
 ]
 
 const FeatureList = (props) => {
   return (
-    <div className="features">
-      <ul className="features-list">
-        <li>
-          <div className="feature-item">
-            <div className="icon-a">
-              <i>{featureList[0].icon}</i>
+      <div className="features">
+        <ul className="features-list">
+          <li>
+            <div className="feature-item">
+              <div className="icon-a">
+                <i>{featureList[0].icon}</i>
+              </div>
+              <div className="info-a">
+                <ul >
+                  <li style={{fontSize: "24px"}}>{featureList[0].name}</li>
+                  <br/>
+                  <li className="description">{featureList[0].description}</li>
+                </ul>
+              </div>
             </div>
-            <div className="info-a">
-              <ul >
-                <li style={{fontSize: "24px"}}>{featureList[0].name}</li>
-                <br/>
-                <li className="description">{featureList[0].description}</li>
-              </ul>
+          </li>
+          <li>
+            <div className="feature-item">
+              <div className="icon-b">
+                <i>{featureList[1].icon}</i>
+              </div>
+              <div className="info-b">
+                <ul >
+                  <li style={{fontSize: "24px"}}>{featureList[1].name}</li>
+                  <br/>
+                  <li className="description">{featureList[1].description}</li>
+                </ul>
+              </div>
+
             </div>
-          </div>
-        </li>
-        <li>
-          <div className="feature-item">
-            <div className="icon-b">
-            <i>{featureList[1].icon}</i>
+          </li>
+
+          <li>
+            <div className="feature-item">
+              <div className="icon-a">
+                <i>{featureList[2].icon}</i>
+              </div>
+              <div className="info-a">
+                <ul >
+                  <li style={{fontSize: "24px"}}>{featureList[2].name}</li>
+                  <br/>
+                  <li className="description">{featureList[2].description}</li>
+                </ul>
+              </div>
+
             </div>
-          <div className="info-b">
-          <ul >
-          <li style={{fontSize: "24px"}}>{featureList[1].name}</li>
-          <br/>
-          <li className="description">{featureList[1].description}</li>
-          </ul>
-          </div>
+          </li>
 
-        </div>
-        </li>
-
-        <li>
-          <div className="feature-item">
-          <div className="icon-a">
-          <i>{featureList[2].icon}</i>
-          </div>
-          <div className="info-a">
-          <ul >
-          <li style={{fontSize: "24px"}}>{featureList[2].name}</li>
-          <br/>
-          <li className="description">{featureList[2].description}</li>
-          </ul>
-          </div>
-
-        </div>
-        </li>
-
-      </ul>
-    </div>
-    )
+        </ul>
+      </div>
+  )
 }
 
 export default FeatureList;

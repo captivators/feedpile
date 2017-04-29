@@ -11,3 +11,4 @@ test('AddFeed take a snapshot', () => {
   const tree = shallowToJson(component);
   expect(tree).toMatchSnapshot();
 });
+

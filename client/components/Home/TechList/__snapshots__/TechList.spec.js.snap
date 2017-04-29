@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Landingpage: Team section snapshot test 1`] = `
+<div
+  className="stack"
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#78909C",
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexWrap": "wrap",
+      "justifyContent": "center",
+      "padding": "40px",
+    }
+  }
+>
+  <TechItem
+    tech={
+      Object {
+        "image": "https://s27.postimg.org/ud14uv8v7/logo-578x270.png",
+        "link": "https://facebook.github.io/react/",
+        "name": "React",
+      }
+    }
+  />
+  <TechItem
+    tech={
+      Object {
+        "image": "https://s18.postimg.org/7c5q3p115/react-router-logo-_AB5_BFB638_F-seeklogo.com.png",
+        "link": "https://react-router.js.org",
+        "name": "React Router",
+      }
+    }
+  />
+  <TechItem
+    tech={
+      Object {
+        "image": "https://s30.postimg.org/50zpvkri9/logo-redux.png",
+        "link": "http://redux.js.org/",
+        "name": "Redux",
+      }
+    }
+  />
+  <TechItem
+    tech={
+      Object {
+        "image": "https://s15.postimg.org/p04co7pej/webpack.png",
+        "link": "https://www.webpack.js.org/",
+        "name": "Webpack",
+      }
+    }
+  />
+  <TechItem
+    tech={
+      Object {
+        "image": "https://s28.postimg.org/59tbpai4t/babel_1.png",
+        "link": "http://www.babeljs.io/",
+        "name": "Babel",
+      }
+    }
+  />
+  <TechItem
+    tech={
+      Object {
+        "image": "https://s1.postimg.org/400bfw3vj/nodejs.png",
+        "link": "http://nodejs.org/eng",
+        "name": "Node",
+      }
+    }
+  />
+  <TechItem
+    tech={
+      Object {
+        "image": "https://s7.postimg.org/c5kgs8wh7/express.png",
+        "link": "https://expressjs.com",
+        "name": "Express",
+      }
+    }
+  />
+  <TechItem
+    tech={
+      Object {
+        "image": "https://s24.postimg.org/hx7jao6qd/mongodb-logo-1.png",
+        "link": "https://www.mongodb.com",
+        "name": "MongoDB",
+      }
+    }
+  />
+  <TechItem
+    tech={
+      Object {
+        "image": "https://s23.postimg.org/n1i0g8re3/Travis_CI-_Mascot-1-20feeadb48fc2492ba741d89cb5a5c.png",
+        "link": "https://travis-ci.org",
+        "name": "Travis CI",
+      }
+    }
+  />
+  <TechItem
+    tech={
+      Object {
+        "image": "https://s15.postimg.org/c0rtqswi3/Amazon_Webservices_Logo.svg.png",
+        "link": "https://aws.amazon.com/codedeploy/",
+        "name": "AWS",
+      }
+    }
+  />
+  <TechItem
+    tech={
+      Object {
+        "image": "https://s23.postimg.org/iqwvdr6mz/docker.png",
+        "link": "https://www.docker.com/what-docker",
+        "name": "Docker",
+      }
+    }
+  />
+  <TechItem
+    tech={
+      Object {
+        "image": "https://s24.postimg.org/rgds3co7p/jest.9ec4c2ad.png",
+        "link": "",
+        "name": "Jest",
+      }
+    }
+  />
+  <TechItem
+    tech={
+      Object {
+        "image": "https://s7.postimg.org/p125vwx4r/1-pu9_U8_EYL3_KGrgvapyp1p_Sg.png",
+        "link": "http://airbnb.io/enzyme/docs/api/",
+        "name": "Enzyme",
+      }
+    }
+  />
+  <TechItem
+    tech={
+      Object {
+        "image": "https://s9.postimg.org/q5c35f0zj/chaijs-mocha.png",
+        "link": "http://chaijs.com/",
+        "name": "Mocha Chai",
+      }
+    }
+  />
+  <TechItem
+    tech={
+      Object {
+        "image": "https://s11.postimg.org/975jiaz8j/material-ui_1.png",
+        "link": "http://www.material-ui.com/#/customization/themes",
+        "name": "Material UI",
+      }
+    }
+  />
+  <TechItem
+    tech={
+      Object {
+        "image": "https://s14.postimg.org/nhna7dump/npm.png",
+        "link": "https://www.npmjs.com/",
+        "name": "NPM",
+      }
+    }
+  />
+</div>
+`;
