@@ -24,22 +24,22 @@ const style = {
 const teamInfo = [
   {
     name: 'Faiz Mohammad',
-    job: 'Software Engineer',
+    job: <span><a style={{"color":"#4682b4"}} href="https://www.linkedin.com/in/faizulmohammed" target="_blank">LinkedIn</a> | <a style={{"color":"#4682b4"}} href="https://www.github.com/faiz121" target="_blank">Github</a></span>,
     image: 'https://s15.postimg.org/mnsiyo6ob/19718788.png'
   },
   {
     name: 'Mohammad Farooqi',
-    job: 'Software Engineer',
+    job: <span><a style={{"color":"#4682b4"}} href="https://www.linkedin.com/in/mohammadfarooqi" target="_blank">LinkedIn</a> | <a style={{"color":"#4682b4"}} href="https://www.github.com/mohammadfarooqi" target="_blank">Github</a></span>,
     image: 'https://s21.postimg.org/l5w02gp7r/10905290.png'
   },
   {
     name: 'Alex Rosenthal',
-    job: 'Software Engineer',
+    job: <span><a style={{"color":"#4682b4"}} href="https://www.linkedin.com/in/xanrosenthal" target="_blank">LinkedIn</a> | <a style={{"color":"#4682b4"}} href="https://www.github.com/PantherHawk" target="_blank">Github</a></span>,
     image: 'https://s18.postimg.org/g99jey3nd/22188424.jpg'
   },
   {
     name: 'Darin Allen',
-    job: 'Product Owner,\n Software Engineer',
+    job: <span><a style={{"color":"#4682b4"}} href="https://www.linkedin.com/in/darinallen" target="_blank">LinkedIn</a> | <a style={{"color":"#4682b4"}} href="https://www.github.com/darinallen" target="_blank">Github</a></span>,
     image: 'https://s15.postimg.org/yl8x4qctn/14929585.jpg'
   }
 ]
