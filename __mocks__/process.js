@@ -1,7 +1,7 @@
 const process = {
   "env" : {
-    "authKey":"test",
-    "domain":"user_id"
+    "AUTH_ID":"test",
+    "AUTH_DOMAIN":"user_id"
   }
 }
 global.process = process;
