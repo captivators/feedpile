@@ -11,9 +11,7 @@ const routes = require('./routes');
 const app = express();
 
 // connect to our database
-// mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/feedpilelocal', function (err) {
-
-mongoose.connect('mongodb://localhost/feedpilelocal', function (err) {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/feedpilelocal', function (err) {
   if (err) {
     console.log(err);
   }

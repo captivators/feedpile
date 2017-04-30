@@ -23,7 +23,7 @@ const techList = [
   {
     name: "React Router",
     link: "https://react-router.js.org",
-    image: "https://s11.postimg.org/9ewo3bnmr/react-router.png"
+    image: "https://s18.postimg.org/7c5q3p115/react-router-logo-_AB5_BFB638_F-seeklogo.com.png"
   },
   {
     name: "Redux",
@@ -59,6 +59,11 @@ const techList = [
     name: "Travis CI",
     link: "https://travis-ci.org",
     image: "https://s23.postimg.org/n1i0g8re3/Travis_CI-_Mascot-1-20feeadb48fc2492ba741d89cb5a5c.png"
+  },
+  {
+    name: "Docker",
+    link: "https://www.docker.com/what-docker",
+    image: "https://s23.postimg.org/iqwvdr6mz/docker.png",
   },
   {
     name: "AWS",
