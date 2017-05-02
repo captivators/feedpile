@@ -82,3 +82,7 @@ export const showWelcome = (value) => {
 export const setCurrentFeedTitle = (feed) => {
   return {type: 'SET_CURRENT_FEED_TITLE', feed}
 };
+
+export const updateErrorText = (text) => {
+  return {type: 'UPDATE_ERROR_TEXT', text}
+};

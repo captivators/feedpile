@@ -3,7 +3,8 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import {toggleModal, addFeed, setAddFeedCategoryId, setAddFeedUrl, setDisplayProgress} from '../../actions';
+import validUrl from 'valid-url';
+import {toggleModal, addFeed, setAddFeedCategoryId, setAddFeedUrl, setDisplayProgress, updateErrorText} from '../../actions';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 import {connect} from 'react-redux';
 import './AddFeed.css';
@@ -35,9 +36,15 @@ const AddFeed = (props) => {
       label="Submit"
       primary={true}
       onTouchTap={() => {
-        props.addFeed(props.urlInput, userId, props.selectedCategory)
-        props.setDisplayProgress(true)
-        props.toggleModal(false);
+        if(validUrl.isUri(props.urlInput)) {
+          props.addFeed(props.urlInput, userId, props.selectedCategory)
+          props.setDisplayProgress(true)
+          props.toggleModal(false);
+          props.updateErrorText('');
+          props.setAddFeedUrl('');
+        } else {
+          props.updateErrorText('Please enter a valid RSS feed URL');
+        }
       }}
     />
   ];
@@ -58,6 +65,7 @@ const AddFeed = (props) => {
         <div className="url-input">
           <TextField
             hintText="http://coolnews.rss"
+            errorText= {props.errorText}
             fullWidth={true}
             onChange={(e) => {
               props.setAddFeedUrl(e.target.value)
@@ -89,10 +97,11 @@ const mapStateToProps = (state) => {
     modalOpen: state.modalOpen,
     categories: state.categories,
     urlInput: state.addFeedUrl,
-    selectedCategory: state.addFeedCategoryId
+    selectedCategory: state.addFeedCategoryId,
+    errorText: state.errorText
   }
 }
 
 export const Unwrapped = AddFeed;
 export default connect(mapStateToProps, {toggleModal, addFeed,
-setAddFeedCategoryId, setAddFeedUrl, setDisplayProgress})(AddFeed);
+setAddFeedCategoryId, setAddFeedUrl, setDisplayProgress, updateErrorText})(AddFeed);
