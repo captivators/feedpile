@@ -30,6 +30,8 @@ const AddFeed = (props) => {
       primary={true}
       onTouchTap={() => {
         props.toggleModal(false);
+        props.updateErrorText('');
+        props.setAddFeedUrl('');
       }}
     />,
     <RaisedButton
